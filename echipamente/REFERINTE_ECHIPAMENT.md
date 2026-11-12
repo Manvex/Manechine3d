@@ -46,3 +46,21 @@ Banda de alergare (`treadmill_flat`, `treadmill_incline`), turnul cu scripete (`
 - `kind` este `rotary` (grade), `linear` (metri) sau `ball` (rotație liberă în jurul pivotului, pentru landmine).
 - Valoarea 0 este poziția de repaus din GLB.
 - Cablurile nu sunt modelate: viewerul le desenează între ancorele `cable_*` și accesoriu.
+
+## Aspect realist (aparate)
+
+Aparatele din setul 02, plus `glute_ham_developer` și `hyperextension_45`, sunt reconstruite cu `tools/upgrade_machines.py`:
+
+- profile de cadru cu colțuri rotunjite, ceva mai groase, cu capace de plastic; cadru gri-argintiu
+- perne tapițate bombate, role cu capete rotunjite, manșoane de prindere cu guler
+- greutăți cu etichete și cui selector, carcasă pe turnul de greutăți, plăcuță de instrucțiuni
+- tijă de șezut cromată cu buton galben de reglaj, capace pe axele pivoților
+
+Nodurile `anchor_*` și `joint_*` (nume, poziții, `extras`) sunt identice cu cele din modelul original.
+Modelele originale sunt în `glb_src/`; de acolo pornește scriptul:
+
+```bash
+python3 tools/upgrade_machines.py machine_chest_press --render
+```
+
+Materiale noi în GLB: `shroud`, `label`, `accent`. Gabaritul crește cu câțiva milimetri din cauza profilelor mai groase.

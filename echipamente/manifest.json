@@ -574,13 +574,13 @@
   {
    "name": "cable_crossover",
    "size_mm": [
-    3640.0,
-    1085.0,
-    2330.0
+    3644.0,
+    1089.0,
+    2336.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 8364,
+   "tris": 11956,
    "source": "estimat",
    "anchors": [
     "cable_out_L",
@@ -659,14 +659,14 @@
      ]
     }
    },
-   "glb_kb": 236.2
+   "glb_kb": 333.0
   },
   {
    "name": "cable_functional_trainer",
    "size_mm": [
-    1785.0,
-    1085.0,
-    2200.0
+    1789.0,
+    1089.0,
+    2206.6
    ],
    "spec_mm": [
     [
@@ -683,7 +683,7 @@
     ]
    ],
    "tolerance": 0.05,
-   "tris": 8364,
+   "tris": 11956,
    "source": "functional trainer: 1625-1785 x 810-1085 x 2120-2202 mm",
    "anchors": [
     "cable_out_L",
@@ -762,14 +762,14 @@
      ]
     }
    },
-   "glb_kb": 236.4
+   "glb_kb": 333.0
   },
   {
    "name": "cable_lat_row_combo",
    "size_mm": [
     1255.0,
-    1910.0,
-    2330.0
+    1916.6,
+    2336.6
    ],
    "spec_mm": [
     [
@@ -786,7 +786,7 @@
     ]
    ],
    "tolerance": 0.05,
-   "tris": 7916,
+   "tris": 11312,
    "source": "combo: 1750-2000 x 1200-1320 x 2210-2390 mm",
    "anchors": [
     "cable_lat",
@@ -814,7 +814,7 @@
      ]
     }
    },
-   "glb_kb": 200.7
+   "glb_kb": 317.3
   },
   {
    "name": "cable_lat_station",
@@ -1278,7 +1278,7 @@
    "name": "glute_ham_developer",
    "size_mm": [
     795.0,
-    1860.0,
+    1873.2,
     1130.0
    ],
    "spec_mm": [
@@ -1296,7 +1296,7 @@
     ]
    ],
    "tolerance": 0.05,
-   "tris": 6032,
+   "tris": 5776,
    "source": "1850 x 800 x 1130 mm; 87 x 31 x 45 in",
    "anchors": [
     "ankle",
@@ -1304,18 +1304,18 @@
     "hip_pad"
    ],
    "joints": {},
-   "glb_kb": 125.1
+   "glb_kb": 146.9
   },
   {
    "name": "hack_squat",
    "size_mm": [
     745.0,
-    2000.0,
-    1740.0
+    2004.0,
+    1748.0
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 4144,
+   "tris": 5880,
    "source": "ghidaje 30 mm; gabarit estimat",
    "anchors": [
     "foot_center",
@@ -1341,18 +1341,18 @@
      ]
     }
    },
-   "glb_kb": 103.8
+   "glb_kb": 150.2
   },
   {
    "name": "hyperextension_45",
    "size_mm": [
     665.0,
-    1430.0,
-    980.7
+    1443.2,
+    974.3
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 3180,
+   "tris": 3912,
    "source": "estimat",
    "anchors": [
     "foot_plate",
@@ -1377,7 +1377,7 @@
      ]
     }
    },
-   "glb_kb": 81.2
+   "glb_kb": 108.7
   },
   {
    "name": "kettlebell_competition",
@@ -1440,8 +1440,8 @@
    "name": "leg_press_45",
    "size_mm": [
     1640.0,
-    2431.6,
-    1530.0
+    2435.3,
+    1538.0
    ],
    "spec_mm": [
     [
@@ -1458,7 +1458,7 @@
     ]
    ],
    "tolerance": 0.05,
-   "tris": 5548,
+   "tris": 7460,
    "source": "picior 750 x 600, spatar 900 x 400; 2200-2800 x 1360-1880 x 1370-1580 mm",
    "anchors": [
     "foot_L",
@@ -1487,7 +1487,7 @@
      ]
     }
    },
-   "glb_kb": 149.2
+   "glb_kb": 197.5
   },
   {
    "name": "lever_leg_press",
@@ -1568,13 +1568,13 @@
   {
    "name": "machine_ab_crunch",
    "size_mm": [
-    710.0,
-    1560.0,
-    1480.0
+    721.0,
+    1573.2,
+    1486.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6440,
+   "tris": 9936,
    "source": "estimat",
    "anchors": [
     "back",
@@ -1620,14 +1620,14 @@
      ]
     }
    },
-   "glb_kb": 169.7
+   "glb_kb": 283.7
   },
   {
    "name": "machine_assisted_pullup_dip",
    "size_mm": [
     1125.0,
-    1710.0,
-    2240.0
+    1723.2,
+    2246.6
    ],
    "spec_mm": [
     [
@@ -1644,7 +1644,7 @@
     ]
    ],
    "tolerance": 0.05,
-   "tris": 6476,
+   "tris": 10592,
    "source": "asistat: 1065-1475 x 1295-1830 x 2110-2290 mm",
    "anchors": [
     "cable_stack",
@@ -1692,18 +1692,18 @@
      ]
     }
    },
-   "glb_kb": 180.9
+   "glb_kb": 303.0
   },
   {
    "name": "machine_calf_standing",
    "size_mm": [
-    665.0,
-    1360.0,
-    1980.0
+    684.0,
+    1373.2,
+    1986.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 5400,
+   "tris": 8684,
    "source": "estimat",
    "anchors": [
     "cable_stack",
@@ -1747,18 +1747,18 @@
      ]
     }
    },
-   "glb_kb": 146.0
+   "glb_kb": 243.3
   },
   {
    "name": "machine_chest_press",
    "size_mm": [
-    800.0,
-    1360.0,
-    1890.0
+    824.0,
+    1373.2,
+    1896.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6500,
+   "tris": 9860,
    "source": "interval comercial; estimat",
    "anchors": [
     "back",
@@ -1803,18 +1803,18 @@
      ]
     }
    },
-   "glb_kb": 170.5
+   "glb_kb": 279.3
   },
   {
    "name": "machine_hip_abduction_adduction",
    "size_mm": [
     665.0,
-    1510.0,
-    1380.0
+    1523.2,
+    1386.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 8076,
+   "tris": 11508,
    "source": "estimat",
    "anchors": [
     "back",
@@ -1876,18 +1876,18 @@
      ]
     }
    },
-   "glb_kb": 186.5
+   "glb_kb": 302.3
   },
   {
    "name": "machine_incline_press",
    "size_mm": [
-    680.0,
-    1510.0,
-    2060.0
+    704.0,
+    1523.2,
+    2066.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6500,
+   "tris": 9860,
    "source": "interval comercial; estimat",
    "anchors": [
     "back",
@@ -1932,18 +1932,18 @@
      ]
     }
    },
-   "glb_kb": 170.5
+   "glb_kb": 279.3
   },
   {
    "name": "machine_leg_curl_lying",
    "size_mm": [
-    692.5,
-    1960.0,
-    1230.0
+    704.5,
+    1973.2,
+    1236.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6316,
+   "tris": 9452,
    "source": "estimat",
    "anchors": [
     "cable_stack",
@@ -1987,18 +1987,18 @@
      ]
     }
    },
-   "glb_kb": 164.8
+   "glb_kb": 258.2
   },
   {
    "name": "machine_leg_curl_seated",
    "size_mm": [
-    692.5,
-    1560.0,
-    1380.0
+    704.5,
+    1573.2,
+    1386.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6876,
+   "tris": 10456,
    "source": "estimat",
    "anchors": [
     "back",
@@ -2060,18 +2060,18 @@
      ]
     }
    },
-   "glb_kb": 177.1
+   "glb_kb": 298.0
   },
   {
    "name": "machine_leg_extension",
    "size_mm": [
-    692.5,
-    1560.0,
-    1380.0
+    704.5,
+    1573.2,
+    1386.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6104,
+   "tris": 9220,
    "source": "estimat",
    "anchors": [
     "back",
@@ -2132,18 +2132,18 @@
      ]
     }
    },
-   "glb_kb": 158.0
+   "glb_kb": 269.1
   },
   {
    "name": "machine_pec_deck",
    "size_mm": [
-    1371.7,
-    1560.0,
-    1830.0
+    1367.9,
+    1573.2,
+    1836.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 7632,
+   "tris": 11516,
    "source": "estimat",
    "anchors": [
     "back",
@@ -2205,18 +2205,18 @@
      ]
     }
    },
-   "glb_kb": 190.9
+   "glb_kb": 301.1
   },
   {
    "name": "machine_preacher_curl",
    "size_mm": [
-    720.0,
-    1560.0,
-    1330.0
+    744.0,
+    1573.2,
+    1336.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 5908,
+   "tris": 9616,
    "source": "estimat",
    "anchors": [
     "arm_pad",
@@ -2261,18 +2261,18 @@
      ]
     }
    },
-   "glb_kb": 159.8
+   "glb_kb": 275.2
   },
   {
    "name": "machine_rotary_torso",
    "size_mm": [
     665.0,
-    1410.0,
-    1330.0
+    1423.2,
+    1336.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 7780,
+   "tris": 10709,
    "source": "estimat",
    "anchors": [
     "cable_stack",
@@ -2316,18 +2316,18 @@
      ]
     }
    },
-   "glb_kb": 193.6
+   "glb_kb": 289.3
   },
   {
    "name": "machine_seated_row",
    "size_mm": [
     665.0,
-    1580.0,
-    1830.0
+    1593.2,
+    1836.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6392,
+   "tris": 9632,
    "source": "interval comercial; estimat",
    "anchors": [
     "cable_stack",
@@ -2372,18 +2372,18 @@
      ]
     }
    },
-   "glb_kb": 167.6
+   "glb_kb": 272.3
   },
   {
    "name": "machine_shoulder_press",
    "size_mm": [
-    760.0,
-    1760.0,
-    1530.0
+    784.0,
+    1773.2,
+    1536.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6500,
+   "tris": 9740,
    "source": "interval comercial; estimat",
    "anchors": [
     "back",
@@ -2428,18 +2428,18 @@
      ]
     }
    },
-   "glb_kb": 170.5
+   "glb_kb": 274.3
   },
   {
    "name": "machine_triceps_extension",
    "size_mm": [
-    720.0,
-    1560.0,
-    1330.0
+    744.0,
+    1573.2,
+    1336.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 5908,
+   "tris": 9616,
    "source": "estimat",
    "anchors": [
     "arm_pad",
@@ -2484,7 +2484,7 @@
      ]
     }
    },
-   "glb_kb": 159.8
+   "glb_kb": 275.4
   },
   {
    "name": "plate_bumper_10kg",
@@ -2561,13 +2561,13 @@
   {
    "name": "plate_calf_seated",
    "size_mm": [
-    665.0,
-    1380.0,
-    749.1
+    684.0,
+    1393.2,
+    756.2
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 4032,
+   "tris": 5576,
    "source": "estimat",
    "anchors": [
     "foot",
@@ -2595,7 +2595,7 @@
      ]
     }
    },
-   "glb_kb": 99.1
+   "glb_kb": 153.8
   },
   {
    "name": "plate_change_10kg",
@@ -2693,12 +2693,12 @@
    "name": "plate_chest_press",
    "size_mm": [
     1207.6,
-    1360.0,
-    1800.0
+    1373.2,
+    1810.5
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 4896,
+   "tris": 6660,
    "source": "interval comercial; estimat",
    "anchors": [
     "back",
@@ -2727,7 +2727,7 @@
      ]
     }
    },
-   "glb_kb": 127.3
+   "glb_kb": 173.4
   },
   {
    "name": "plate_grip_20kg",
@@ -2751,12 +2751,12 @@
    "name": "plate_incline_press",
    "size_mm": [
     1166.8,
-    1510.0,
-    1970.0
+    1523.2,
+    1980.5
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 4896,
+   "tris": 6660,
    "source": "interval comercial; estimat",
    "anchors": [
     "back",
@@ -2785,7 +2785,7 @@
      ]
     }
    },
-   "glb_kb": 127.3
+   "glb_kb": 173.4
   },
   {
    "name": "plate_iron_45lb",
@@ -2811,12 +2811,12 @@
    "name": "plate_row",
    "size_mm": [
     1085.2,
-    1580.0,
-    1740.0
+    1593.2,
+    1750.5
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 4788,
+   "tris": 6432,
    "source": "interval comercial; estimat",
    "anchors": [
     "chest_pad",
@@ -2845,18 +2845,18 @@
      ]
     }
    },
-   "glb_kb": 124.3
+   "glb_kb": 166.3
   },
   {
    "name": "plate_shoulder_press",
    "size_mm": [
     1194.0,
-    1760.0,
+    1773.2,
     1370.0
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 4896,
+   "tris": 6540,
    "source": "interval comercial; estimat",
    "anchors": [
     "back",
@@ -2885,7 +2885,7 @@
      ]
     }
    },
-   "glb_kb": 127.3
+   "glb_kb": 168.4
   },
   {
    "name": "pullup_bar_wall",
@@ -3017,9 +3017,9 @@
   {
    "name": "smith_machine",
    "size_mm": [
-    2170.0,
-    1300.0,
-    2200.0
+    2176.0,
+    1304.0,
+    2208.0
    ],
    "spec_mm": [
     [
@@ -3036,7 +3036,7 @@
     ]
    ],
    "tolerance": 0.05,
-   "tris": 7224,
+   "tris": 8488,
    "source": "1300 x 2160 x 2180 mm, cursa 7 grade, 1540 mm, bara 35 mm",
    "anchors": [
     "grip_L",
@@ -3063,7 +3063,7 @@
      ]
     }
    },
-   "glb_kb": 203.0
+   "glb_kb": 203.7
   },
   {
    "name": "treadmill_flat",
