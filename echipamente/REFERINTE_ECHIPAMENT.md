@@ -102,5 +102,14 @@ python3 tools/upgrade_machines.py machine_chest_press --render
 | `cable_lat_station`, `cable_tower_high` | [Skelcore Lat Pulldown](https://www.skelcore.com/products/power-series-lat-pulldown-pin-load), [elitefts Lat Pulldown](https://elitefts.com/products/elitefts-lat-pulldown-selectorized), [Body-Solid GLM85](https://selectfitness.com/products/body-solid-pro-lat-machine-glm85b) |
 | `lever_leg_press` | [Skelcore Leg Press](https://www.skelcore.com/products/power-series-leg-press-pin-load), [Muscle D Classic V2 Leg Press](https://www.americanfitness.net/products/classic-v2-selectorized-leg-press-with-300lb-stack) |
 
-Piesele mobile separate (`elliptical_handle`, `elliptical_rail`, `rower_handle`, `bike_pedal`) nu sunt modificate.
-Planșe: `sheet_set02.png` (aparate de forță) și `sheet_set03.png` (cardio și restul).
+Setul 04, tot cu `tools/upgrade_machines.py` (originalele sunt în `glb_src/`, ancorele și pivoții sunt neschimbați):
+
+- piesele mobile separate (`elliptical_handle`, `elliptical_rail`, `rower_handle`, `bike_pedal`): aceeași culoare de cadru ca aparatele, șină rotunjită, pedală de plastic cu benzi antiderapante, manșoane de prindere
+- băncile (`bench_*`): profile rotunjite cu capace, perne bombate, role de burete; tălpile transversale își păstrează secțiunea, ca gabaritul să nu crească
+- `bench_preacher_curl`: grindă centrală adăugată (în original stâlpii șezutului și ai pernei nu erau legați de cadru)
+- `rack_power`, `rack_squat`: traverse la aceeași secțiune cu montanții, șuruburi la îmbinări, bare de siguranță rotunjite
+- `landmine_base`: placă cu colțuri rotunjite, șuruburi de podea, flanșă sub pivot
+- `pullup_bar_wall`: brațe rotunjite, plăci de perete cu șuruburi
+
+Greutățile libere (bare, discuri, gantere, kettlebell) și accesoriile de cablu nu sunt modificate: sunt făcute după dimensiuni publice și nu sunt din primitive.
+Planșe: `sheet_set02.png` (aparate de forță), `sheet_set03.png` (cardio și restul), `sheet_set04.png` (bănci, rack-uri, piese mobile).

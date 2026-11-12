@@ -725,3 +725,95 @@ def lever_leg_press(K):
     for y in (-0.46, 0.4, 1.28):
         K.foot((X, y, 0), mirror=True)
     regray(K, 'joint_plate'); regray(K, 'joint_seat')
+
+
+# ---------------------------------------------------------------- piese mobile, banci, rack-uri, accesorii
+def retube(K, mat='powder', joint=None, corner=0.008, out=None):
+    """Cutiile de cadru devin profile patrate cu muchii usor rotunjite, la aceleasi dimensiuni."""
+    for p in K.parts:
+        if p['joint'] == joint and p['mat'] == mat and p['kind'] == 'box' and min(p['d']) >= 0.02 and not p.get('dropped'):
+            p['dropped'] = True; d = p['d']; il = int(np.argmax(d)); ax = p['R'][:, il] * d[il] / 2
+            o = [i for i in range(3) if i != il]
+            K.sweep([p['c'] - ax, p['c'] + ax], d[o[0]], d[o[1]], r=0, mat=out or mat, joint=joint, up=p['R'][:, o[1]],
+                    corner=corner)
+
+
+def bolt(K, p, axis, d=0.022, h=0.008, joint=None):
+    p = np.array(p, float); a = np.array(axis, float)
+    K.rod(p, p + a * h, d=d, joint=joint)
+
+
+def bench(K):
+    """Bancile raman pe reteta generica (profile rotunjite, perne bombate), fara tija telescopica de sezut."""
+    for p in K.parts:      # talpile transversale isi pastreaza sectiunea, ca lungimea bancii sa nu creasca
+        if p['mat'] == 'powder' and p['kind'] == 'box' and int(np.argmax(p['d'])) == 0 and p['c'][2] < 0.06 and min(p['d']) >= 0.05:
+            p['dropped'] = True; x = p['d'][0] / 2; c = p['c']
+            K.tube((-x, c[1], c[2]), (x, c[1], c[2]), w=p['d'][1], h=p['d'][2], corner=0.018)
+
+
+for _n in ('bench_flat', 'bench_decline', 'bench_adjustable_flat', 'bench_adjustable_decline', 'bench_adjustable_incline30',
+           'bench_adjustable_incline45', 'bench_adjustable_upright', 'bench_adjustable_curl_incline'):
+    RECIPES[_n] = bench
+
+
+def rack(K):
+    # Ref: rack-uri comerciale din profil 75x75 cu gauri: traverse la aceeasi sectiune, prinse cu suruburi.
+    ups = [p for p in K.parts if p['mat'] == 'powder' and p['kind'] == 'other' and p['d'][2] > 1.5]
+    beams = [p for p in K.parts if p['mat'] == 'powder' and p['kind'] == 'box' and min(p['d']) >= 0.02]
+    for b in beams:
+        il = int(np.argmax(b['d']))
+        if il == 2: continue
+        ax = b['R'][:, il]
+        for s in (-1, 1):
+            e = b['c'] + ax * s * b['d'][il] / 2
+            for u in ups:
+                if np.linalg.norm((e - u['c'])[:2]) < 0.05:
+                    f = np.array([u['c'][0], u['c'][1], e[2]]) + ax * s * (u['d'][0] / 2 - 0.001)
+                    for dz in (-0.017, 0.017):
+                        bolt(K, f + np.array([0, 0, dz]), ax * s)
+    retube(K); retube(K, mat='steel', corner=0.006)
+
+
+RECIPES['rack_power'] = rack; RECIPES['rack_squat'] = rack
+
+
+@recipe
+def landmine_base(K):
+    K.drop(0)
+    K.block((0, 0, 0.008), (0.34, 0.34, 0.016), rc=0.04)
+    for sx in (-1, 1):
+        for sy in (-1, 1):
+            bolt(K, (sx * 0.125, sy * 0.125, 0.015), (0, 0, 1), d=0.026)
+    K.disc((0, 0, 0.022), axis=(0, 0, 1), r=0.062, t=0.012, mat='powder')
+
+
+@recipe
+def pullup_bar_wall(K):
+    for p in K.parts:
+        if p['mat'] == 'frame_gray' and min(p['d']) < 0.021:        # placile de perete
+            p['dropped'] = True; c = p['c']
+            K.block(c, p['d'], rc=0.02)
+            for dx in (-0.045, 0.045):
+                for dz in (-0.12, 0.12):
+                    bolt(K, (c[0] + dx, c[1] - p['d'][1] / 2 + 0.001, c[2] + dz), (0, -1, 0))
+    regray(K, None)
+
+
+@recipe
+def elliptical_rail(K):
+    regray(K, None)
+
+
+@recipe
+def bike_pedal(K):
+    K.drop(0)
+    K.block((0, 0, 0), (0.11, 0.10, 0.02), mat='plastic', rc=0.018)
+    for x in (-0.03, 0.0, 0.03):
+        K.block((x, 0, 0.0085), (0.012, 0.078, 0.003), mat='rubber', rc=0.003)
+
+
+@recipe
+def bench_preacher_curl(K):
+    # In modelul original stalpii sezutului si ai pernei nu erau legati de cadru: adaug grinda centrala.
+    K.tube((0, -0.46, 0.04), (0, 0.52, 0.04), w=0.06, h=0.06, caps=False)
+    K.seat_post(i=8)

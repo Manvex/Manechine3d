@@ -400,6 +400,7 @@ def box_frame(faces):
         else:
             dirs.append([n, a])
     dirs.sort(key=lambda x: -x[1])
+    if not dirs: return None
     n1 = dirs[0][0]
     n2 = None
     for d in dirs[1:]:
@@ -449,7 +450,9 @@ def analyze(obj):
             if mv / np.prod(mx - mn + 1e-9) > 0.90:
                 kind = 'box'; R = Rb; d = mx - mn; c = Rb @ ((mn + mx) / 2)
         if kind == 'other':
-            Q = P - P.mean(0); w, vec = np.linalg.eigh(np.cov(Q.T) + 1e-12 * I3)
+            Q = P - P.mean(0)
+            try: w, vec = np.linalg.eigh(np.cov(Q.T) + 1e-12 * I3)
+            except np.linalg.LinAlgError: w, vec = np.array([0.0, 1.0, 2.0]), I3
             # axa cilindrului = vectorul propriu cu valoarea proprie distincta
             ia = 0 if abs(w[1] - w[2]) < abs(w[0] - w[1]) else 2
             ax = vec[:, ia]
