@@ -238,6 +238,7 @@ class Kit:
     def drop_frame(self, keep=(), mats=('powder',), joint=None):
         """Scoate toate piesele de cadru (cutii si piese atipice) ale unei articulatii."""
         for i, p in enumerate(self.parts):
+            if p['kind'] == 'box' and min(p['d']) < 0.02: continue     # placile subtiri raman
             if p['joint'] == joint and p['mat'] in mats and i not in keep and p['kind'] in ('box', 'other'):
                 p['dropped'] = True
 

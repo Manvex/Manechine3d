@@ -189,14 +189,14 @@ def spine_base(K, yfront=0.62, seat=True, tower=True):
     K.tube((0, yt + 0.12, 0.05), (0, yfront, 0.05), w=0.11, h=0.06)
     K.tube((-0.30, yfront, 0.05), (0.30, yfront, 0.05), w=0.09, h=0.06); K.foot((0.26, yfront, 0), mirror=True)
     if seat:
-        s = K.A('seat'); K.seat_post(base=(0, s[1], 0.07), top=(0, s[1], 0.46))
+        s = K.A('seat'); K.seat_post(base=(0, s[1], 0.07), top=(0, s[1], s[2] - 0.075))
     return yt
 
 
 def lever_arm(K, joint, w=0.04, h=0.06):
     """Inlocuieste tija subtire a parghiei cu un profil."""
     for p in K.parts:
-        if p['joint'] == joint and p['mat'] == 'powder' and p['kind'] == 'cyl':
+        if p['joint'] == joint and p['mat'] == 'powder' and p['kind'] == 'cyl' and p['d'][1] > 0.2:
             p['dropped'] = True; ax = p['R'] * p['d'][1] / 2
             K.sweep([p['c'] - ax, p['c'] + ax], w, h, r=0, joint=joint, up=(1, 0, 0))
 
@@ -256,3 +256,131 @@ def machine_leg_extension(K):
 def machine_leg_curl_seated(K):
     # Ref: Life Fitness Axiom Seated Leg Curl/Extension, elitefts Seated Leg Curl: ca extensia, plus perna peste coapse.
     leg_seat_machine(K, thigh=True)
+
+
+@recipe
+def machine_leg_curl_lying(K):
+    # Ref: Skelcore Power Series Prone Leg Curl, Muscle D Classic V2: banca pe cadru-masa cu patru picioare,
+    # turn la cap, pivot cu cama la genunchi, manere sub perna de piept.
+    K.drop_frame(); drop_feet(K); K.tower(); yt = K.towers[0]['S'][1]
+    piv = K.J('lever'); X = 0.2; y0 = -0.60; y1 = piv[1]
+    K.sweep([(X, y0, 0.03), (X, y0, 0.66), (X, y1 - 0.06, 0.66), (X, y1 - 0.06, 0.03)], w=0.05, h=0.07, r=0.10, mirror=True)
+    K.foot((X, y0, 0), mirror=True); K.foot((X, y1 - 0.06, 0), mirror=True)
+    for y in (-0.35, 0.15):
+        K.tube((-X, y, 0.66), (X, y, 0.66), w=0.06, h=0.05)
+    K.tube((-X, y0, 0.16), (X, y0, 0.16), w=0.06, h=0.05)
+    K.tube((0, y0, 0.16), (0, yt + 0.07, 0.16), w=0.08, h=0.05)
+    K.sweep([(-X, y1, 0.05), (0.33, y1, 0.05), (0.33, y1, piv[2])], w=0.06, h=0.08, r=0.12)
+    K.foot((0.33, y1, 0))
+    K.hub((0.33, y1, piv[2]), r=0.055, L=0.075)
+    K.disc((0.268, y1, piv[2]), r=0.13, t=0.022, joint='joint_lever')
+    K.disc((0.255, y1, piv[2]), r=0.05, t=0.02, mat='steel', joint='joint_lever')
+    lever_arm(K, 'joint_lever')
+
+
+@recipe
+def machine_hip_abduction_adduction(K):
+    # Ref: SFE Inner/Outer Thigh, Life Fitness Axiom Hip Abductor/Adductor: sezut inclinat, mecanism sub sezut,
+    # doua brate cu perne pentru genunchi pe pivoti verticali.
+    yt = spine_base(K, yfront=0.66)
+    K.sweep([(0, -0.52, 0.07), (0, -0.39, 0.45), (0, -0.43, 1.08)], w=0.06, h=0.07, r=0.25)
+    p = K.J('thigh_R')
+    K.block((0, p[1], 0.20), (0.30, 0.15, 0.26), rc=0.04)                 # carcasa mecanismului
+    K.block((0, p[1], 0.335), (0.32, 0.17, 0.02), mat='plastic', rc=0.05)
+    lever_arm(K, 'joint_thigh_L', w=0.045, h=0.05); lever_arm(K, 'joint_thigh_R', w=0.045, h=0.05)
+    side_handles(K)
+    K.knob((0.15, p[1], 0.22))
+
+
+def arm_curl_machine(K):
+    yt = spine_base(K, yfront=0.70)
+    piv = K.J('arms'); X = 0.33
+    K.sweep([(0, 0.32, 0.07), (0, 0.27, 0.62), (0, 0.175, 0.845)], w=0.07, h=0.08, r=0.22)          # suportul pernei
+    K.sweep([(X, -0.02, ZF), (X, piv[1], ZF), (X, piv[1], piv[2])], w=0.05, h=0.09, r=0.14, mirror=True)
+    K.hub((X, piv[1], piv[2]), r=0.052, L=0.075, mirror=True)
+    K.tube((-X, 0.0, 0.05), (X, 0.0, 0.05), w=0.09, h=0.06)
+    K.foot((X, 0.02, 0), mirror=True); K.foot((X, piv[1], 0), mirror=True)
+    K.disc((X - 0.062, piv[1], piv[2]), r=0.12, t=0.022, joint='joint_arms')
+    lever_arm(K, 'joint_arms', w=0.04, h=0.05)
+    K.hub((0.29, piv[1], piv[2]), r=0.04, L=0.045, joint='joint_arms', mirror=True)
+
+
+@recipe
+def machine_preacher_curl(K):
+    # Ref: elitefts Preacher Curl Selectorized, Life Fitness Axiom Biceps Curl: perna inclinata, pivot la cot cu cama.
+    arm_curl_machine(K)
+
+
+@recipe
+def machine_triceps_extension(K):
+    # Ref: Life Fitness Axiom Biceps Curl / Triceps Extension, Precor Vitality C025.
+    arm_curl_machine(K)
+
+
+@recipe
+def machine_ab_crunch(K):
+    # Ref: Hammer Strength Select Abdominal Crunch, Precor Resolute Ab Crunch: sezut cu spatar, pivot cu cama
+    # la nivelul soldului, brat cu perna de piept si manere, bara pentru picioare.
+    yt = spine_base(K, yfront=0.68)
+    K.sweep([(0, -0.46, 0.07), (0, -0.323, 0.45), (0, -0.342, 1.09)], w=0.06, h=0.07, r=0.25)
+    piv = K.J('arm'); X = 0.33
+    K.sweep([(X, 0.42, ZF), (X, piv[1], ZF), (X, piv[1], piv[2])], w=0.05, h=0.09, r=0.14, mirror=True)
+    K.hub((X, piv[1], piv[2]), r=0.052, L=0.075, mirror=True)
+    K.tube((-X, 0.30, 0.05), (X, 0.30, 0.05), w=0.09, h=0.06)
+    K.foot((X, 0.36, 0), mirror=True); K.foot((X, piv[1], 0), mirror=True)
+    K.disc((X - 0.062, piv[1], piv[2]), r=0.14, t=0.022, joint='joint_arm')
+    K.disc((X - 0.075, piv[1], piv[2]), r=0.05, t=0.02, mat='steel', joint='joint_arm')
+    lever_arm(K, 'joint_arm', w=0.04, h=0.06)
+    K.sweep([(0, 0.52, 0.07), (0, 0.58, 0.27)], w=0.05, h=0.05, r=0)                 # bara pentru picioare
+    K.rod((-0.21, 0.58, 0.28), (0.21, 0.58, 0.28), d=0.045, mat='rubber')
+
+
+@recipe
+def machine_rotary_torso(K):
+    # Ref: Technogym Selection Rotary Torso, Muscle D Elite MDE-18: sezut rotativ pe coloana, spatar fix,
+    # catarg lateral care trece peste umar spre perna de piept si manere.
+    yt = spine_base(K, yfront=0.62, seat=False)
+    j = K.J('seat')
+    K.hub((0, j[1], 0.17), axis=(0, 0, 1), r=0.075, L=0.26)                          # coloana sezutului
+    K.block((0, j[1], 0.045), (0.26, 0.26, 0.03), rc=0.06)
+    K.sweep([(0, -0.38, 0.07), (0, -0.2, 0.45), (0, -0.2, 1.08)], w=0.06, h=0.07, r=0.25)       # stalp spatar
+    Xm = 0.42
+    K.sweep([(0, -0.27, 0.05), (Xm, -0.27, 0.05), (Xm, -0.27, 1.02), (Xm, 0.42, 1.02), (0.0, 0.42, 1.02)],
+            w=0.06, h=0.08, r=[0, 0.12, 0.18, 0.16, 0])
+    K.foot((Xm, -0.27, 0))
+    K.tube((0, 0.42, 0.93), (0, 0.42, 1.26), w=0.05, h=0.05)
+
+
+@recipe
+def machine_calf_standing(K):
+    # Ref: Skelcore Power Series Standing Calf, Muscle D Classic V2: turn in spate, parghie cu perne de umeri
+    # pe pivot inalt, platforma pentru varfuri.
+    K.drop_frame(); drop_feet(K); K.tower(); yt = K.towers[0]['S'][1]
+    piv = K.J('lever'); X = 0.3
+    K.sweep([(X, 0.52, ZF), (X, piv[1], ZF), (X, piv[1], piv[2])], w=0.05, h=0.09, r=0.16, mirror=True)
+    K.hub((X, piv[1], piv[2]), r=0.052, L=0.075, mirror=True)
+    K.foot((X, 0.46, 0), mirror=True); K.foot((X, piv[1], 0), mirror=True)
+    K.tube((-X, piv[1], 0.05), (X, piv[1], 0.05), w=0.09, h=0.06)
+    K.tube((-X, 0.44, 0.05), (X, 0.44, 0.05), w=0.09, h=0.06)
+    K.tube((0, piv[1], 0.05), (0, yt + 0.12, 0.05), w=0.10, h=0.06)
+    K.tube((-X, piv[1], 1.50), (X, piv[1], 1.50), w=0.07, h=0.05)
+    K.tube((0.14, piv[1], 1.50), (0.14, yt + 0.06, 1.50), w=0.05, h=0.05, mirror=True)
+    lever_arm(K, 'joint_lever', w=0.045, h=0.06)
+    K.hub((0.225 + 0.05, piv[1], piv[2]), r=0.045, L=0.04, joint='joint_lever', mirror=True)
+
+
+@recipe
+def machine_assisted_pullup_dip(K):
+    # Ref: Skelcore Power Series Dip/Chin Assist, Body-Solid S2ACD, Hammer Strength Select Assist Dip Chin:
+    # turn inalt, doi stalpi care se indoaie sus spre turn, trepte laterale, platforma pentru genunchi.
+    K.drop_frame(); drop_feet(K); K.tower(); yt = K.towers[0]['S'][1]; zt = K.towers[0]['ztop']
+    X = 0.33; yp = 0.15
+    K.sweep([(X, yp, 0.03), (X, yp, zt - 0.02), (0.19, yt + 0.05, zt - 0.02)], w=0.06, h=0.09, r=0.22, up=(0, 1, 0), mirror=True)
+    K.tube((-X, yp, zt - 0.12), (X, yp, zt - 0.12), w=0.07, h=0.05)
+    K.tube((-0.56, yp, 0.05), (0.56, yp, 0.05), w=0.09, h=0.06); K.foot((0.52, yp, 0), mirror=True)
+    K.tube((0, yp, 0.05), (0, yt + 0.12, 0.05), w=0.10, h=0.06)
+    K.tube((-X, yp, 1.05), (X, yp, 1.05), w=0.06, h=0.05)
+    K.sweep([(X, yp, 0.22), (0.42, 0.32, 0.335)], w=0.05, h=0.05, r=0, mirror=True)              # suport trepte
+    pk = K.J('knee_lever')
+    K.tube((0, pk[1], 0.07), (0, pk[1], pk[2]), w=0.07, h=0.08, up=(0, 1, 0))
+    K.hub((0, pk[1], pk[2]), r=0.05, L=0.13)
