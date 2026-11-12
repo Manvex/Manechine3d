@@ -11,6 +11,7 @@ Rulare:  python3 tools/upgrade_machines.py <nume_asset> [--render]
 Sursa este echipamente/glb_src/<nume>.glb (copia modelului original).
 """
 import bpy, bmesh, sys, os, math, json
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 from mathutils import Vector, Matrix
 
@@ -18,12 +19,13 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'echipamen
 I3 = np.eye(3)
 
 MATS = {  # culoare, metalic, rugozitate
-    'powder': ((0.36, 0.375, 0.40, 1), 0.55, 0.38),
-    'shroud': ((0.030, 0.032, 0.036, 1), 0.0, 0.46),
-    'label':  ((0.82, 0.82, 0.80, 1), 0.0, 0.55),
+    'powder': ((0.040, 0.042, 0.047, 1), 0.25, 0.42),
+    'shroud': ((0.46, 0.47, 0.49, 1), 0.55, 0.36),
+    'label':  ((0.86, 0.86, 0.84, 1), 0.0, 0.55),
     'accent': ((0.85, 0.52, 0.02, 1), 0.0, 0.40),
-    'vinyl':  ((0.016, 0.016, 0.018, 1), 0.0, 0.52),
+    'vinyl':  ((0.014, 0.014, 0.016, 1), 0.0, 0.50),
     'steel':  ((0.72, 0.72, 0.73, 1), 1.0, 0.22),
+    'plastic': ((0.022, 0.022, 0.024, 1), 0.0, 0.40),
 }
 
 
@@ -163,6 +165,183 @@ def box(g, c, R, d):
     g.loft([ring(c, R, rr(d[0], d[1], 0.0015, 1), -d[2] / 2), ring(c, R, rr(d[0], d[1], 0.0015, 1), d[2] / 2)])
 
 
+
+# ---------------------------------------------------------------- kit pentru cadre
+def fillet_path(pts, r, seg=8):
+    """Polilinie cu colturile inlocuite de arce de raza r."""
+    pts = [np.array(p, float) for p in pts]
+    out = [pts[0]]
+    for i in range(1, len(pts) - 1):
+        a, b, c = pts[i - 1], pts[i], pts[i + 1]
+        la = np.linalg.norm(a - b); lc = np.linalg.norm(c - b)
+        u = (a - b) / la; v = (c - b) / lc
+        ang = math.acos(max(-1, min(1, u @ v)))
+        ri = r[i] if isinstance(r, (list, tuple)) else r
+        if ang > math.pi - 0.03 or ri <= 0:
+            out.append(b); continue
+        d = min(ri / math.tan(ang / 2), 0.48 * la, 0.48 * lc)
+        rad = d * math.tan(ang / 2)
+        bis = (u + v) / np.linalg.norm(u + v)
+        cen = b + bis * (rad / math.sin(ang / 2))
+        s0 = b + u * d - cen; s1 = b + v * d - cen
+        th = math.acos(max(-1, min(1, (s0 @ s1) / (rad * rad))))
+        for k in range(seg + 1):
+            t = k / seg
+            w = (math.sin((1 - t) * th) * s0 + math.sin(t * th) * s1) / math.sin(th)
+            out.append(cen + w)
+    out.append(pts[-1])
+    return out
+
+
+def sweep(g, pts, w, h, r=0.12, up=(0, 0, 1), round_=False, corner=None, seg=8):
+    """Teava indoita: sectiune w (lateral) x h (in planul indoirii), de-a lungul traseului pts."""
+    P = fillet_path(pts, r, seg)
+    n = len(P); T = []
+    for i in range(n):
+        t = P[min(i + 1, n - 1)] - P[max(i - 1, 0)]; T.append(t / np.linalg.norm(t))
+    up = np.array(up, float)
+    nrm = up - (up @ T[0]) * T[0]
+    if np.linalg.norm(nrm) < 1e-3:
+        alt = np.array([0, 1.0, 0]); nrm = alt - (alt @ T[0]) * T[0]
+    nrm /= np.linalg.norm(nrm)
+    if round_: prof = circle(w / 2, 14)
+    else: prof = rr(w, h, corner if corner else min(0.3 * min(w, h), 0.022), 4)
+    rings = []
+    for i in range(n):
+        nrm = nrm - (nrm @ T[i]) * T[i]; nrm /= np.linalg.norm(nrm)
+        b = np.cross(T[i], nrm)
+        rings.append([P[i] + b * u + nrm * v for (u, v) in prof])
+    g.loft(rings)
+    return P, T
+
+
+class Kit:
+    """Unelte pentru retetele de cadru (coordonate lume, Z in sus, utilizatorul priveste spre +Y)."""
+    def __init__(self, name, parts, empties, G, towers, wpos):
+        self.name, self.parts, self.empties, self.G, self.towers, self.wpos = name, parts, empties, G, towers, wpos
+
+    @staticmethod
+    def _j(joint, sx):
+        return joint[0 if sx > 0 else 1] if isinstance(joint, tuple) else joint
+
+    def A(self, n): return self.wpos('anchor_' + n)
+    def J(self, n): return self.wpos('joint_' + n)
+    def lim(self, n): return list(self.empties['joint_' + n]['limits'])
+
+    def ends(self, i):
+        p = self.parts[i]; il = int(np.argmax(p['d'])); ax = p['R'][:, il] * p['d'][il] / 2
+        return p['c'] - ax, p['c'] + ax
+
+    def drop(self, *idx):
+        for i in idx: self.parts[i]['dropped'] = True
+
+    def drop_frame(self, keep=(), mats=('powder',), joint=None):
+        """Scoate toate piesele de cadru (cutii si piese atipice) ale unei articulatii."""
+        for i, p in enumerate(self.parts):
+            if p['joint'] == joint and p['mat'] in mats and i not in keep and p['kind'] in ('box', 'other'):
+                p['dropped'] = True
+
+    def sweep(self, pts, w=0.10, h=0.05, r=0.12, mat='powder', joint=None, up=(0, 0, 1), round_=False,
+              mirror=False, caps=True, corner=None):
+        for sx in ((1, -1) if mirror else (1,)):
+            pp = [np.array(p, float) * np.array([sx, 1, 1]) for p in pts]
+            upv = np.array(up, float) * np.array([sx, 1, 1])
+            j = self._j(joint, sx)
+            P, T = sweep(self.G(j, mat), pp, w, h, r, upv, round_, corner)
+            if caps:
+                for q, t in ((P[0], -T[0]), (P[-1], T[-1])):
+                    lathe(self.G(j, 'plastic'), q - t * 0.001, t,
+                          [(0, min(w, h) * 0.36), (0.003, min(w, h) * 0.34)], 12)
+
+    def tube(self, p0, p1, w=0.08, h=0.05, **kw):
+        self.sweep([p0, p1], w, h, r=0, **kw)
+
+    def rod(self, p0, p1, d=0.03, mat='steel', joint=None, mirror=False):
+        for sx in ((1, -1) if mirror else (1,)):
+            m = np.array([sx, 1, 1])
+            cyl(self.G(self._j(joint, sx), mat), np.array(p0, float) * m, np.array(p1, float) * m, d / 2, 14)
+
+    def foot(self, p, size=(0.13, 0.085), mirror=False):
+        for sx in ((1, -1) if mirror else (1,)):
+            c = np.array([p[0] * sx, p[1], 0.007])
+            plate(self.G(None, 'rubber'), c, I3, np.array([size[0], size[1], 0.014]), rc=0.02, ch=0.003)
+
+    def hub(self, p, axis=(1, 0, 0), r=0.045, L=0.07, mat='powder', joint=None, mirror=False):
+        """Lagar / butuc de pivot."""
+        for sx in ((1, -1) if mirror else (1,)):
+            c = np.array(p, float) * np.array([sx, 1, 1]); ax = np.array(axis, float); ax /= np.linalg.norm(ax)
+            ax = ax * np.array([sx, 1, 1]); j_ = self._j(joint, sx)
+            lathe(self.G(j_, mat), c, ax, [(-L / 2, r * 0.9), (-L / 2 + 0.004, r), (L / 2 - 0.004, r), (L / 2, r * 0.9)], 20)
+            for s_ in (-1, 1):
+                lathe(self.G(j_, 'plastic'), c + ax * s_ * (L / 2 - 0.001), ax * s_, [(0, r * 0.62), (0.006, r * 0.55)], 16)
+
+    def disc(self, p, axis=(1, 0, 0), r=0.12, t=0.02, mat='plastic', joint=None):
+        """Disc / cama."""
+        ax = np.array(axis, float); ax /= np.linalg.norm(ax)
+        lathe(self.G(joint, mat), np.array(p, float), ax, [(-t / 2, r - 0.004), (-t / 2 + 0.004, r), (t / 2 - 0.004, r), (t / 2, r - 0.004)], 28)
+
+    def block(self, c, d, mat='powder', joint=None, rc=0.012, R=None):
+        plate(self.G(joint, mat), np.array(c, float), I3 if R is None else R, np.array(d, float), rc=rc, ch=0.002)
+
+    def knob(self, p, axis=(1, 0, 0), joint=None):
+        """Buton galben de reglaj."""
+        X = np.array(axis, float); X /= np.linalg.norm(X); k0 = np.array(p, float)
+        cyl(self.G(joint, 'steel'), k0 - X * 0.005, k0 + X * 0.02, 0.006, 10)
+        lathe(self.G(joint, 'accent'), k0 + X * 0.02, X, [(0, 0.011), (0.004, 0.017), (0.026, 0.017), (0.031, 0.012)], 16)
+
+    def seat_post(self, i=None, base=None, top=None, size=0.07, knob=(1, 0, 0)):
+        """Tija telescopica de sezut: manson + tija cromata + buton."""
+        if i is not None:
+            p = self.parts[i]; self.drop(i)
+            base = p['c'] - np.array([0, 0, p['d'][2] / 2]); top = p['c'] + np.array([0, 0, p['d'][2] / 2])
+        base = np.array(base, float); top = np.array(top, float); mid = base + (top - base) * 0.6
+        self.sweep([base, mid], size, size, r=0, up=(0, 1, 0))
+        self.sweep([mid - (top - base) * 0.05, top], size * 0.7, size * 0.7, r=0, mat='steel', up=(0, 1, 0), caps=False, corner=0.008)
+        X = np.array(knob, float)
+        self.knob(mid - (top - base) / np.linalg.norm(top - base) * 0.045 + X * size / 2, X)
+
+    def tower(self, k=0, top=None, col=(0.055, 0.16), front=True, base=True):
+        """Turn de greutati carcasat: doua coloane, panou spate, panou frontal sus, capac, soclu."""
+        T = self.towers[k]; S, Wd, Dd = T['S'], T['W'], T['D']
+        for p in T.get('ups', []) + T.get('tops', []): p['dropped'] = True
+        ztop = top if top else T['ztop']
+        hw = T['a'] / 2 + 0.022 + col[0] / 2
+        Rc = np.stack([Wd, Dd, np.array([0, 0, 1.0])], axis=1)
+        g = self.G(None, 'powder')
+        for s_ in (-1, 1):
+            c0 = S + Wd * s_ * hw
+            sweep(g, [(c0[0], c0[1], 0.02), (c0[0], c0[1], ztop)], col[0], col[1], 0, up=Dd, corner=0.022)
+        W_ = 2 * hw + col[0]
+        # capac rotunjit
+        cc = S.copy(); cc[2] = ztop + 0.03
+        tube(g, cc, Rc, np.array([W_ + 0.012, col[1] + 0.012, 0.075]), radius_k=0.4, rmax=0.03)
+        if base:
+            cb = S.copy(); cb[2] = 0.03
+            plate(g, cb, Rc, np.array([W_ + 0.07, col[1] + 0.12, 0.05]), rc=0.03, ch=0.006)
+            for s_ in (-1, 1):
+                for t_ in (-1, 1):
+                    cf = S + Wd * s_ * (W_ / 2 - 0.02) + Dd * t_ * (col[1] / 2 + 0.02); cf[2] = 0.004
+                    plate(self.G(None, 'rubber'), cf, Rc, np.array([0.09, 0.06, 0.008]), rc=0.015, ch=0.002)
+        Rp = np.stack([Wd, np.array([0, 0, 1.0]), -Dd], axis=1); ww = 2 * hw - col[0] + 0.012
+        def panel(z0, z1, side, mat='shroud'):
+            c = S + Dd * side * (col[1] / 2 - 0.012); c[2] = (z0 + z1) / 2
+            plate(self.G(None, mat), c, Rp, np.array([ww, z1 - z0, 0.004]), rc=0.004, ch=0.001)
+            return c
+        panel(0.05, ztop, -1)
+        lim = max(abs(x) for x in self.empties[T['joint']]['limits'])
+        zt = max(p['c'][2] for p in T['plates']) + lim + 0.22
+        T['zwin'] = zt
+        if front and ztop - zt > 0.12:
+            c = panel(zt, ztop, +1); h = ztop - zt
+            if h > 0.26:
+                pc = c + Dd * 0.0028; pw = min(ww * 0.6, 0.15); ph = min(h * 0.5, 0.20)
+                u = Wd * pw / 2; v = np.array([0, 0, ph / 2])
+                self.G(None, 'label').quad([pc + u - v, pc - u - v, pc - u + v, pc + u + v])
+                ac = pc + np.array([0, 0, ph / 2 + 0.028]); v2 = np.array([0, 0, 0.007])
+                self.G(None, 'accent').quad([ac + u - v2, ac - u - v2, ac - u + v2, ac + u + v2])
+        return dict(hw=hw + col[0] / 2, hd=col[1] / 2, top=ztop + 0.0675)
+
+
 # ---------------------------------------------------------------- analiza pieselor
 def box_frame(faces):
     """Axele unei cutii din normalele fetelor (ponderate cu aria)."""
@@ -242,7 +421,7 @@ def analyze(obj):
 
 
 # ---------------------------------------------------------------- reconstructie
-def upgrade(name, do_render=False):
+def upgrade(name, do_render=False, dump=False, preview=False):
     bpy.ops.wm.read_factory_settings(use_empty=True)
     bpy.context.preferences.filepaths.save_version = 0
     bpy.ops.import_scene.gltf(filepath=os.path.join(ROOT, 'glb_src', name + '.glb'))
@@ -256,6 +435,8 @@ def upgrade(name, do_render=False):
     for o in objs:
         bm, ps = analyze(o); bms[o.name] = bm; parts += ps
 
+    import machine_recipes
+    recipe = machine_recipes.RECIPES.get(name)
     geo = {}      # (joint, material) -> Geo
     def G(joint, mat):
         return geo.setdefault((joint, mat), Geo())
@@ -263,6 +444,19 @@ def upgrade(name, do_render=False):
         p['dropped'] = True
 
     static = [p for p in parts if p['joint'] is None]
+    if dump:
+        for n_, e_ in sorted(empties.items()):
+            print('E %-22s %s %s' % (n_, np.round(wpos(n_), 3), dict(kind=e_.get('kind'), lim=list(e_['limits'])) if 'kind' in e_.keys() else ''))
+        for i, p in enumerate(parts):
+            d = p['d']; il = int(np.argmax(d)); ex = ''
+            if p['kind'] == 'box':
+                ax = p['R'][:, il] * d[il] / 2; ex = 'ends %s %s' % (np.round(p['c'] - ax, 3), np.round(p['c'] + ax, 3))
+            elif p['kind'] == 'cyl': ex = 'axis %s' % np.round(p['R'], 2)
+            else:
+                P_ = np.array([v.co for v in p['verts']]) + np.array(p['obj'].matrix_world.translation)
+                ex = 'bbox %s %s' % (np.round(P_.min(0), 3), np.round(P_.max(0), 3))
+            print('P%-3d %-10s %-7s %-5s nv=%-4d c=%s d=%s %s' % (i, p['joint'] or '-', p['mat'], p['kind'], p['nv'], np.round(p['c'], 3), np.round(d, 3), ex))
+        return
     allc = np.array([p['c'] for p in parts]); centroid = allc.mean(0)
 
     # --- turnuri de greutati -------------------------------------------------
@@ -308,7 +502,10 @@ def upgrade(name, do_render=False):
                and int(np.argmax(p['d'])) == 2 and abs(p['R'][2, 2]) > 0.99 and p['d'][2] > 0.9
                and abs((p['c'] - S) @ Wd) < 0.36 and abs((p['c'] - S) @ Dd) < 0.12]
         T['ups'] = ups
-        if len(ups) >= 2 and not has_carriage:
+        T['ztop'] = max([p['c'][2] + p['d'][2] / 2 for p in ups], default=1.8)
+        T['tops'] = [p for p in static if p['mat'] == 'powder' and p['kind'] == 'box' and abs(p['c'][2] - T['ztop']) < 0.12
+                     and np.linalg.norm((p['c'] - S)[:2]) < 0.12 and p['d'][2] < 0.12]
+        if len(ups) >= 2 and not has_carriage and recipe is None:
             def ext(p, ax):
                 return sum(abs(p['R'][:, i] @ ax) * p['d'][i] for i in range(3)) / 2
             wmin = min((p['c'] - S) @ Wd - ext(p, Wd) for p in ups); wmax = max((p['c'] - S) @ Wd + ext(p, Wd) for p in ups)
@@ -334,9 +531,14 @@ def upgrade(name, do_render=False):
                     ac = pc + np.array([0, 0, ph / 2 + 0.03]); v2 = np.array([0, 0, 0.008])
                     G(None, 'accent').quad([ac + u - v2, ac - u - v2, ac - u + v2, ac + u + v2])
 
+
+    # --- reteta de cadru scrisa de mana (daca exista) ----------------------------
+    if recipe is not None:
+        recipe(Kit(name, parts, empties, G, towers, wpos))
+
     # --- tija sezutului cu buton de reglaj ------------------------------------
     seat_posts = []
-    for an in [n for n in empties if n.startswith('anchor_seat')]:
+    for an in [n for n in empties if n.startswith('anchor_seat') and recipe is None]:
         if empties[an].parent is not None: continue
         A = wpos(an)
         for p in static:
@@ -496,26 +698,33 @@ def upgrade(name, do_render=False):
                 glb_kb=round(os.path.getsize(out) / 1024, 1))
     print('@@INFO ' + json.dumps(info))
 
-    if do_render:
-        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-        import render_lib
-        render_lib.setup(res=640, samples=48)
-        render_lib.render(os.path.join(ROOT, 'renders', name + '.png'))
-        # capat de cursa
-        moved = False
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import render_lib
+    def pose_end():
         for jn, je in empties.items():
             if not jn.startswith('joint_') or 'adjust' in jn or 'kind' not in je.keys(): continue
             lim = list(je['limits']); val = lim[1] if abs(lim[1]) >= abs(lim[0]) else lim[0]
             ag = np.array(je['axis_gltf']); ax = Vector((ag[0], -ag[2], ag[1]))
-            if je['kind'] == 'linear': je.location = je.location + ax * val; moved = True
+            if je['kind'] == 'linear': je.location = je.location + ax * val
             elif je['kind'] == 'rotary':
                 if abs(val) >= 360: val = 90
                 je.rotation_mode = 'QUATERNION'
-                je.rotation_quaternion = Matrix.Rotation(math.radians(val), 4, ax).to_quaternion(); moved = True
+                je.rotation_quaternion = Matrix.Rotation(math.radians(val), 4, ax).to_quaternion()
+    if preview:
+        pv = os.environ.get('PREVIEW_DIR', '/tmp')
+        render_lib.setup(res=520, samples=20, az=-38)
+        render_lib.render(os.path.join(pv, name + '_a.png'))
+        render_lib.set_view(az=145, el=18); render_lib.render(os.path.join(pv, name + '_b.png'))
+        render_lib.set_view(az=-90, el=6); render_lib.render(os.path.join(pv, name + '_c.png'))
+        pose_end(); render_lib.set_view(az=-38, el=22); render_lib.render(os.path.join(pv, name + '_d.png'))
+    if do_render:
+        render_lib.setup(res=640, samples=48)
+        render_lib.render(os.path.join(ROOT, 'renders', name + '.png'))
+        pose_end()
         bpy.context.scene.render.resolution_x = bpy.context.scene.render.resolution_y = 448
         render_lib.render(os.path.join(ROOT, 'renders_max', name + '.png'))
 
 
 if __name__ == '__main__':
     args = sys.argv[1:]
-    upgrade(args[0], '--render' in args)
+    upgrade(args[0], '--render' in args, '--dump' in args, '--preview' in args)
