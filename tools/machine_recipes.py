@@ -384,3 +384,160 @@ def machine_assisted_pullup_dip(K):
     pk = K.J('knee_lever')
     K.tube((0, pk[1], 0.07), (0, pk[1], pk[2]), w=0.07, h=0.08, up=(0, 1, 0))
     K.hub((0, pk[1], pk[2]), r=0.05, L=0.13)
+
+
+def cable_station(K, floor_beam):
+    """Doua turnuri cu scripeti reglabili pe coloane, legate sus printr-o grinda cu bara de tractiuni."""
+    K.drop_frame(); drop_feet(K)
+    for p in K.parts:      # bara de otel de sus devine grinda vopsita
+        if p['joint'] is None and p['mat'] == 'steel' and p['kind'] == 'box' and max(p['d']) > 1.2:
+            p['dropped'] = True; zb = p['c'][2]; yb = p['c'][1]
+    xs_all = []
+    for k, T in enumerate(K.towers):
+        t = K.tower(k); xs = T['S'][0]; ys = T['S'][1]; sg = 1 if xs > 0 else -1; xs_all.append(xs)
+        jc = K.J('carriage_R' if sg > 0 else 'carriage_L'); xc, yc = jc[0], jc[1]
+        K.tube((xs, ys - 0.30, 0.045), (xs, yc + 0.34, 0.045), w=0.08, h=0.07)             # talpa
+        K.foot((xs, ys - 0.26, 0)); K.foot((xs, yc + 0.30, 0))
+        zt = T['ztop']
+        for z in (0.10, zt - 0.09):                                                        # console pentru coloana
+            K.tube((xs, ys + 0.06, z), (xc, yc + 0.02, z), w=0.07, h=0.05)
+            K.hub((xc, yc, z), axis=(0, 0, 1), r=0.034, L=0.07)
+    xo = max(abs(x) for x in xs_all)
+    K.sweep([(-xo, yb, zb), (xo, yb, zb)], w=0.08, h=0.07, r=0, up=(0, 0, 1))
+    if floor_beam:
+        K.tube((-xo, yb, 0.03), (xo, yb, 0.03), w=0.12, h=0.035)
+
+
+@recipe
+def cable_crossover(K):
+    # Ref: Skelcore Cable Crossover, Body-Solid Series II, HOIST CMD-6180: doua turnuri carcasate,
+    # coloane reglabile in fata, grinda sus cu manere de tractiuni, fara traversa pe podea.
+    cable_station(K, floor_beam=False)
+
+
+@recipe
+def cable_functional_trainer(K):
+    # Ref: Precor Resolute Dual Adjustable Pulley, Life Fitness Dual Adjustable Pulley.
+    cable_station(K, floor_beam=True)
+
+
+@recipe
+def cable_lat_row_combo(K):
+    # Ref: elitefts Lat Pulldown w/ Low Row, Muscle D Classic V2, Legend SelectEDGE: turn central inalt cu
+    # brat sus pentru helcometru, sezut cu role pentru coapse, scripete jos + placa pentru picioare la ramat.
+    K.drop_frame(); drop_feet(K); K.tower(); zt = K.towers[0]['ztop']
+    K.tube((0, 0.10, 0.05), (0, 0.86, 0.05), w=0.11, h=0.06); K.tube((0, -0.10, 0.05), (0, -0.96, 0.05), w=0.11, h=0.06)
+    for y in (0.86, -0.96):
+        K.tube((-0.30, y, 0.05), (0.30, y, 0.05), w=0.09, h=0.06); K.foot((0.26, y, 0), mirror=True)
+    K.tube((-0.60, 0, 0.05), (0.60, 0, 0.05), w=0.09, h=0.06); K.foot((0.56, 0, 0), mirror=True)
+    K.sweep([(0, -0.07, zt + 0.03), (0, 0.54, zt + 0.03)], w=0.08, h=0.09, r=0)                    # bratul de sus
+    K.block((0, 0.46, zt - 0.045), (0.05, 0.15, 0.10))
+    s = K.A('seat_lat'); K.seat_post(base=(0, s[1], 0.07), top=(0, s[1], s[2] - 0.075))
+    K.sweep([(0, 0.08, 0.62), (0, 0.40, 0.62), (0, 0.40, 0.735)], w=0.05, h=0.05, r=0.06); K.knob((0.025, 0.30, 0.62))
+    r = K.A('seat_row'); K.tube((0, r[1], 0.07), (0, r[1], r[2] - 0.08), w=0.07, h=0.07, up=(0, 1, 0))
+    K.tube((0, -0.08, 0.12), (0, -0.29, 0.12), w=0.05, h=0.05)
+    K.sweep([(0.15, -0.30, 0.07), (0.15, -0.375, 0.30)], w=0.04, h=0.04, r=0, mirror=True)
+
+
+@recipe
+def smith_machine(K):
+    # Ref: Precor / Hoist / Body-Solid Series 7 Smith: doua cadre laterale in U intors, ghidaje inclinate 7 grade,
+    # sine cu carlige de siguranta, traversa sus. Fara traversa pe podea sub bara.
+    K.drop_frame(); drop_feet(K)
+    X = 1.042
+    K.sweep([(X, -0.45, 0.09), (X, -0.45, 2.16), (X, 0.45, 2.16), (X, 0.45, 0.09)], w=0.075, h=0.075, r=0.14,
+            up=(0, 1, 0), mirror=True)
+    K.tube((X, -0.66, 0.045), (X, 0.66, 0.045), w=0.09, h=0.09, mirror=True)
+    K.foot((X, -0.6, 0), mirror=True); K.foot((X, 0.6, 0), mirror=True)
+    K.tube((-X, -0.114, 2.085), (X, -0.114, 2.085), w=0.07, h=0.06)                       # traversa sus (capete ghidaje)
+    K.tube((-X, -0.45, 0.10), (X, -0.45, 0.10), w=0.08, h=0.06)                           # traversa jos, in spate
+    K.tube((X, 0.128, 0.10), (0.60, 0.128, 0.10), w=0.07, h=0.06, mirror=True)            # suport ghidaj jos
+    K.sweep([(X, 0.128, 0.10), (X, 0.128, 0.0901)], w=0.07, h=0.06, r=0, mirror=True, caps=False)
+
+
+def horns(K, x, y, zs, length=0.22):
+    """Coarne de depozitare a discurilor."""
+    for z in zs:
+        K.rod((x, y, z), (x + length, y, z), d=0.05, mirror=True)
+        K.hub((x + 0.04, y, z), r=0.04, L=0.02, mat='steel', mirror=True)
+
+
+@recipe
+def hack_squat(K):
+    # Ref: Extreme Training Equipment Hack Squat, Hammer Strength Hack Squat, Titan Linear Hack Squat:
+    # talpi lungi, stalpi in spate, lonjeroane inclinate la 45 de grade langa ghidaje, placa de picioare jos.
+    K.drop_frame(); drop_feet(K)
+    X = 0.33
+    K.sweep([(X, 1.06, ZF), (X, -0.86, ZF), (X, -0.86, 1.72)], w=0.06, h=0.09, r=0.16, mirror=True)
+    K.tube((X, -0.83, 1.69), (X, 0.74, 0.12), w=0.05, h=0.08, mirror=True)                 # lonjeron la 45 de grade
+    for y, z in ((-0.86, 1.68), (0.68, 0.17), (-0.86, 0.06), (1.02, 0.06)):
+        K.tube((-X, y, z), (X, y, z), w=0.07, h=0.06)
+    K.foot((X, 1.0, 0), mirror=True); K.foot((X, -0.8, 0), mirror=True)
+    K.tube((0.24, 0.93, 0.07), (0.24, 0.93, 0.158), w=0.05, h=0.05, up=(0, 1, 0), mirror=True)
+    horns(K, X + 0.03, -0.86, (0.5, 0.85, 1.2))
+
+
+@recipe
+def leg_press_45(K):
+    # Ref: BLK BOX 45 Degree Leg Press, Hammer Strength Linear Leg Press, Exigo 45: cadre laterale triunghiulare
+    # (talpa, stalp spate, sina la 45 de grade dintr-o singura teava), sezut jos, coarne de discuri in spate.
+    K.drop_frame(); drop_feet(K)
+    X = 0.41
+    K.sweep([(X, -1.22, ZF), (X, 1.15, ZF), (X, 1.15, 1.47), (X, -0.2, 0.2)], w=0.06, h=0.09, r=[0, 0.16, 0.13, 0], mirror=True)
+    K.tube((X, 0.2, 0.09), (X, 0.2, 0.58), w=0.05, h=0.08, up=(0, 1, 0), mirror=True)
+    for y, z in ((-1.17, 0.05), (0.2, 0.11), (1.15, 0.05), (1.15, 1.44)):
+        K.tube((-X, y, z), (X, y, z), w=0.08, h=0.06)
+    K.tube((0, -1.17, 0.05), (0, 0.2, 0.05), w=0.10, h=0.06)
+    K.sweep([(0, -0.54, 0.07), (0, -0.62, 0.34)], w=0.08, h=0.08, r=0)
+    K.sweep([(0, -0.92, 0.07), (0, -1.0, 0.56)], w=0.08, h=0.08, r=0)
+    for y in (-1.15, 0.0, 1.1):
+        K.foot((X, y, 0), mirror=True)
+    horns(K, X + 0.03, 1.15, (0.55, 0.95))
+
+
+@recipe
+def plate_calf_seated(K):
+    # Ref: Hammer Strength / Skelcore / Gym Gear Pro Series Seated Calf Raise: coloana joasa, sezut mic,
+    # parghie cu role pentru genunchi si corn de discuri, pivot in spatele sezutului.
+    K.drop_frame(); drop_feet(K)
+    piv = K.J('lever')
+    K.tube((0, -0.64, 0.05), (0, 0.76, 0.05), w=0.11, h=0.06)
+    for y in (-0.64, 0.76):
+        K.tube((-0.31, y, 0.05), (0.31, y, 0.05), w=0.09, h=0.06); K.foot((0.27, y, 0), mirror=True)
+    K.sweep([(0.3, -0.64, 0.08), (0.3, piv[1], 0.32), (0.3, piv[1], piv[2])], w=0.05, h=0.08, r=0.2, mirror=True)
+    K.hub((0.3, piv[1], piv[2]), r=0.05, L=0.07, mirror=True)
+    s = K.A('seat'); K.seat_post(base=(0, s[1], 0.07), top=(0, s[1], s[2] - 0.075))
+
+
+@recipe
+def glute_ham_developer(K):
+    # Ref: French Fitness GHD20, Body-Solid ProClub SGH500, Titan GHD: baza lunga cu talpi late, cadru in U intors,
+    # perne mari semirotunde pentru solduri, role pentru glezne si placa pentru talpi reglabile.
+    K.drop_frame(); drop_feet(K)
+    K.tube((0, -0.92, 0.05), (0, 0.92, 0.05), w=0.11, h=0.06)
+    for y in (-0.92, 0.92):
+        K.tube((-0.37, y, 0.05), (0.37, y, 0.05), w=0.09, h=0.06); K.foot((0.33, y, 0), mirror=True)
+    K.sweep([(0, -0.46, 0.07), (0, -0.15, 0.97), (0, 0.55, 0.97), (0, 0.55, 0.07)], w=0.08, h=0.08, r=0.13)
+    K.tube((0, -0.34, 0.97), (0, -0.14, 0.97), w=0.08, h=0.08)
+    K.block((0, -0.2, 0.925), (0.46, 0.22, 0.03), mat='plastic', rc=0.04)
+    K.tube((0, 0.55, 0.72), (0, 0.672, 0.72), w=0.05, h=0.05)
+    K.tube((0, 0.60, 1.0), (0, 0.60, 1.10), w=0.05, h=0.05, up=(0, 1, 0))
+    K.knob((0.04, 0.45, 0.97)); K.knob((0.04, 0.55, 0.6))
+
+
+@recipe
+def hyperextension_45(K):
+    # Ref: Body-Solid GHPY345 / Powerline PHYP200X, CAP 45 Degree Hyperextension: stalp principal la 45 de grade,
+    # contrafisa curbata, perna pentru solduri sus, manere laterale, suport reglabil pentru picioare.
+    K.drop_frame(); drop_feet(K)
+    K.tube((0, -0.84, 0.05), (0, 0.57, 0.05), w=0.11, h=0.06)
+    for y in (-0.84, 0.57):
+        K.tube((-0.32, y, 0.05), (0.32, y, 0.05), w=0.09, h=0.06); K.foot((0.28, y, 0), mirror=True)
+    K.sweep([(0, -0.56, 0.08), (0, 0.214, 0.853)], w=0.07, h=0.08, r=0)
+    K.sweep([(0, 0.44, 0.07), (0, 0.36, 0.46), (0, 0.10, 0.73)], w=0.06, h=0.07, r=0.3)
+    K.tube((0, -0.337, 0.07), (0, -0.337, 0.30), w=0.05, h=0.05, up=(0, 1, 0))
+    K.tube((0, 0.11, 0.73), (0, 0.035, 0.805), w=0.06, h=0.06)
+    K.sweep([(0.0, 0.19, 0.83), (0.24, 0.19, 0.83), (0.24, 0.31, 0.95)], w=0.03, h=0.03, r=0.05, round_=True,
+            mat='steel', mirror=True, caps=False)
+    K.rod((0.24, 0.235, 0.875), (0.24, 0.315, 0.955), d=0.038, mat='rubber', mirror=True)
+    K.knob((0.04, -0.40, 0.25))

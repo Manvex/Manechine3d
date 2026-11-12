@@ -49,18 +49,48 @@ Banda de alergare (`treadmill_flat`, `treadmill_incline`), turnul cu scripete (`
 
 ## Aspect realist (aparate)
 
-Aparatele din setul 02, plus `glute_ham_developer` și `hyperextension_45`, sunt reconstruite cu `tools/upgrade_machines.py`:
+Cele 28 de aparate din setul 02 (plus `glute_ham_developer` și `hyperextension_45`) sunt reconstruite cu `tools/upgrade_machines.py`.
+Fiecare are o rețetă de cadru scrisă de mână în `tools/machine_recipes.py`, făcută după poze de produs ale unor aparate comerciale.
+Modelele rămân generice, fără forme sau logo-uri de produs.
 
-- profile de cadru cu colțuri rotunjite, ceva mai groase, cu capace de plastic; cadru gri-argintiu
-- perne tapițate bombate, role cu capete rotunjite, manșoane de prindere cu guler
-- greutăți cu etichete și cui selector, carcasă pe turnul de greutăți, plăcuță de instrucțiuni
-- tijă de șezut cromată cu buton galben de reglaj, capace pe axele pivoților
+- cadru din țevi îndoite continue (nu bare sudate cap la cap), cu picioare de cauciuc și lagăre la pivoți
+- turn de greutăți carcasat: două coloane, panou spate, panou frontal sus cu plăcuță, capac, soclu
+- perne tapițate bombate, role cu capete rotunjite, manșoane de prindere, came la pivoții pârghiilor
+- tijă de șezut cromată și butoane galbene de reglaj; coarne de discuri la aparatele cu discuri
 
-Nodurile `anchor_*` și `joint_*` (nume, poziții, `extras`) sunt identice cu cele din modelul original.
-Modelele originale sunt în `glb_src/`; de acolo pornește scriptul:
+Nodurile `anchor_*` și `joint_*` (nume, poziții, `extras`) sunt identice cu cele din modelul original, păstrat în `glb_src/`.
+Materiale noi în GLB: `shroud`, `label`, `accent`.
 
 ```bash
 python3 tools/upgrade_machines.py machine_chest_press --render
 ```
 
-Materiale noi în GLB: `shroud`, `label`, `accent`. Gabaritul crește cu câțiva milimetri din cauza profilelor mai groase.
+`--dump` listează piesele modelului original, iar `--preview` face patru vederi rapide.
+
+### Referințe vizuale pe aparat
+
+| Aparat | Referințe |
+|---|---|
+| `machine_chest_press` | [BodyKore GR601](https://selectfitness.com/products/bodykore-chest-press-gr601), [Muscle D Classic V2](https://www.americanfitness.net/products/classic-v2-selectorized-chest-press), [Precor Vitality](https://pushpedalpull.com/products/commercial-precor-vitality%E2%84%A2-series-chest-press) |
+| `machine_incline_press`, `plate_incline_press` | [Hammer Strength Iso-Lateral Incline Press](https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-incline-press) |
+| `machine_shoulder_press`, `plate_shoulder_press` | [Life Fitness Insignia Shoulder Press](https://www.lifefitness.com/en-us/catalog/strength-training/selectorized/insignia-series-shoulder-press), [Hammer Strength Iso-Lateral Shoulder Press](https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-shoulder-press) |
+| `plate_chest_press` | [Hammer Strength Iso-Lateral Bench Press](https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-bench-press) |
+| `machine_seated_row`, `plate_row` | [Hammer Strength Iso-Lateral Row](https://www.lifefitness.com/en-us/catalog/strength-training/plate-loaded/plate-loaded-iso-lateral-row) |
+| `machine_pec_deck` | [Skelcore Power Series](https://www.skelcore.com/products/power-series-rear-delt-pec-fly-pin-load), [Muscle D Classic V2](https://www.americanfitness.net/products/classic-v2-selectorized-pec-rear-delt-combo), [Gronk](https://livefit.com/products/gronk-fitness-selectorized-pec-fly-rear-delt) |
+| `machine_leg_extension`, `machine_leg_curl_seated` | [Life Fitness Axiom](https://shop.lifefitness.com/products/axiom-series-seated-leg-curl-extension), [Skelcore Power Series](https://www.skelcore.com/products/power-series-leg-curl-extension-pin-load), [SFE](https://omahasportsandgames.com/products/sfe-selectorized-seated-leg-extension-leg-curl-machine-250lb-weight-stack) |
+| `machine_leg_curl_lying` | [Skelcore Prone Leg Curl](https://www.skelcore.com/products/power-series-prone-leg-curl-pin-load), [Muscle D Classic V2](https://www.americanfitness.net/products/classic-v2-selectorized-prone-leg-curl) |
+| `machine_hip_abduction_adduction` | [SFE Hip Abductor/Adductor](https://omahasportsandgames.com/products/sfe-selectorized-hip-abductor-adductor-machine-250lb-weight-stack) |
+| `machine_preacher_curl`, `machine_triceps_extension` | [Life Fitness Axiom Biceps/Triceps](https://shop.lifefitness.com/products/axiom-series-biceps-curl-triceps-extension), [elitefts Preacher Curl](https://elitefts.com/products/elitefts-preacher-curl-selectorized) |
+| `machine_ab_crunch` | [Hammer Strength Select Abdominal Crunch](https://shop.lifefitness.com/products/hammer-strength-select-abdominal-crunch) |
+| `machine_rotary_torso` | [Technogym Selection Rotary Torso](https://fitnesssuperstore.com/Technogym-Selection-Rotary-Torso-Rotation-p/tgselrotr.htm), [Muscle D Elite MDE-18](https://www.ironcompany.com/muscle-d-fitness-rotary-torso-mde-18) — doar descrieri, pozele nu s-au încărcat |
+| `machine_calf_standing` | [Skelcore Standing Calf](https://www.skelcore.com/products/power-series-standing-calf-pin-load), [Muscle D Classic V2](https://www.americanfitness.net/products/classic-v2-selectorized-standing-calf-raise) |
+| `machine_assisted_pullup_dip` | [Skelcore Dip/Chin Assist](https://www.skelcore.com/products/power-series-dip-chin-assist-pin-load) |
+| `cable_crossover` | [Skelcore Cable Crossover](https://www.skelcore.com/products/cable-crossover), [Body-Solid Series II](https://www.americanfitness.net/products/series2-cable-crossover) |
+| `cable_functional_trainer` | [Precor Resolute Dual Adjustable Pulley](https://pushpedalpull.com/products/commercial-precor-resolute%E2%84%A2-dual-adjustable-pulley), [Northern Fitness DAP](https://www.northernfitness.ca/products/commercial-dual-adjustable-pulley-functional-trainer) |
+| `cable_lat_row_combo` | [elitefts Lat Pulldown w/ Low Row](https://elitefts.com/products/elitefts-lat-pulldown-machine-with-low-row-selectorized) |
+| `smith_machine` | [Northern Fitness](https://www.northernfitness.ca/products/commercial-dual-adjustable-pulley-functional-trainer) (cadru Smith combinat) plus dimensiunile din tabelul de mai sus |
+| `hack_squat` | [Extreme Training Equipment](https://extremetrainingequipment.com/products/hack-squat-1), [Titan](https://titan.fitness/products/plate-loaded-linear-hack-squat-machine) |
+| `leg_press_45` | [BLK BOX 45°](https://www.blkboxfitness.com/en-us/products/blk-box-45-degree-plate-loaded-leg-press-machine) |
+| `plate_calf_seated` | [Skelcore Seated Calf Raise](https://www.skelcore.com/products/seated-calf-raise), [Gym Gear Pro Series](https://gymgear.com/products/pro-series-plate-loaded-seated-calf-raise) |
+| `glute_ham_developer` | [French Fitness GHD20](https://fitnesssuperstore.com/French-Fitness-GHD-Glute-Ham-Developer-Roman-Chair-New-p/ff-ghd20.htm) |
+| `hyperextension_45` | [CAP 45° Hyperextension](https://www.garagegymreviews.com/equipment/cap-strength-45-degree-hyperextension) — doar descriere, poza nu s-a încărcat |
