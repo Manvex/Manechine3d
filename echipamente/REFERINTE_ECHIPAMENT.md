@@ -49,7 +49,7 @@ Banda de alergare (`treadmill_flat`, `treadmill_incline`), turnul cu scripete (`
 
 ## Aspect realist (aparate)
 
-Cele 28 de aparate din setul 02 (plus `glute_ham_developer` și `hyperextension_45`) sunt reconstruite cu `tools/upgrade_machines.py`.
+Cele 28 de aparate din setul 02 (plus `glute_ham_developer` și `hyperextension_45`) și cele 8 din setul 03 (cardio, `cable_lat_station`, `cable_tower_high`, `lever_leg_press`) sunt reconstruite cu `tools/upgrade_machines.py`.
 Fiecare are o rețetă de cadru scrisă de mână în `tools/machine_recipes.py`, făcută după poze de produs ale unor aparate comerciale.
 Modelele rămân generice, fără forme sau logo-uri de produs.
 
@@ -57,6 +57,7 @@ Modelele rămân generice, fără forme sau logo-uri de produs.
 - turn de greutăți carcasat: două coloane, panou spate, panou frontal sus cu plăcuță, capac, soclu
 - perne tapițate bombate, role cu capete rotunjite, manșoane de prindere, came la pivoții pârghiilor
 - tijă de șezut cromată și butoane galbene de reglaj; coarne de discuri la aparatele cu discuri
+- la cardio: carcase rotunjite, console înclinate cu ecran (material `screen`), șine și volante carcasate
 
 Nodurile `anchor_*` și `joint_*` (nume, poziții, `extras`) sunt identice cu cele din modelul original, păstrat în `glb_src/`.
 Materiale noi în GLB: `shroud`, `label`, `accent`.
@@ -94,3 +95,12 @@ python3 tools/upgrade_machines.py machine_chest_press --render
 | `plate_calf_seated` | [Skelcore Seated Calf Raise](https://www.skelcore.com/products/seated-calf-raise), [Gym Gear Pro Series](https://gymgear.com/products/pro-series-plate-loaded-seated-calf-raise) |
 | `glute_ham_developer` | [French Fitness GHD20](https://fitnesssuperstore.com/French-Fitness-GHD-Glute-Ham-Developer-Roman-Chair-New-p/ff-ghd20.htm) |
 | `hyperextension_45` | [CAP 45° Hyperextension](https://www.garagegymreviews.com/equipment/cap-strength-45-degree-hyperextension) — doar descriere, poza nu s-a încărcat |
+| `treadmill_flat`, `treadmill_incline` | [Cybex CX-445T](https://www.fitnessequipmentempire.com/product/cybex-cx-445t-treadmills/) |
+| `upright_bike` | [Matrix U7xe](https://www.fitnessequipmentempire.com/product/matrix-u7xe-upright-bike-w-touchscreen-console/), [Precor 800 Bike](https://beyondthebasicsfitness.com/?p=29149) (model recumbent, doar pentru consolă și carcasă) |
+| `elliptical_trainer` | [Star Trac 6 Series Cross Trainer](https://thefitnessoutlet.com/products/star-trac-6-series-cross-trainer) |
+| `rowing_machine` | [Bells of Steel Blitz Air Rower](https://bellsofsteel.us/products/blitz-air-rower), [Torque Stealth Air Rower](https://commercial.torquefitness.com/products/stealth-air-rower) |
+| `cable_lat_station`, `cable_tower_high` | [Skelcore Lat Pulldown](https://www.skelcore.com/products/power-series-lat-pulldown-pin-load), [elitefts Lat Pulldown](https://elitefts.com/products/elitefts-lat-pulldown-selectorized), [Body-Solid GLM85](https://selectfitness.com/products/body-solid-pro-lat-machine-glm85b) |
+| `lever_leg_press` | [Skelcore Leg Press](https://www.skelcore.com/products/power-series-leg-press-pin-load), [Muscle D Classic V2 Leg Press](https://www.americanfitness.net/products/classic-v2-selectorized-leg-press-with-300lb-stack) |
+
+Piesele mobile separate (`elliptical_handle`, `elliptical_rail`, `rower_handle`, `bike_pedal`) nu sunt modificate.
+Planșe: `sheet_set02.png` (aparate de forță) și `sheet_set03.png` (cardio și restul).

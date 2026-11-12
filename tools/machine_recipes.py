@@ -541,3 +541,187 @@ def hyperextension_45(K):
             mat='steel', mirror=True, caps=False)
     K.rod((0.24, 0.235, 0.875), (0.24, 0.315, 0.955), d=0.038, mat='rubber', mirror=True)
     K.knob((0.04, -0.40, 0.25))
+
+
+# ---------------------------------------------------------------- aparate cardio
+def treadmill(K):
+    # Ref: Cybex CX-445T, Precor TRM 885, Life Fitness Integrity: punte cu sine laterale argintii, capota de motor
+    # in fata, doi montanti curbati, bord cu ecran, manere laterale si bara frontala.
+    rails = [p for p in K.parts if p['mat'] == 'frame_gray' and p['kind'] == 'box' and max(p['d']) > 1.1]
+    r0 = rails[0]; il = int(np.argmax(r0['d'])); u = r0['R'][:, il].copy()
+    if u[1] < 0: u = -u
+    n = np.cross([1.0, 0, 0], u); n = n if n[2] > 0 else -n
+    L = r0['d'][il]; mid = np.array([0, r0['c'][1], r0['c'][2]]); F = mid + u * L / 2; B = mid - u * L / 2
+    K.drop_all(keep=lambda p: p['mat'] in ('belt',) or (p['mat'] == 'plastic' and max(p['d']) > 1.0 and p['kind'] == 'box'))
+    X = abs(r0['c'][0])
+    def P(s, h, x=0.0):        # punct in coordonatele puntii: s de-a lungul, h pe normala, fata de capatul din fata
+        q = F + u * s + n * h; return (x, q[1], q[2])
+    # sine laterale + benzi antiderapante + capace spate
+    K.sweep([P(-L - 0.02, 0, X), P(0.02, 0, X)], w=0.09, h=0.15, r=0, mat='shroud', up=n, mirror=True, corner=0.03)
+    K.sweep([P(-L + 0.02, 0.078, X), P(-0.04, 0.078, X)], w=0.07, h=0.008, r=0, mat='rubber', up=n, mirror=True, caps=False, corner=0.003)
+    for sx in (1, -1):
+        c = np.array(P(-L - 0.02, -0.01, X * sx)); Rb = np.stack([np.array([1.0, 0, 0]), u, n], axis=1)
+        K.block(c, (0.11, 0.12, 0.15), mat='plastic', rc=0.03, R=Rb)
+    # capota motorului
+    K.slab([(-0.14, -0.07), (0.30, -0.07), (0.30, 0.07), (0.18, 0.175), (-0.06, 0.15), (-0.14, 0.085)], 0.70, bevel=0.04,
+           mat='plastic', r=0.05, o=F, e1=u, e2=n)
+    K.slab([(-0.08, 0.10), (0.16, 0.12), (0.16, 0.176), (-0.06, 0.152)], 0.50, bevel=0.02, mat='shroud', r=0.02, o=F, e1=u, e2=n)
+    # baza din fata + picioare spate
+    K.tube((-0.42, 1.05, 0.04), (0.42, 1.05, 0.04), w=0.09, h=0.07)
+    K.rod((0.42, 1.05, 0.045), (0.47, 1.05, 0.045), d=0.09, mat='rubber', mirror=True)        # roti de transport
+    K.tube((0.37, 0.36, 0.04), (0.37, 1.02, 0.04), w=0.07, h=0.06, mirror=True)
+    for sx in (1, -1):
+        b = np.array(P(-L + 0.06, -0.075, X * sx))
+        if b[2] < 0.12: K.foot((b[0], b[1], 0))
+    if F[2] > 0.3:     # varianta inclinata: bratele de ridicare
+        K.tube((0.30, 0.34, 0.06), P(-0.14, -0.07, 0.30), w=0.04, h=0.05, mirror=True)
+        K.tube((0.30, 0.95, 0.06), P(-0.56, -0.07, 0.30), w=0.04, h=0.05, mirror=True)
+    # montanti si manere
+    Xu = 0.39
+    K.sweep([(Xu, 1.03, 0.06), (Xu, 1.00, 0.80), (Xu, 0.84, 1.02), (Xu, 0.62, 1.02)], w=0.06, h=0.10, r=[0, 0.30, 0.12, 0],
+            mat='shroud', mirror=True)
+    K.rod((Xu, 0.63, 1.015), (Xu, 0.25, 1.01), d=0.042, mat='rubber', mirror=True)
+    K.hub((Xu, 0.25, 1.01), axis=(0, 1, 0), r=0.023, L=0.012, mat='plastic', mirror=True)
+    # bord
+    K.slab([(0.65, 1.04), (0.73, 0.985), (1.10, 1.25), (1.05, 1.325), (0.94, 1.325), (0.63, 1.09)], 0.78, bevel=0.035,
+           mat='plastic', r=0.035)
+    K.slab([(0.66, 0.975), (0.90, 0.975), (0.90, 1.045), (0.66, 1.045)], 0.86, bevel=0.03, mat='plastic', r=0.025)
+    K.console((0.0, 0.795, 1.215), size=(0.36, 0.26), tilt=49, thick=0.02)
+    K.rod((-0.30, 0.60, 1.03), (0.30, 0.60, 1.03), d=0.04, mat='rubber')                       # bara frontala
+    K.sweep([(0.30, 0.60, 1.03), (0.30, 0.70, 1.04)], w=0.035, h=0.035, r=0, round_=True, mat='plastic', mirror=True, caps=False)
+    K.disc((0, 0.655, 1.085), axis=(0, -0.75, 0.66), r=0.028, t=0.016, mat='accent')            # oprire de urgenta
+
+
+RECIPES['treadmill_flat'] = treadmill
+RECIPES['treadmill_incline'] = treadmill
+
+
+@recipe
+def upright_bike(K):
+    # Ref: Matrix U7xe, Star Trac 8UB, Precor UBK 885: carcasa-picatura in jurul volantei, baza cu doua talpi,
+    # tija de sa reglabila, catarg in fata cu ghidon si consola.
+    K.drop_all(keep=lambda p: p['mat'] in ('rubber', 'vinyl', 'steel') or p['nv'] == 350)
+    K.tube((0, -0.40, 0.05), (0, 0.72, 0.05), w=0.09, h=0.06)
+    for y, w in ((-0.40, 0.30), (0.72, 0.38)):
+        K.tube((-w, y, 0.045), (w, y, 0.045), w=0.08, h=0.06)
+        K.rod((w - 0.01, y, 0.045), (w + 0.03, y, 0.045), d=0.075, mat='plastic', mirror=True)
+    K.slab([(-0.12, 0.09), (0.64, 0.09), (0.76, 0.30), (0.62, 0.57), (0.22, 0.63), (-0.07, 0.52), (-0.16, 0.26)], 0.18,
+           bevel=0.045, mat='shroud', r=0.10)
+    c = K.J('crank')
+    for sx in (1, -1):
+        K.disc((sx * 0.086, c[1], c[2]), r=0.16, t=0.016, mat='plastic')
+        K.disc((sx * 0.096, c[1], c[2]), r=0.045, t=0.02, mat='steel')
+    K.sweep([(0, -0.095, 0.36), (0, -0.045, 0.585)], w=0.065, h=0.075, r=0); K.knob((0.033, -0.06, 0.52))     # manson sa
+    K.sweep([(0, 0.62, 0.50), (0, 0.86, 0.78), (0, 0.86, 1.29)], w=0.07, h=0.10, r=0.30)                       # catarg
+    K.block((0, 0.80, 1.19), (0.10, 0.20, 0.06), rc=0.02)
+    K.console((0, 0.87, 1.40), size=(0.30, 0.22), tilt=28)
+    K.tube((0, 0.865, 1.27), (0, 0.875, 1.34), w=0.05, h=0.05, up=(0, 1, 0))
+
+
+@recipe
+def elliptical_trainer(K):
+    # Ref: Star Trac 6CT, Life Fitness Integrity Cross-Trainer, Precor EFX: volanta carcasata in spate, grinda centrala
+    # cu sine, carcasa si catarg in fata, consola, manere fixe; bratele mobile si pedalele sunt piese separate.
+    K.drop_all(keep=lambda p: p['mat'] == 'rubber' or (p['mat'] == 'powder' and p['kind'] == 'cyl' and p['nv'] == 82))
+    yf = -0.85; zf = 0.46
+    K.disc((0, yf, zf), r=0.25, t=0.22, mat='shroud'); K.disc((0, yf, zf), r=0.19, t=0.25, mat='plastic')
+    K.disc((0, yf, zf), r=0.05, t=0.30, mat='steel')
+    K.slab([(-1.12, 0.03), (-0.56, 0.03), (-0.56, 0.24), (-0.66, 0.40), (-1.02, 0.40), (-1.12, 0.22)], 0.20, bevel=0.04,
+           mat='plastic', r=0.06)
+    K.tube((-0.28, -1.02, 0.045), (0.28, -1.02, 0.045), w=0.10, h=0.07); K.foot((0.24, -1.02, 0), mirror=True)
+    K.tube((0, -0.60, 0.20), (0, 0.14, 0.20), w=0.10, h=0.07)
+    K.rod((0.09, -0.60, 0.20), (0.09, -0.05, 0.15), d=0.03, mirror=True)
+    K.slab([(0.04, 0.09), (0.66, 0.09), (0.66, 0.44), (0.57, 0.70), (0.36, 0.72), (0.04, 0.38)], 0.34, bevel=0.06,
+           mat='shroud', r=0.08)
+    K.tube((-0.42, 0.30, 0.05), (0.42, 0.30, 0.05), w=0.14, h=0.08); K.foot((0.38, 0.30, 0), size=(0.12, 0.16), mirror=True)
+    K.sweep([(0, 0.50, 0.66), (0, 0.61, 1.02), (0, 0.43, 1.38)], w=0.07, h=0.09, r=0.30)
+    K.console((0, 0.37, 1.44), size=(0.32, 0.24), tilt=30)
+    K.block((0, 0.40, 1.33), (0.12, 0.10, 0.07), rc=0.02)
+    K.rod((-0.20, 0.35, 0.60), (0.20, 0.35, 0.60), d=0.035)
+
+
+@recipe
+def rowing_machine(K):
+    # Ref: Bells of Steel Blitz Air Rower, Torque Stealth Air Rower, Concept2 RowErg: monosina din aluminiu,
+    # volanta cu carcasa perforata in fata pe picioare in A, brat cu monitor, placa pentru picioare.
+    K.drop_all(keep=lambda p: p['mat'] == 'rubber' or (p['mat'] == 'powder' and p['kind'] == 'box' and min(p['d']) < 0.05 and max(p['d']) > 0.3 and p['d'][0] > 0.3))
+    K.sweep([(0, -0.67, 0.335), (0, 0.84, 0.335)], w=0.09, h=0.07, r=0, mat='shroud', corner=0.012)
+    K.sweep([(0, 0.78, 0.30), (0, 1.02, 0.33), (0, 1.44, 0.62)], w=0.07, h=0.11, r=0.25)
+    K.sweep([(0, -0.64, 0.31), (0, -0.72, 0.04)], w=0.06, h=0.08, r=0)
+    K.tube((-0.30, -0.72, 0.03), (0.30, -0.72, 0.03), w=0.07, h=0.045)
+    K.sweep([(0.03, 1.31, 0.46), (0.30, 1.34, 0.04)], w=0.05, h=0.07, r=0, mirror=True)
+    K.tube((-0.42, 1.34, 0.03), (0.42, 1.34, 0.03), w=0.07, h=0.045)
+    K.rod((0.37, 1.39, 0.04), (0.41, 1.39, 0.04), d=0.07, mat='plastic', mirror=True)
+    yw, zw = 1.6, 0.55
+    K.disc((0, yw, zw), r=0.255, t=0.20, mat='plastic'); K.disc((0, yw, zw), r=0.215, t=0.235, mat='shroud')
+    K.disc((0, yw, zw), r=0.10, t=0.262, mat='plastic'); K.disc((0, yw, zw), r=0.03, t=0.285, mat='steel')
+    K.sweep([(0, 1.30, 0.70), (0, 0.97, 0.94)], w=0.03, h=0.05, r=0)
+    c = (0, 0.945, 0.985); K.console(c, size=(0.14, 0.17), tilt=20, thick=0.03)
+    K.block((0, 1.22, 0.60), (0.10, 0.12, 0.10), rc=0.02)
+
+
+def regray(K, joint, w=None):
+    """Piesele mobile gri (cutii) devin profile rotunjite in culoarea cadrului."""
+    for p in K.parts:
+        if p['joint'] == joint and p['mat'] == 'frame_gray' and p['kind'] == 'box' and min(p['d']) >= 0.02:
+            p['dropped'] = True; d = p['d']; il = int(np.argmax(d)); ax = p['R'][:, il] * d[il] / 2
+            o = [i for i in range(3) if i != il]
+            K.sweep([p['c'] - ax, p['c'] + ax], d[o[0]] + 0.006, d[o[1]] + 0.006, r=0, joint=joint, up=p['R'][:, o[1]])
+
+
+def keep_fittings(p):
+    """Pastreaza scripetii, otelul, cauciucul, greutatile si placile subtiri."""
+    return p['mat'] in ('steel', 'rubber', 'iron', 'vinyl', 'label') or (p['mat'] == 'plastic' and p['kind'] != 'box') \
+        or (p['kind'] == 'box' and min(p['d']) < 0.021 and max(p['d']) < 0.3)
+
+
+@recipe
+def cable_lat_station(K):
+    # Ref: Skelcore Power Series Lat Pulldown, elitefts Lat Pulldown Selectorized, Body-Solid GLM85: turn carcasat in fata,
+    # grinda sus cu scripeti, catarg inclinat, banca joasa cu role reglabile pentru coapse.
+    K.drop_all(keep=keep_fittings)
+    S = K.J('stack'); ys = S[1]
+    K.tower(top=1.99)
+    K.sweep([(0, ys + 0.03, 2.045), (0, 0.07, 1.985)], w=0.09, h=0.09, r=0)
+    K.sweep([(0, 0.76, 0.07), (0, 1.30, 1.97)], w=0.07, h=0.10, r=0)
+    K.tube((0, 0.20, 0.045), (0, ys - 0.12, 0.045), w=0.10, h=0.07)
+    K.tube((-0.26, 0.22, 0.045), (0.26, 0.22, 0.045), w=0.08, h=0.06); K.foot((0.22, 0.22, 0), mirror=True)
+    K.sweep([(0, -0.20, 0.312), (0, 0.95, 0.312)], w=0.10, h=0.06, r=0)
+    K.sweep([(0, 0.40, 0.07), (0, 0.03, 0.07), (0, 0.03, 0.29)], w=0.09, h=0.07, r=0.13)
+    K.tube((0, 0.95, 0.07), (0, 0.95, 0.29), w=0.07, h=0.07, up=(0, 1, 0))
+    K.block((0, 1.05, 0.20), (0.09, 0.27, 0.16), rc=0.03)
+    K.block((0, 1.352, 1.70), (0.035, 0.08, 0.36)); K.block((0, 1.352, 1.93), (0.03, 0.06, 0.16))
+    K.knob((0.05, 0.30, 0.312))
+    regray(K, 'joint_pad_adjust'); regray(K, 'joint_seat_adjust')
+
+
+@recipe
+def cable_tower_high(K):
+    # Ref: turnuri cu scripete inalt (Skelcore / elitefts lat pulldown, coloane de cablu Body-Solid): turn carcasat,
+    # brat curbat tip gat-de-lebada cu scripeti la varf, placa de baza.
+    K.drop_all(keep=keep_fittings)
+    S = K.J('stack'); ys = S[1]
+    K.tower(top=2.0, base=False)
+    K.block((0, 0.80, 0.014), (0.68, 0.62, 0.028), mat='plastic', rc=0.06)
+    K.sweep([(0, 0.72, 0.03), (0, 0.72, 1.72), (0, 0.325, 2.195)], w=0.07, h=0.10, r=0.5)
+    for z in (0.82, 1.44):
+        K.block((0, 0.80, z), (0.30, 0.12, 0.08), rc=0.02)
+    K.block((0, 0.72, 0.09), (0.12, 0.20, 0.12), rc=0.03)
+
+
+@recipe
+def lever_leg_press(K):
+    # Ref: Skelcore Power Series Leg Press, Muscle D Classic V2 Leg Press, Hammer Strength Select Seated Leg Press:
+    # turn carcasat in spatele sezutului, talpi laterale lungi, stalpi in fata, sine inclinate pentru placa de picioare.
+    K.drop_all(keep=keep_fittings)
+    K.tower(top=1.88)
+    X = 0.30
+    K.sweep([(X, -0.52, 0.06), (X, 1.32, 0.06), (0.27, 1.01, 0.64)], w=0.06, h=0.09, r=[0, 0.10, 0], mirror=True)
+    for y in (0.35, 1.26):
+        K.tube((-X, y, 0.06), (X, y, 0.06), w=0.07, h=0.07)
+    K.tube((-X, -0.50, 0.06), (X, -0.50, 0.06), w=0.07, h=0.07)
+    K.tube((-0.27, 1.0, 0.62), (0.27, 1.0, 0.62), w=0.06, h=0.06)
+    K.tube((0.27, 0.03, 0.08), (0.27, 0.03, 0.25), w=0.05, h=0.08, up=(0, 1, 0), mirror=True)
+    for y in (-0.46, 0.4, 1.28):
+        K.foot((X, y, 0), mirror=True)
+    regray(K, 'joint_plate'); regray(K, 'joint_seat')

@@ -820,12 +820,12 @@
    "name": "cable_lat_station",
    "size_mm": [
     770.0,
-    1895.0,
+    1952.5,
     2134.8
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 12336,
+   "tris": 14808,
    "source": "contur masurat pe clipul de pulldown cu tools/clip_plane.py",
    "anchors": [
     "cable_beam_front",
@@ -938,18 +938,18 @@
      ]
     }
    },
-   "glb_kb": 316.0
+   "glb_kb": 397.9
   },
   {
    "name": "cable_tower_high",
    "size_mm": [
-    660.0,
-    779.4,
-    2207.9
+    680.0,
+    823.4,
+    2227.0
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6804,
+   "tris": 8644,
    "source": "contur masurat pe clip cu tools/clip_plane.py",
    "anchors": [
     "cable_arm_in",
@@ -1010,7 +1010,7 @@
      ]
     }
    },
-   "glb_kb": 189.7
+   "glb_kb": 238.8
   },
   {
    "name": "dumbbell_hex_10kg",
@@ -1237,18 +1237,18 @@
   {
    "name": "elliptical_trainer",
    "size_mm": [
-    860.0,
-    1770.0,
-    1480.0
+    880.0,
+    1780.0,
+    1550.7
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 6136,
+   "tris": 6098,
    "source": "contur masurat pe clipul elliptical cu tools/clip_plane.py",
    "anchors": [],
    "anchor_pos": {},
    "joints": {},
-   "glb_kb": 138.0
+   "glb_kb": 148.8
   },
   {
    "name": "ez_bar_olympic",
@@ -1492,13 +1492,13 @@
   {
    "name": "lever_leg_press",
    "size_mm": [
-    670.0,
-    2158.3,
-    1945.0
+    730.0,
+    2180.8,
+    1947.5
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 8500,
+   "tris": 13012,
    "source": "contur masurat pe clipul lever seated leg press",
    "anchors": [
     "seat"
@@ -1563,7 +1563,7 @@
      ]
     }
    },
-   "glb_kb": 217.6
+   "glb_kb": 355.5
   },
   {
    "name": "machine_ab_crunch",
@@ -2970,12 +2970,12 @@
    "name": "rowing_machine",
    "size_mm": [
     900.0,
-    2605.0,
-    1060.0
+    2623.0,
+    1068.6
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 3472,
+   "tris": 5042,
    "source": "contur masurat pe clipul rowing cu tools/clip_plane.py",
    "anchors": [
     "cable_guide",
@@ -3012,7 +3012,7 @@
      ]
     }
    },
-   "glb_kb": 99.4
+   "glb_kb": 137.2
   },
   {
    "name": "smith_machine",
@@ -3068,13 +3068,13 @@
   {
    "name": "treadmill_flat",
    "size_mm": [
-    960.0,
-    1766.5,
-    1326.5
+    940.0,
+    1685.0,
+    1325.0
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 9140,
+   "tris": 6906,
    "source": "proportii masurate pe clipurile de mers, cu tools/clip_plane.py",
    "anchors": [
     "belt_center"
@@ -3087,18 +3087,18 @@
     ]
    },
    "joints": {},
-   "glb_kb": 206.7
+   "glb_kb": 174.6
   },
   {
    "name": "treadmill_incline",
    "size_mm": [
-    960.0,
-    1789.7,
-    1326.5
+    940.0,
+    1722.8,
+    1325.0
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 9572,
+   "tris": 7562,
    "source": "proportii masurate pe clipurile de mers, cu tools/clip_plane.py",
    "anchors": [
     "belt_center"
@@ -3111,18 +3111,18 @@
     ]
    },
    "joints": {},
-   "glb_kb": 218.2
+   "glb_kb": 195.0
   },
   {
    "name": "upright_bike",
    "size_mm": [
-    800.0,
-    1496.9,
-    1510.3
+    820.0,
+    1375.2,
+    1503.5
    ],
    "spec_mm": null,
    "tolerance": 0.05,
-   "tris": 7240,
+   "tris": 8466,
    "source": "contur masurat pe clipul stationary bike cu tools/clip_plane.py",
    "anchors": [
     "grip_L",
@@ -3176,7 +3176,7 @@
      ]
     }
    },
-   "glb_kb": 160.3
+   "glb_kb": 197.1
   }
  ],
  "errors": []

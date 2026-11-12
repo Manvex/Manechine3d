@@ -26,6 +26,8 @@ MATS = {  # culoare, metalic, rugozitate
     'vinyl':  ((0.014, 0.014, 0.016, 1), 0.0, 0.50),
     'steel':  ((0.72, 0.72, 0.73, 1), 1.0, 0.22),
     'plastic': ((0.022, 0.022, 0.024, 1), 0.0, 0.40),
+    'screen': ((0.010, 0.016, 0.030, 1), 0.0, 0.12),
+    'frame_gray': ((0.040, 0.042, 0.047, 1), 0.25, 0.42),
 }
 
 
@@ -276,6 +278,47 @@ class Kit:
             for s_ in (-1, 1):
                 lathe(self.G(j_, 'plastic'), c + ax * s_ * (L / 2 - 0.001), ax * s_, [(0, r * 0.62), (0.006, r * 0.55)], 16)
 
+    def drop_all(self, joint=None, keep=None):
+        """Scoate toata geometria unei articulatii, mai putin piesele pentru care keep(p) e adevarat."""
+        for p in self.parts:
+            if p['joint'] == joint and not (keep and keep(p)):
+                p['dropped'] = True
+
+    def slab(self, profile, width, bevel=0.03, mat='plastic', joint=None, r=0.05, o=(0, 0, 0), e1=(0, 1, 0),
+             e2=(0, 0, 1), x0=0.0):
+        """Carcasa: profil 2D inchis (in planul e1-e2) extrudat pe latime, cu muchiile laterale rotunjite."""
+        o = np.array(o, float); e1 = np.array(e1, float); e2 = np.array(e2, float); ex = np.cross(e1, e2)
+        pts = [np.array([0, a, b], float) for a, b in profile]
+        loop = fillet_path([pts[-1]] + pts + [pts[0], pts[1]], r, 6)
+        loop = loop[1:-1]                                  # scoate capetele adaugate pentru inchidere
+        # elimina dublurile de la inchidere
+        out = []
+        for q in loop:
+            if not out or np.linalg.norm(q - out[-1]) > 1e-5: out.append(q)
+        if np.linalg.norm(out[0] - out[-1]) < 1e-5: out.pop()
+        P2 = np.array([[q[1], q[2]] for q in out]); cen = P2.mean(0)
+        area = 0.5 * sum(P2[i][0] * P2[(i + 1) % len(P2)][1] - P2[(i + 1) % len(P2)][0] * P2[i][1] for i in range(len(P2)))
+        if area < 0: P2 = P2[::-1]
+        def ring(x, inset):
+            rg = []
+            for q in P2:
+                d = q - cen; L = np.linalg.norm(d); q2 = cen + d * max(0.0, (L - inset) / L) if L > 1e-6 else q
+                rg.append(o + ex * (x0 + x) + e1 * q2[0] + e2 * q2[1])
+            return rg
+        b = min(bevel, width * 0.45); h = width / 2
+        steps = [(-h, b), (-h + b * 0.3, b * 0.3), (-h + b, 0.0), (h - b, 0.0), (h - b * 0.3, b * 0.3), (h, b)]
+        self.G(joint, mat).loft([ring(x, i) for x, i in steps])
+
+    def console(self, c, size=(0.30, 0.22), tilt=25, thick=0.035, joint=None):
+        """Consola inclinata cu ecran, orientata spre utilizator (-Y)."""
+        t = math.radians(tilt); c = np.array(c, float)
+        up = np.array([0, math.sin(t), math.cos(t)]); nrm = np.array([0, -math.cos(t), math.sin(t)])
+        R = np.stack([np.array([1.0, 0, 0]), up, np.cross([1.0, 0, 0], up)], axis=1)
+        plate(self.G(joint, 'plastic'), c, R, np.array([size[0], size[1], thick]), rc=0.02, ch=0.004)
+        u = np.array([1.0, 0, 0]) * (size[0] / 2 - 0.022); v = up * (size[1] / 2 - 0.022)
+        pc = c + nrm * (thick / 2 + 0.0012)
+        self.G(joint, 'screen').quad([pc - u - v, pc + u - v, pc + u + v, pc - u + v])
+
     def disc(self, p, axis=(1, 0, 0), r=0.12, t=0.02, mat='plastic', joint=None):
         """Disc / cama."""
         ax = np.array(axis, float); ax /= np.linalg.norm(ax)
@@ -305,7 +348,8 @@ class Kit:
         """Turn de greutati carcasat: doua coloane, panou spate, panou frontal sus, capac, soclu."""
         T = self.towers[k]; S, Wd, Dd = T['S'], T['W'], T['D']
         for p in T.get('ups', []) + T.get('tops', []): p['dropped'] = True
-        ztop = top if top else T['ztop']
+        ztop = top if top else T.get('ztop', 1.8)
+        col = (col[0], max(col[1], T['b'] + 0.045))      # carcasa acopera greutatile mai adanci
         hw = T['a'] / 2 + 0.022 + col[0] / 2
         Rc = np.stack([Wd, Dd, np.array([0, 0, 1.0])], axis=1)
         g = self.G(None, 'powder')
