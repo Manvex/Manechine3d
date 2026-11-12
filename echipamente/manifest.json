@@ -1,0 +1,3183 @@
+{
+ "assets": [
+  {
+   "name": "barbell_collar_lock",
+   "size_mm": [
+    40.0,
+    86.0,
+    108.5
+   ],
+   "spec_mm": [
+    40,
+    88,
+    105
+   ],
+   "tolerance": 0.05,
+   "tris": 1752,
+   "source": "estimat",
+   "anchors": [],
+   "glb_kb": 34.7
+  },
+  {
+   "name": "barbell_curl_straight",
+   "size_mm": [
+    1460.0,
+    65.0,
+    65.0
+   ],
+   "spec_mm": [
+    1450,
+    65,
+    65
+   ],
+   "tolerance": 0.05,
+   "tris": 4224,
+   "source": "lungime ~1450 mm dupa clipul preacher curl; discurile la +-0.52 m",
+   "anchors": [
+    "grip_L",
+    "grip_R",
+    "load_L",
+    "load_R"
+   ],
+   "anchor_pos": {
+    "grip_L": [
+     -0.2,
+     0.0,
+     0.0
+    ],
+    "grip_R": [
+     0.2,
+     0.0,
+     0.0
+    ],
+    "load_L": [
+     -0.52,
+     0.0,
+     0.0
+    ],
+    "load_R": [
+     0.52,
+     0.0,
+     0.0
+    ]
+   },
+   "joints": {},
+   "glb_kb": 87.3
+  },
+  {
+   "name": "barbell_olympic_20kg",
+   "size_mm": [
+    2200.0,
+    65.0,
+    65.0
+   ],
+   "spec_mm": [
+    2200,
+    65,
+    65
+   ],
+   "tolerance": 0.05,
+   "tris": 4992,
+   "source": "IWF 2200 mm / 28 mm / manson 50 mm",
+   "anchors": [
+    "grip_bench_L",
+    "grip_bench_R",
+    "grip_clean_L",
+    "grip_clean_R",
+    "grip_snatch_L",
+    "grip_snatch_R",
+    "load_L",
+    "load_R"
+   ],
+   "glb_kb": 109.3
+  },
+  {
+   "name": "bench_adjustable_curl_incline",
+   "size_mm": [
+    650.0,
+    1410.0,
+    937.9
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4632,
+   "source": "FID: spate 915 x 280 x 57 mm, sezut 380 mm, -10..+85 grade, 650 x 1330 mm",
+   "anchors": [
+    "back_mid",
+    "head",
+    "seat"
+   ],
+   "anchor_pos": {
+    "seat": [
+     0.0,
+     0.2051,
+     0.4723
+    ],
+    "back_mid": [
+     0.0,
+     -0.285,
+     0.7536
+    ],
+    "head": [
+     0.0,
+     -0.4158,
+     0.8844
+    ]
+   },
+   "joints": {},
+   "glb_kb": 124.8
+  },
+  {
+   "name": "bench_adjustable_decline",
+   "size_mm": [
+    650.0,
+    1410.0,
+    445.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4504,
+   "source": "FID: spate 915 x 280 x 57 mm, sezut 380 mm, -10..+85 grade, 650 x 1330 mm",
+   "anchors": [
+    "back_mid",
+    "head",
+    "seat"
+   ],
+   "glb_kb": 120.9
+  },
+  {
+   "name": "bench_adjustable_flat",
+   "size_mm": [
+    650.0,
+    1410.0,
+    445.0
+   ],
+   "spec_mm": [
+    650,
+    1355,
+    445
+   ],
+   "tolerance": 0.05,
+   "tris": 4504,
+   "source": "FID: spate 915 x 280 x 57 mm, sezut 380 mm, -10..+85 grade, 650 x 1330 mm",
+   "anchors": [
+    "back_mid",
+    "head",
+    "seat"
+   ],
+   "glb_kb": 120.9
+  },
+  {
+   "name": "bench_adjustable_incline30",
+   "size_mm": [
+    650.0,
+    1410.0,
+    893.9
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4504,
+   "source": "FID: spate 915 x 280 x 57 mm, sezut 380 mm, -10..+85 grade, 650 x 1330 mm",
+   "anchors": [
+    "back_mid",
+    "head",
+    "seat"
+   ],
+   "glb_kb": 120.9
+  },
+  {
+   "name": "bench_adjustable_incline45",
+   "size_mm": [
+    650.0,
+    1410.0,
+    1075.8
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4632,
+   "source": "FID: spate 915 x 280 x 57 mm, sezut 380 mm, -10..+85 grade, 650 x 1330 mm",
+   "anchors": [
+    "back_mid",
+    "head",
+    "seat"
+   ],
+   "anchor_pos": {
+    "seat": [
+     0.0,
+     0.2051,
+     0.4723
+    ],
+    "back_mid": [
+     0.0,
+     -0.285,
+     0.7536
+    ],
+    "head": [
+     0.0,
+     -0.5537,
+     1.0223
+    ]
+   },
+   "joints": {},
+   "glb_kb": 124.7
+  },
+  {
+   "name": "bench_adjustable_upright",
+   "size_mm": [
+    650.0,
+    1410.0,
+    1313.1
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4632,
+   "source": "FID: spate 915 x 280 x 57 mm, sezut 380 mm, -10..+85 grade, 650 x 1330 mm",
+   "anchors": [
+    "back_mid",
+    "head",
+    "seat"
+   ],
+   "glb_kb": 124.7
+  },
+  {
+   "name": "bench_decline",
+   "size_mm": [
+    700.0,
+    1428.6,
+    848.3
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4904,
+   "source": "estimat",
+   "anchors": [
+    "head",
+    "seat"
+   ],
+   "glb_kb": 107.6
+  },
+  {
+   "name": "bench_flat",
+   "size_mm": [
+    749.0,
+    1200.0,
+    426.0
+   ],
+   "spec_mm": [
+    749,
+    1200,
+    426
+   ],
+   "tolerance": 0.05,
+   "tris": 1636,
+   "source": "IPF 1200 x 749 x 426 mm; perne ~60 mm",
+   "anchors": [
+    "foot_L",
+    "foot_R",
+    "head",
+    "seat"
+   ],
+   "glb_kb": 42.6
+  },
+  {
+   "name": "bench_preacher",
+   "size_mm": [
+    700.0,
+    1000.0,
+    1008.9
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 2408,
+   "source": "estimat",
+   "anchors": [
+    "arm_pad_center",
+    "seat"
+   ],
+   "glb_kb": 57.2
+  },
+  {
+   "name": "bench_preacher_curl",
+   "size_mm": [
+    970.0,
+    1055.0,
+    880.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 3164,
+   "source": "estimat dupa clipul preacher curl; perna si scaunul se potrivesc pe manechin",
+   "anchors": [
+    "arm_pad_center",
+    "seat"
+   ],
+   "anchor_pos": {
+    "seat": [
+     0.0,
+     -0.36,
+     0.55
+    ],
+    "arm_pad_center": [
+     0.0,
+     0.0498,
+     0.7762
+    ]
+   },
+   "joints": {},
+   "glb_kb": 77.4
+  },
+  {
+   "name": "bike_pedal",
+   "size_mm": [
+    160.0,
+    100.0,
+    86.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 424,
+   "source": "pedala cu curea din clip",
+   "anchors": [],
+   "anchor_pos": {},
+   "joints": {},
+   "glb_kb": 12.8
+  },
+  {
+   "name": "cable_attach_ankle_strap",
+   "size_mm": [
+    112.0,
+    76.0,
+    180.5
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 1816,
+   "source": "estimat",
+   "anchors": [
+    "ankle_center",
+    "cable_eye"
+   ],
+   "joints": {},
+   "glb_kb": 39.8
+  },
+  {
+   "name": "cable_attach_d_handle",
+   "size_mm": [
+    160.9,
+    41.0,
+    187.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 1208,
+   "source": "estimat",
+   "anchors": [
+    "cable_eye",
+    "grip_center"
+   ],
+   "joints": {},
+   "glb_kb": 30.1
+  },
+  {
+   "name": "cable_attach_lat_bar",
+   "size_mm": [
+    1214.9,
+    41.0,
+    236.9
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 1576,
+   "source": "estimat",
+   "anchors": [
+    "cable_eye",
+    "grip_L",
+    "grip_R"
+   ],
+   "joints": {},
+   "glb_kb": 38.8
+  },
+  {
+   "name": "cable_attach_lat_curved",
+   "size_mm": [
+    921.0,
+    60.0,
+    173.8
+   ],
+   "spec_mm": [
+    921,
+    60,
+    174
+   ],
+   "tolerance": 0.05,
+   "tris": 7208,
+   "source": "clip lateral pulldown: mansoane la +-0.045..0.165 m, maini la +-0.33 m, bile la +-0.44 m",
+   "anchors": [
+    "cable_eye",
+    "grip_L",
+    "grip_R"
+   ],
+   "anchor_pos": {
+    "grip_L": [
+     -0.33,
+     0.0,
+     0.0
+    ],
+    "grip_R": [
+     0.33,
+     0.0,
+     0.0
+    ],
+    "cable_eye": [
+     0.0,
+     0.0,
+     0.106
+    ]
+   },
+   "joints": {},
+   "glb_kb": 139.3
+  },
+  {
+   "name": "cable_attach_lat_wide",
+   "size_mm": [
+    924.9,
+    46.0,
+    217.1
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 3784,
+   "source": "clip wide grip pulldown: maini la +-0.28 m, indoitura la +-0.31 m, capete la +-0.43 m, 0.105 m mai jos",
+   "anchors": [
+    "cable_eye",
+    "grip_L",
+    "grip_R"
+   ],
+   "anchor_pos": {
+    "grip_L": [
+     -0.28,
+     0.0,
+     0.0
+    ],
+    "grip_R": [
+     0.28,
+     0.0,
+     0.0
+    ],
+    "cable_eye": [
+     0.0,
+     0.0,
+     0.078
+    ]
+   },
+   "joints": {},
+   "glb_kb": 76.8
+  },
+  {
+   "name": "cable_attach_parallel",
+   "size_mm": [
+    152.6,
+    230.0,
+    178.9
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4232,
+   "source": "poza de produs + clip: bare la +-0.06 m, lungi de 0.23 m, placa la 0.11-0.15 m deasupra barelor",
+   "anchors": [
+    "cable_eye"
+   ],
+   "anchor_pos": {
+    "cable_eye": [
+     0.0,
+     0.0,
+     0.16
+    ]
+   },
+   "joints": {},
+   "glb_kb": 90.6
+  },
+  {
+   "name": "cable_attach_rope",
+   "size_mm": [
+    192.0,
+    42.0,
+    689.5
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 2148,
+   "source": "estimat",
+   "anchors": [
+    "cable_eye",
+    "grip_L",
+    "grip_R"
+   ],
+   "joints": {},
+   "glb_kb": 44.9
+  },
+  {
+   "name": "cable_attach_straight_bar",
+   "size_mm": [
+    500.0,
+    41.0,
+    122.5
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 1048,
+   "source": "estimat",
+   "anchors": [
+    "cable_eye",
+    "grip_L",
+    "grip_R"
+   ],
+   "joints": {},
+   "glb_kb": 29.9
+  },
+  {
+   "name": "cable_attach_vbar",
+   "size_mm": [
+    419.2,
+    42.0,
+    185.6
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 2460,
+   "source": "clip pushdown: capete la +-0.18 m, 0.14 m sub inel",
+   "anchors": [
+    "cable_eye",
+    "grip_L",
+    "grip_R"
+   ],
+   "anchor_pos": {
+    "grip_L": [
+     -0.1202,
+     0.0,
+     -0.1045
+    ],
+    "grip_R": [
+     0.1202,
+     0.0,
+     -0.1045
+    ],
+    "cable_eye": [
+     0.0,
+     0.0,
+     0.02
+    ]
+   },
+   "joints": {},
+   "glb_kb": 57.7
+  },
+  {
+   "name": "cable_crossover",
+   "size_mm": [
+    3640.0,
+    1085.0,
+    2330.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 8364,
+   "source": "estimat",
+   "anchors": [
+    "cable_out_L",
+    "cable_out_R",
+    "cable_stack_L",
+    "cable_stack_R",
+    "pullup_center"
+   ],
+   "joints": {
+    "stack_L": {
+     "kind": "linear",
+     "pivot": [
+      -1.55,
+      -0.25,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "carriage_L": {
+     "kind": "linear",
+     "pivot": [
+      -1.51,
+      0.2,
+      0.26
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      1.6799999999999997
+     ]
+    },
+    "stack_R": {
+     "kind": "linear",
+     "pivot": [
+      1.55,
+      -0.25,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "carriage_R": {
+     "kind": "linear",
+     "pivot": [
+      1.51,
+      0.2,
+      0.26
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      1.6799999999999997
+     ]
+    }
+   },
+   "glb_kb": 236.2
+  },
+  {
+   "name": "cable_functional_trainer",
+   "size_mm": [
+    1785.0,
+    1085.0,
+    2200.0
+   ],
+   "spec_mm": [
+    [
+     1620,
+     1850
+    ],
+    [
+     810,
+     1090
+    ],
+    [
+     2120,
+     2260
+    ]
+   ],
+   "tolerance": 0.05,
+   "tris": 8364,
+   "source": "functional trainer: 1625-1785 x 810-1085 x 2120-2202 mm",
+   "anchors": [
+    "cable_out_L",
+    "cable_out_R",
+    "cable_stack_L",
+    "cable_stack_R",
+    "pullup_center"
+   ],
+   "joints": {
+    "stack_L": {
+     "kind": "linear",
+     "pivot": [
+      -0.6225,
+      -0.25,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "carriage_L": {
+     "kind": "linear",
+     "pivot": [
+      -0.5825,
+      0.2,
+      0.26
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      1.5499999999999998
+     ]
+    },
+    "stack_R": {
+     "kind": "linear",
+     "pivot": [
+      0.6225,
+      -0.25,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "carriage_R": {
+     "kind": "linear",
+     "pivot": [
+      0.5825,
+      0.2,
+      0.26
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      1.5499999999999998
+     ]
+    }
+   },
+   "glb_kb": 236.4
+  },
+  {
+   "name": "cable_lat_row_combo",
+   "size_mm": [
+    1255.0,
+    1910.0,
+    2330.0
+   ],
+   "spec_mm": [
+    [
+     1200,
+     1320
+    ],
+    [
+     1750,
+     2000
+    ],
+    [
+     2210,
+     2390
+    ]
+   ],
+   "tolerance": 0.05,
+   "tris": 7916,
+   "source": "combo: 1750-2000 x 1200-1320 x 2210-2390 mm",
+   "anchors": [
+    "cable_lat",
+    "cable_row",
+    "cable_stack",
+    "seat_lat",
+    "seat_row"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.0,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    }
+   },
+   "glb_kb": 200.7
+  },
+  {
+   "name": "cable_lat_station",
+   "size_mm": [
+    770.0,
+    1895.0,
+    2134.8
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 12336,
+   "source": "contur masurat pe clipul de pulldown cu tools/clip_plane.py",
+   "anchors": [
+    "cable_beam_front",
+    "cable_beam_mid",
+    "cable_beam_rear",
+    "cable_beam_turn",
+    "cable_exit",
+    "cable_hook",
+    "cable_oval_low",
+    "cable_oval_top",
+    "cable_oval_up"
+   ],
+   "anchor_pos": {
+    "cable_hook": [
+     0.0,
+     1.59,
+     0.7376
+    ],
+    "cable_oval_low": [
+     0.0,
+     1.4,
+     1.51
+    ],
+    "cable_oval_up": [
+     0.0,
+     1.3,
+     1.56
+    ],
+    "cable_oval_top": [
+     0.0,
+     1.3,
+     1.84
+    ],
+    "cable_beam_rear": [
+     0.0,
+     1.43,
+     2.1358
+    ],
+    "cable_beam_mid": [
+     0.0,
+     1.15,
+     2.1249
+    ],
+    "cable_beam_front": [
+     0.0,
+     0.24,
+     2.0894
+    ],
+    "cable_beam_turn": [
+     0.0,
+     0.2,
+     2.0699
+    ],
+    "cable_exit": [
+     0.0,
+     0.095,
+     1.93
+    ]
+   },
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      1.59,
+      0.6626
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.62
+     ]
+    },
+    "seat_adjust": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.0,
+      0.34
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      -0.15,
+      0.1
+     ]
+    },
+    "pad_adjust": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.37,
+      0.66
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      -0.25,
+      0.2
+     ]
+    }
+   },
+   "glb_kb": 316.0
+  },
+  {
+   "name": "cable_tower_high",
+   "size_mm": [
+    660.0,
+    779.4,
+    2207.9
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6804,
+   "source": "contur masurat pe clip cu tools/clip_plane.py",
+   "anchors": [
+    "cable_arm_in",
+    "cable_arm_out",
+    "cable_arm_top",
+    "cable_hook",
+    "cable_tower_down",
+    "cable_tower_up"
+   ],
+   "anchor_pos": {
+    "cable_hook": [
+     0.0,
+     0.94,
+     0.762
+    ],
+    "cable_tower_down": [
+     0.0,
+     0.94,
+     1.795
+    ],
+    "cable_tower_up": [
+     0.0,
+     0.92,
+     1.87
+    ],
+    "cable_arm_in": [
+     0.0,
+     0.45,
+     2.186
+    ],
+    "cable_arm_top": [
+     0.0,
+     0.39,
+     2.204
+    ],
+    "cable_arm_out": [
+     0.0,
+     0.347,
+     2.174
+    ]
+   },
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.94,
+      0.71
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.5
+     ]
+    }
+   },
+   "glb_kb": 189.7
+  },
+  {
+   "name": "dumbbell_hex_10kg",
+   "size_mm": [
+    312.4,
+    131.0,
+    116.9
+   ],
+   "spec_mm": [
+    312.0,
+    135.0,
+    116.91342951089923
+   ],
+   "tolerance": 0.05,
+   "tris": 2232,
+   "source": "referinta 10 kg: 310 x 135 x 117 mm, maner 130 mm; restul scalate dupa masa",
+   "anchors": [
+    "grip_center",
+    "head_inner_L",
+    "head_inner_R"
+   ],
+   "glb_kb": 61.8
+  },
+  {
+   "name": "dumbbell_hex_15kg",
+   "size_mm": [
+    338.7,
+    150.3,
+    133.8
+   ],
+   "spec_mm": [
+    338.3379921447064,
+    154.53642274469982,
+    133.83246790688136
+   ],
+   "tolerance": 0.05,
+   "tris": 2232,
+   "source": "referinta 10 kg: 310 x 135 x 117 mm, maner 130 mm; restul scalate dupa masa",
+   "anchors": [
+    "grip_center",
+    "head_inner_L",
+    "head_inner_R"
+   ],
+   "glb_kb": 61.8
+  },
+  {
+   "name": "dumbbell_hex_20kg",
+   "size_mm": [
+    359.7,
+    165.7,
+    147.3
+   ],
+   "spec_mm": [
+    359.3056310808669,
+    170.0893417358079,
+    147.3016908561824
+   ],
+   "tolerance": 0.05,
+   "tris": 2232,
+   "source": "referinta 10 kg: 310 x 135 x 117 mm, maner 130 mm; restul scalate dupa masa",
+   "anchors": [
+    "grip_center",
+    "head_inner_L",
+    "head_inner_R"
+   ],
+   "glb_kb": 61.8
+  },
+  {
+   "name": "dumbbell_hex_25kg",
+   "size_mm": [
+    377.4,
+    178.8,
+    158.7
+   ],
+   "spec_mm": [
+    377.0120031101365,
+    183.2231891201562,
+    158.67593634045585
+   ],
+   "tolerance": 0.05,
+   "tris": 2232,
+   "source": "referinta 10 kg: 310 x 135 x 117 mm, maner 130 mm; restul scalate dupa masa",
+   "anchors": [
+    "grip_center",
+    "head_inner_L",
+    "head_inner_R"
+   ],
+   "glb_kb": 61.8
+  },
+  {
+   "name": "dumbbell_hex_2_5kg",
+   "size_mm": [
+    245.1,
+    81.4,
+    73.7
+   ],
+   "spec_mm": [
+    244.65281554043344,
+    85.04467086790395,
+    73.6508454280912
+   ],
+   "tolerance": 0.05,
+   "tris": 2232,
+   "source": "referinta 10 kg: 310 x 135 x 117 mm, maner 130 mm; restul scalate dupa masa",
+   "anchors": [
+    "grip_center",
+    "head_inner_L",
+    "head_inner_R"
+   ],
+   "glb_kb": 61.8
+  },
+  {
+   "name": "dumbbell_hex_30kg",
+   "size_mm": [
+    392.9,
+    190.1,
+    168.6
+   ],
+   "spec_mm": [
+    392.4894217959483,
+    194.70369199150014,
+    168.61834347525988
+   ],
+   "tolerance": 0.05,
+   "tris": 2232,
+   "source": "referinta 10 kg: 310 x 135 x 117 mm, maner 130 mm; restul scalate dupa masa",
+   "anchors": [
+    "grip_center",
+    "head_inner_L",
+    "head_inner_R"
+   ],
+   "glb_kb": 61.8
+  },
+  {
+   "name": "dumbbell_hex_5kg",
+   "size_mm": [
+    274.9,
+    103.3,
+    92.8
+   ],
+   "spec_mm": [
+    274.4534957291062,
+    107.14957100785348,
+    92.7942504974057
+   ],
+   "tolerance": 0.05,
+   "tris": 2232,
+   "source": "referinta 10 kg: 310 x 135 x 117 mm, maner 130 mm; restul scalate dupa masa",
+   "anchors": [
+    "grip_center",
+    "head_inner_L",
+    "head_inner_R"
+   ],
+   "glb_kb": 61.8
+  },
+  {
+   "name": "dumbbell_round_pro",
+   "size_mm": [
+    320.0,
+    205.0,
+    205.0
+   ],
+   "spec_mm": [
+    320,
+    205,
+    205
+   ],
+   "tolerance": 0.05,
+   "tris": 7680,
+   "source": "clip hammer curl: cap O 205 mm, 320 mm lungime, maner 132 mm",
+   "anchors": [
+    "grip_center"
+   ],
+   "anchor_pos": {
+    "grip_center": [
+     0.0,
+     0.0,
+     0.0
+    ]
+   },
+   "joints": {},
+   "glb_kb": 180.2
+  },
+  {
+   "name": "elliptical_handle",
+   "size_mm": [
+    40.0,
+    335.0,
+    934.8
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 1392,
+   "source": "bratul mobil din clip",
+   "anchors": [
+    "hand"
+   ],
+   "anchor_pos": {
+    "hand": [
+     0.0,
+     0.03,
+     0.835
+    ]
+   },
+   "joints": {},
+   "glb_kb": 28.0
+  },
+  {
+   "name": "elliptical_rail",
+   "size_mm": [
+    140.0,
+    1090.0,
+    100.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 772,
+   "source": "sina pedalei din clip",
+   "anchors": [],
+   "anchor_pos": {},
+   "joints": {},
+   "glb_kb": 17.6
+  },
+  {
+   "name": "elliptical_trainer",
+   "size_mm": [
+    860.0,
+    1770.0,
+    1480.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6136,
+   "source": "contur masurat pe clipul elliptical cu tools/clip_plane.py",
+   "anchors": [],
+   "anchor_pos": {},
+   "joints": {},
+   "glb_kb": 138.0
+  },
+  {
+   "name": "ez_bar_olympic",
+   "size_mm": [
+    1200.0,
+    65.0,
+    69.7
+   ],
+   "spec_mm": [
+    1200,
+    65,
+    70
+   ],
+   "tolerance": 0.05,
+   "tris": 10644,
+   "source": "lungime 1200 mm, 28 mm, manson ~190 mm, unda W de ~5 cm masurata pe clip",
+   "anchors": [
+    "grip_L",
+    "grip_R",
+    "load_L",
+    "load_R"
+   ],
+   "joints": {},
+   "glb_kb": 195.2
+  },
+  {
+   "name": "glute_ham_developer",
+   "size_mm": [
+    795.0,
+    1860.0,
+    1130.0
+   ],
+   "spec_mm": [
+    [
+     720,
+     800
+    ],
+    [
+     1520,
+     2210
+    ],
+    [
+     1130,
+     1170
+    ]
+   ],
+   "tolerance": 0.05,
+   "tris": 6032,
+   "source": "1850 x 800 x 1130 mm; 87 x 31 x 45 in",
+   "anchors": [
+    "ankle",
+    "foot_plate",
+    "hip_pad"
+   ],
+   "joints": {},
+   "glb_kb": 125.1
+  },
+  {
+   "name": "hack_squat",
+   "size_mm": [
+    745.0,
+    2000.0,
+    1740.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4144,
+   "source": "ghidaje 30 mm; gabarit estimat",
+   "anchors": [
+    "foot_center",
+    "shoulder_L",
+    "shoulder_R"
+   ],
+   "joints": {
+    "carriage": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.15,
+      0.74
+     ],
+     "axis": [
+      0.0,
+      -0.7071,
+      0.7071
+     ],
+     "limits": [
+      0,
+      0.62
+     ]
+    }
+   },
+   "glb_kb": 103.8
+  },
+  {
+   "name": "hyperextension_45",
+   "size_mm": [
+    665.0,
+    1430.0,
+    980.7
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 3180,
+   "source": "estimat",
+   "anchors": [
+    "foot_plate",
+    "hip_pad"
+   ],
+   "joints": {
+    "foot_adjust": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.62,
+      0.16
+     ],
+     "axis": [
+      0.0,
+      0.7071,
+      0.7071
+     ],
+     "limits": [
+      -0.08,
+      0.16
+     ]
+    }
+   },
+   "glb_kb": 81.2
+  },
+  {
+   "name": "kettlebell_competition",
+   "size_mm": [
+    207.9,
+    207.9,
+    282.0
+   ],
+   "spec_mm": [
+    208,
+    208,
+    282
+   ],
+   "tolerance": 0.05,
+   "tris": 5852,
+   "source": "Rogue Competition: 282 x 208 mm, baza 140, maner 33 mm",
+   "anchors": [
+    "grip_center",
+    "horn_L",
+    "horn_R"
+   ],
+   "glb_kb": 105.4
+  },
+  {
+   "name": "landmine_base",
+   "size_mm": [
+    340.0,
+    410.9,
+    316.2
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 812,
+   "source": "estimat",
+   "anchors": [
+    "sleeve_mouth"
+   ],
+   "joints": {
+    "sleeve": {
+     "kind": "ball",
+     "pivot": [
+      0.0,
+      0.0,
+      0.09
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      -120,
+      120
+     ]
+    }
+   },
+   "glb_kb": 27.1
+  },
+  {
+   "name": "leg_press_45",
+   "size_mm": [
+    1640.0,
+    2431.6,
+    1530.0
+   ],
+   "spec_mm": [
+    [
+     1360,
+     1880
+    ],
+    [
+     2200,
+     2800
+    ],
+    [
+     1370,
+     1580
+    ]
+   ],
+   "tolerance": 0.05,
+   "tris": 5548,
+   "source": "picior 750 x 600, spatar 900 x 400; 2200-2800 x 1360-1880 x 1370-1580 mm",
+   "anchors": [
+    "foot_L",
+    "foot_R",
+    "hand_L",
+    "hand_R",
+    "load_L",
+    "load_R"
+   ],
+   "joints": {
+    "sled": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.05,
+      0.35
+     ],
+     "axis": [
+      0.0,
+      0.7071,
+      0.7071
+     ],
+     "limits": [
+      0,
+      0.45
+     ]
+    }
+   },
+   "glb_kb": 149.2
+  },
+  {
+   "name": "lever_leg_press",
+   "size_mm": [
+    670.0,
+    2158.3,
+    1945.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 8500,
+   "source": "contur masurat pe clipul lever seated leg press",
+   "anchors": [
+    "seat"
+   ],
+   "anchor_pos": {
+    "seat": [
+     0.0,
+     0.1,
+     0.28
+    ]
+   },
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.62,
+      0.692
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.5
+     ]
+    },
+    "seat": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.0,
+      0.3
+     ],
+     "axis": [
+      0.0,
+      1.0,
+      0.0
+     ],
+     "limits": [
+      -0.45,
+      0.45
+     ]
+    },
+    "plate": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.473,
+      0.673
+     ],
+     "axis": [
+      0.0,
+      0.9798,
+      -0.2
+     ],
+     "limits": [
+      0,
+      0.7
+     ]
+    }
+   },
+   "glb_kb": 217.6
+  },
+  {
+   "name": "machine_ab_crunch",
+   "size_mm": [
+    710.0,
+    1560.0,
+    1480.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6440,
+   "source": "estimat",
+   "anchors": [
+    "back",
+    "cable_stack",
+    "chest_pad",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "arm": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -0.02,
+      0.62
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      -38,
+      0
+     ]
+    }
+   },
+   "glb_kb": 169.7
+  },
+  {
+   "name": "machine_assisted_pullup_dip",
+   "size_mm": [
+    1125.0,
+    1710.0,
+    2240.0
+   ],
+   "spec_mm": [
+    [
+     1065,
+     1475
+    ],
+    [
+     1295,
+     1830
+    ],
+    [
+     2110,
+     2290
+    ]
+   ],
+   "tolerance": 0.05,
+   "tris": 6476,
+   "source": "asistat: 1065-1475 x 1295-1830 x 2110-2290 mm",
+   "anchors": [
+    "cable_stack",
+    "dip_L",
+    "dip_R",
+    "knee_pad",
+    "pullup_wide_L",
+    "pullup_wide_R",
+    "step_L",
+    "step_R"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.7,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "knee_lever": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -0.42,
+      0.42
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      -16,
+      16
+     ]
+    }
+   },
+   "glb_kb": 180.9
+  },
+  {
+   "name": "machine_calf_standing",
+   "size_mm": [
+    665.0,
+    1360.0,
+    1980.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 5400,
+   "source": "estimat",
+   "anchors": [
+    "cable_stack",
+    "foot",
+    "shoulder_L",
+    "shoulder_R"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "lever": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -0.25,
+      1.7
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      14
+     ]
+    }
+   },
+   "glb_kb": 146.0
+  },
+  {
+   "name": "machine_chest_press",
+   "size_mm": [
+    800.0,
+    1360.0,
+    1890.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6500,
+   "source": "interval comercial; estimat",
+   "anchors": [
+    "back",
+    "cable_stack",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -0.12,
+      1.78
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      -10,
+      28
+     ]
+    }
+   },
+   "glb_kb": 170.5
+  },
+  {
+   "name": "machine_hip_abduction_adduction",
+   "size_mm": [
+    665.0,
+    1510.0,
+    1380.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 8076,
+   "source": "estimat",
+   "anchors": [
+    "back",
+    "cable_stack",
+    "knee_L",
+    "knee_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "thigh_L": {
+     "kind": "rotary",
+     "pivot": [
+      -0.07,
+      0.06,
+      0.34
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      42
+     ]
+    },
+    "thigh_R": {
+     "kind": "rotary",
+     "pivot": [
+      0.07,
+      0.06,
+      0.34
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      -42,
+      0
+     ]
+    }
+   },
+   "glb_kb": 186.5
+  },
+  {
+   "name": "machine_incline_press",
+   "size_mm": [
+    680.0,
+    1510.0,
+    2060.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6500,
+   "source": "interval comercial; estimat",
+   "anchors": [
+    "back",
+    "cable_stack",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.75,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -0.75,
+      1.95
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      30
+     ]
+    }
+   },
+   "glb_kb": 170.5
+  },
+  {
+   "name": "machine_leg_curl_lying",
+   "size_mm": [
+    692.5,
+    1960.0,
+    1230.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6316,
+   "source": "estimat",
+   "anchors": [
+    "cable_stack",
+    "chest",
+    "hip",
+    "roller"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.8,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "lever": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.52,
+      0.76
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      110
+     ]
+    }
+   },
+   "glb_kb": 164.8
+  },
+  {
+   "name": "machine_leg_curl_seated",
+   "size_mm": [
+    692.5,
+    1560.0,
+    1380.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6876,
+   "source": "estimat",
+   "anchors": [
+    "back",
+    "cable_stack",
+    "roller",
+    "seat",
+    "thigh_pad"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "back_adjust": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.2832,
+      0.96
+     ],
+     "axis": [
+      0.0,
+      1.0,
+      0.0
+     ],
+     "limits": [
+      -0.16,
+      0.05
+     ]
+    },
+    "lever": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.28,
+      0.55
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      -80,
+      0
+     ]
+    }
+   },
+   "glb_kb": 177.1
+  },
+  {
+   "name": "machine_leg_extension",
+   "size_mm": [
+    692.5,
+    1560.0,
+    1380.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6104,
+   "source": "estimat",
+   "anchors": [
+    "back",
+    "cable_stack",
+    "roller",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "back_adjust": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.2832,
+      0.96
+     ],
+     "axis": [
+      0.0,
+      1.0,
+      0.0
+     ],
+     "limits": [
+      -0.16,
+      0.05
+     ]
+    },
+    "lever": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.28,
+      0.55
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      85
+     ]
+    }
+   },
+   "glb_kb": 158.0
+  },
+  {
+   "name": "machine_pec_deck",
+   "size_mm": [
+    1371.7,
+    1560.0,
+    1830.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 7632,
+   "source": "estimat",
+   "anchors": [
+    "back",
+    "cable_stack",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "arm_L": {
+     "kind": "rotary",
+     "pivot": [
+      -0.1,
+      -0.28,
+      1.68
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      -68,
+      0
+     ]
+    },
+    "arm_R": {
+     "kind": "rotary",
+     "pivot": [
+      0.1,
+      -0.28,
+      1.68
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      68
+     ]
+    }
+   },
+   "glb_kb": 190.9
+  },
+  {
+   "name": "machine_preacher_curl",
+   "size_mm": [
+    720.0,
+    1560.0,
+    1330.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 5908,
+   "source": "estimat",
+   "anchors": [
+    "arm_pad",
+    "cable_stack",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.34,
+      0.97
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      100
+     ]
+    }
+   },
+   "glb_kb": 159.8
+  },
+  {
+   "name": "machine_rotary_torso",
+   "size_mm": [
+    665.0,
+    1410.0,
+    1330.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 7780,
+   "source": "estimat",
+   "anchors": [
+    "cable_stack",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "seat": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.1,
+      0.3
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      -60,
+      60
+     ]
+    }
+   },
+   "glb_kb": 193.6
+  },
+  {
+   "name": "machine_seated_row",
+   "size_mm": [
+    665.0,
+    1580.0,
+    1830.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6392,
+   "source": "interval comercial; estimat",
+   "anchors": [
+    "cable_stack",
+    "chest_pad",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.62,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.62,
+      1.72
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      -38,
+      0
+     ]
+    }
+   },
+   "glb_kb": 167.6
+  },
+  {
+   "name": "machine_shoulder_press",
+   "size_mm": [
+    760.0,
+    1760.0,
+    1530.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 6500,
+   "source": "interval comercial; estimat",
+   "anchors": [
+    "back",
+    "cable_stack",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -1.0,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -1.0,
+      1.0
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      30
+     ]
+    }
+   },
+   "glb_kb": 170.5
+  },
+  {
+   "name": "machine_triceps_extension",
+   "size_mm": [
+    720.0,
+    1560.0,
+    1330.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 5908,
+   "source": "estimat",
+   "anchors": [
+    "arm_pad",
+    "cable_stack",
+    "grip_L",
+    "grip_R",
+    "seat"
+   ],
+   "joints": {
+    "stack": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      -0.6,
+      0.454
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      0,
+      0.4
+     ]
+    },
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.34,
+      0.97
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      -85,
+      0
+     ]
+    }
+   },
+   "glb_kb": 159.8
+  },
+  {
+   "name": "plate_bumper_10kg",
+   "size_mm": [
+    34.0,
+    450.0,
+    450.0
+   ],
+   "spec_mm": [
+    34,
+    450,
+    450
+   ],
+   "tolerance": 0.05,
+   "tris": 10752,
+   "source": "diametru IWF 450 mm; grosime tabel comercial",
+   "anchors": [],
+   "glb_kb": 197.0
+  },
+  {
+   "name": "plate_bumper_15kg",
+   "size_mm": [
+    47.0,
+    450.0,
+    450.0
+   ],
+   "spec_mm": [
+    47,
+    450,
+    450
+   ],
+   "tolerance": 0.05,
+   "tris": 10752,
+   "source": "diametru IWF 450 mm; grosime tabel comercial",
+   "anchors": [],
+   "glb_kb": 197.0
+  },
+  {
+   "name": "plate_bumper_20kg",
+   "size_mm": [
+    60.0,
+    450.0,
+    450.0
+   ],
+   "spec_mm": [
+    60,
+    450,
+    450
+   ],
+   "tolerance": 0.05,
+   "tris": 10752,
+   "source": "diametru IWF 450 mm; grosime tabel comercial",
+   "anchors": [],
+   "glb_kb": 197.0
+  },
+  {
+   "name": "plate_bumper_25kg",
+   "size_mm": [
+    73.0,
+    450.0,
+    450.0
+   ],
+   "spec_mm": [
+    73,
+    450,
+    450
+   ],
+   "tolerance": 0.05,
+   "tris": 10752,
+   "source": "diametru IWF 450 mm; grosime tabel comercial",
+   "anchors": [],
+   "glb_kb": 197.0
+  },
+  {
+   "name": "plate_calf_seated",
+   "size_mm": [
+    665.0,
+    1380.0,
+    749.1
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4032,
+   "source": "estimat",
+   "anchors": [
+    "foot",
+    "knee",
+    "load_L",
+    "load_R",
+    "seat"
+   ],
+   "joints": {
+    "lever": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -0.5,
+      0.6
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      14
+     ]
+    }
+   },
+   "glb_kb": 99.1
+  },
+  {
+   "name": "plate_change_10kg",
+   "size_mm": [
+    32.0,
+    320.0,
+    320.0
+   ],
+   "spec_mm": [
+    32,
+    320,
+    320
+   ],
+   "tolerance": 0.05,
+   "tris": 5184,
+   "source": "estimat",
+   "anchors": [],
+   "joints": {},
+   "glb_kb": 99.0
+  },
+  {
+   "name": "plate_change_1_25kg",
+   "size_mm": [
+    15.0,
+    160.0,
+    160.0
+   ],
+   "spec_mm": [
+    15,
+    160,
+    160
+   ],
+   "tolerance": 0.05,
+   "tris": 5184,
+   "source": "estimat",
+   "anchors": [],
+   "glb_kb": 99.0
+  },
+  {
+   "name": "plate_change_20kg",
+   "size_mm": [
+    45.0,
+    450.0,
+    450.0
+   ],
+   "spec_mm": [
+    45,
+    450,
+    450
+   ],
+   "tolerance": 0.05,
+   "tris": 5184,
+   "source": "estimat",
+   "anchors": [],
+   "joints": {},
+   "glb_kb": 99.0
+  },
+  {
+   "name": "plate_change_2_5kg",
+   "size_mm": [
+    19.0,
+    190.0,
+    190.0
+   ],
+   "spec_mm": [
+    19,
+    190,
+    190
+   ],
+   "tolerance": 0.05,
+   "tris": 5184,
+   "source": "estimat",
+   "anchors": [],
+   "glb_kb": 99.0
+  },
+  {
+   "name": "plate_change_5kg",
+   "size_mm": [
+    26.0,
+    228.0,
+    228.0
+   ],
+   "spec_mm": [
+    26,
+    228,
+    228
+   ],
+   "tolerance": 0.05,
+   "tris": 5184,
+   "source": "estimat",
+   "anchors": [],
+   "glb_kb": 99.0
+  },
+  {
+   "name": "plate_chest_press",
+   "size_mm": [
+    1207.6,
+    1360.0,
+    1800.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4896,
+   "source": "interval comercial; estimat",
+   "anchors": [
+    "back",
+    "grip_L",
+    "grip_R",
+    "load_L",
+    "load_R",
+    "seat"
+   ],
+   "joints": {
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -0.12,
+      1.78
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      -10,
+      28
+     ]
+    }
+   },
+   "glb_kb": 127.3
+  },
+  {
+   "name": "plate_grip_20kg",
+   "size_mm": [
+    45.0,
+    445.0,
+    445.0
+   ],
+   "spec_mm": [
+    45,
+    445,
+    445
+   ],
+   "tolerance": 0.05,
+   "tris": 5100,
+   "source": "estimat",
+   "anchors": [],
+   "glb_kb": 96.3
+  },
+  {
+   "name": "plate_incline_press",
+   "size_mm": [
+    1166.8,
+    1510.0,
+    1970.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4896,
+   "source": "interval comercial; estimat",
+   "anchors": [
+    "back",
+    "grip_L",
+    "grip_R",
+    "load_L",
+    "load_R",
+    "seat"
+   ],
+   "joints": {
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -0.75,
+      1.95
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      30
+     ]
+    }
+   },
+   "glb_kb": 127.3
+  },
+  {
+   "name": "plate_iron_45lb",
+   "size_mm": [
+    55.0,
+    450.0,
+    450.0
+   ],
+   "spec_mm": [
+    55,
+    450,
+    450
+   ],
+   "tolerance": 0.05,
+   "tris": 7776,
+   "source": "clip bent over row: O 450 mm, margine si butuc in relief, patru spite",
+   "anchors": [],
+   "anchor_pos": {},
+   "joints": {},
+   "glb_kb": 154.7
+  },
+  {
+   "name": "plate_row",
+   "size_mm": [
+    1085.2,
+    1580.0,
+    1740.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4788,
+   "source": "interval comercial; estimat",
+   "anchors": [
+    "chest_pad",
+    "grip_L",
+    "grip_R",
+    "load_L",
+    "load_R",
+    "seat"
+   ],
+   "joints": {
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.62,
+      1.72
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      -38,
+      0
+     ]
+    }
+   },
+   "glb_kb": 124.3
+  },
+  {
+   "name": "plate_shoulder_press",
+   "size_mm": [
+    1194.0,
+    1760.0,
+    1370.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 4896,
+   "source": "interval comercial; estimat",
+   "anchors": [
+    "back",
+    "grip_L",
+    "grip_R",
+    "load_L",
+    "load_R",
+    "seat"
+   ],
+   "joints": {
+    "arms": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      -1.0,
+      1.0
+     ],
+     "axis": [
+      1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      30
+     ]
+    }
+   },
+   "glb_kb": 127.3
+  },
+  {
+   "name": "pullup_bar_wall",
+   "size_mm": [
+    1532.2,
+    888.5,
+    320.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 1988,
+   "source": "clip pull-up: indoituri la +-0.63 m, capete cazute la +-0.76 m, brate de 0.85 m pana la placile de perete",
+   "anchors": [],
+   "anchor_pos": {},
+   "joints": {},
+   "glb_kb": 49.5
+  },
+  {
+   "name": "rack_power",
+   "size_mm": [
+    1250.0,
+    1450.0,
+    2300.0
+   ],
+   "spec_mm": [
+    1250,
+    1450,
+    2300
+   ],
+   "tolerance": 0.05,
+   "tris": 20488,
+   "source": "montanti 75 x 75 mm, gauri la 50 mm, H 2300 mm; 1450 x 1250 mm",
+   "anchors": [
+    "bar_rest_L",
+    "bar_rest_R",
+    "pullup_center",
+    "pullup_wide_L",
+    "pullup_wide_R",
+    "safety_rest_L",
+    "safety_rest_R"
+   ],
+   "glb_kb": 561.2
+  },
+  {
+   "name": "rack_squat",
+   "size_mm": [
+    1250.0,
+    1233.0,
+    2300.0
+   ],
+   "spec_mm": [
+    1250,
+    1200,
+    2300
+   ],
+   "tolerance": 0.08,
+   "tris": 10564,
+   "source": "estimat (montanti ca rack_power)",
+   "anchors": [
+    "bar_rest_L",
+    "bar_rest_R"
+   ],
+   "glb_kb": 293.6
+  },
+  {
+   "name": "rower_handle",
+   "size_mm": [
+    352.2,
+    32.5,
+    46.2
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 844,
+   "source": "maner din clip",
+   "anchors": [],
+   "anchor_pos": {},
+   "joints": {},
+   "glb_kb": 22.3
+  },
+  {
+   "name": "rowing_machine",
+   "size_mm": [
+    900.0,
+    2605.0,
+    1060.0
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 3472,
+   "source": "contur masurat pe clipul rowing cu tools/clip_plane.py",
+   "anchors": [
+    "cable_guide",
+    "cable_hook"
+   ],
+   "anchor_pos": {
+    "cable_hook": [
+     0.0,
+     1.34,
+     0.56
+    ],
+    "cable_guide": [
+     0.0,
+     0.94,
+     0.43
+    ]
+   },
+   "joints": {
+    "seat": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.0,
+      0.385
+     ],
+     "axis": [
+      0.0,
+      1.0,
+      0.0
+     ],
+     "limits": [
+      -0.75,
+      0.45
+     ]
+    }
+   },
+   "glb_kb": 99.4
+  },
+  {
+   "name": "smith_machine",
+   "size_mm": [
+    2170.0,
+    1300.0,
+    2200.0
+   ],
+   "spec_mm": [
+    [
+     2130,
+     2250
+    ],
+    [
+     1300,
+     1320
+    ],
+    [
+     2180,
+     2290
+    ]
+   ],
+   "tolerance": 0.05,
+   "tris": 7224,
+   "source": "1300 x 2160 x 2180 mm, cursa 7 grade, 1540 mm, bara 35 mm",
+   "anchors": [
+    "grip_L",
+    "grip_R",
+    "load_L",
+    "load_R"
+   ],
+   "joints": {
+    "bar": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.0301,
+      0.9139
+     ],
+     "axis": [
+      0.0,
+      -0.1219,
+      0.9925
+     ],
+     "limits": [
+      -0.56,
+      0.98
+     ]
+    }
+   },
+   "glb_kb": 203.0
+  },
+  {
+   "name": "treadmill_flat",
+   "size_mm": [
+    960.0,
+    1766.5,
+    1326.5
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 9140,
+   "source": "proportii masurate pe clipurile de mers, cu tools/clip_plane.py",
+   "anchors": [
+    "belt_center"
+   ],
+   "anchor_pos": {
+    "belt_center": [
+     0.0,
+     0.0,
+     0.14
+    ]
+   },
+   "joints": {},
+   "glb_kb": 206.7
+  },
+  {
+   "name": "treadmill_incline",
+   "size_mm": [
+    960.0,
+    1789.7,
+    1326.5
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 9572,
+   "source": "proportii masurate pe clipurile de mers, cu tools/clip_plane.py",
+   "anchors": [
+    "belt_center"
+   ],
+   "anchor_pos": {
+    "belt_center": [
+     0.0,
+     -0.0773,
+     0.3252
+    ]
+   },
+   "joints": {},
+   "glb_kb": 218.2
+  },
+  {
+   "name": "upright_bike",
+   "size_mm": [
+    800.0,
+    1496.9,
+    1510.3
+   ],
+   "spec_mm": null,
+   "tolerance": 0.05,
+   "tris": 7240,
+   "source": "contur masurat pe clipul stationary bike cu tools/clip_plane.py",
+   "anchors": [
+    "grip_L",
+    "grip_R"
+   ],
+   "anchor_pos": {
+    "grip_L": [
+     -0.16,
+     0.45,
+     1.22
+    ],
+    "grip_R": [
+     0.16,
+     0.45,
+     1.22
+    ]
+   },
+   "joints": {
+    "seat_adjust": {
+     "kind": "linear",
+     "pivot": [
+      0.0,
+      0.0,
+      0.86
+     ],
+     "axis": [
+      0.0,
+      0.0,
+      1.0
+     ],
+     "limits": [
+      -0.25,
+      0.25
+     ]
+    },
+    "crank": {
+     "kind": "rotary",
+     "pivot": [
+      0.0,
+      0.26,
+      0.33
+     ],
+     "axis": [
+      -1.0,
+      0.0,
+      0.0
+     ],
+     "limits": [
+      0,
+      360
+     ]
+    }
+   },
+   "glb_kb": 160.3
+  }
+ ],
+ "errors": []
+}

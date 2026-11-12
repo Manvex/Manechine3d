@@ -1,0 +1,5650 @@
+[
+[
+"Bodyweight",
+2353
+],
+[
+"Bodyweight + mat",
+406
+],
+[
+"Chair",
+220
+],
+[
+"Dumbbells",
+201
+],
+[
+"Kettlebell",
+138
+],
+[
+"Dumbbell",
+120
+],
+[
+"Suspension trainer (TRX)",
+109
+],
+[
+"Resistance band",
+95
+],
+[
+"Barbell",
+92
+],
+[
+"Foam roller",
+88
+],
+[
+"Bodyweight + wall",
+81
+],
+[
+"Gymnastic rings",
+68
+],
+[
+"Bodyweight + yoga mat",
+66
+],
+[
+"Dumbbells + incline bench",
+60
+],
+[
+"Dumbbell + flat bench",
+55
+],
+[
+"Dumbbells + flat bench",
+54
+],
+[
+"Wall",
+52
+],
+[
+"Barbell + squat rack",
+50
+],
+[
+"Bodyweight + chair",
+48
+],
+[
+"Stability ball",
+46
+],
+[
+"Mat",
+45
+],
+[
+"Pull-up bar",
+41
+],
+[
+"Weight plate",
+40
+],
+[
+"Cable machine + rope attachment",
+39
+],
+[
+"Padded stool",
+37
+],
+[
+"Smith machine",
+36
+],
+[
+"Barbell + flat bench",
+34
+],
+[
+"Bodyweight + pull-up bar",
+33
+],
+[
+"Medicine ball",
+33
+],
+[
+"Cable machine + single handle",
+31
+],
+[
+"Dumbbell + mat",
+24
+],
+[
+"Water bottles",
+23
+],
+[
+"Landmine + barbell",
+22
+],
+[
+"Stick / light bar",
+21
+],
+[
+"Towel",
+20
+],
+[
+"Bodyweight + bench",
+20
+],
+[
+"Cable machine + straight bar",
+19
+],
+[
+"Bodyweight + flat bench",
+19
+],
+[
+"Sandbag",
+19
+],
+[
+"Plate-loaded lever machine",
+19
+],
+[
+"Bodyweight (floor)",
+19
+],
+[
+"Cable machine + ankle strap",
+18
+],
+[
+"Resistance band + incline bench",
+18
+],
+[
+"Cable machine + handle",
+17
+],
+[
+"BOSU ball",
+16
+],
+[
+"Resistance band + chair",
+16
+],
+[
+"Massage ball",
+16
+],
+[
+"Chair + bodyweight",
+16
+],
+[
+"Pilates reformer",
+15
+],
+[
+"Kettlebells + incline bench",
+15
+],
+[
+"Bench",
+14
+],
+[
+"Water bottle",
+14
+],
+[
+"Bodyweight + bench or box",
+13
+],
+[
+"Stability ball + wall",
+13
+],
+[
+"Dumbbells + bench",
+13
+],
+[
+"Cable machine + incline bench",
+13
+],
+[
+"Kettlebells (pair)",
+12
+],
+[
+"45� leg press machine",
+12
+],
+[
+"Smith machine + flat bench",
+12
+],
+[
+"Kettlebells",
+12
+],
+[
+"Cable machine",
+12
+],
+[
+"Chair (optional)",
+12
+],
+[
+"Stability ball + mat",
+11
+],
+[
+"Cable machine (low pulley) + single handle",
+11
+],
+[
+"Resistance band (anchored at chest height)",
+11
+],
+[
+"Resistance band + mat",
+11
+],
+[
+"Cable machine + D-handle",
+11
+],
+[
+"Resistance band (loop)",
+11
+],
+[
+"Bodyweight (mat)",
+11
+],
+[
+"Barbell + incline bench",
+10
+],
+[
+"Dumbbells + upright bench",
+10
+],
+[
+"EZ bar",
+10
+],
+[
+"Dumbbell + bench",
+10
+],
+[
+"Bodyweight + step box",
+10
+],
+[
+"Chair (light dumbbells optional)",
+10
+],
+[
+"Barbell + weight plates",
+10
+],
+[
+"Bodyweight + towel",
+10
+],
+[
+"Cable machine + bench",
+9
+],
+[
+"Dumbbell + incline bench",
+9
+],
+[
+"EZ bar + flat bench",
+9
+],
+[
+"Jump rope",
+9
+],
+[
+"Plyo box",
+9
+],
+[
+"Kettlebell + flat bench",
+9
+],
+[
+"Flat bench",
+9
+],
+[
+"Kettlebells + flat bench",
+9
+],
+[
+"Barbell + flat bench + rack",
+8
+],
+[
+"Battle ropes",
+8
+],
+[
+"Dumbbells + decline bench",
+8
+],
+[
+"Resistance band (anchored high)",
+8
+],
+[
+"Resistance band + bench",
+8
+],
+[
+"Resistance band + anchor",
+8
+],
+[
+"EZ curl bar",
+8
+],
+[
+"Massage ball + wall",
+8
+],
+[
+"Stick (light bar)",
+8
+],
+[
+"Barbell + decline bench",
+7
+],
+[
+"Decline bench",
+7
+],
+[
+"Dumbbell + preacher bench",
+7
+],
+[
+"Barbell + bumper plates",
+7
+],
+[
+"45� hyperextension bench",
+7
+],
+[
+"Resistance band (anchored low)",
+7
+],
+[
+"Weight plate + mat",
+7
+],
+[
+"Resistance band (anchored)",
+7
+],
+[
+"Cable machine + straight bar attachment",
+7
+],
+[
+"Dumbbell + stability ball",
+7
+],
+[
+"Barbell + landmine attachment",
+7
+],
+[
+"Dumbbell + floor",
+7
+],
+[
+"Lever machine (selectorized)",
+6
+],
+[
+"Lever machine",
+6
+],
+[
+"Medicine ball + wall",
+6
+],
+[
+"Hack squat machine",
+6
+],
+[
+"Smith machine + decline bench",
+6
+],
+[
+"Smith machine + incline bench",
+6
+],
+[
+"Mini resistance band + mat",
+6
+],
+[
+"Light dumbbells",
+6
+],
+[
+"Kettlebell + mat",
+6
+],
+[
+"Dumbbells + mat",
+6
+],
+[
+"Weight plate + flat bench",
+6
+],
+[
+"Resistance band (mini loop)",
+6
+],
+[
+"Bodyweight (floor or parallettes)",
+6
+],
+[
+"Yoga mat",
+6
+],
+[
+"Resistance band + anchor point",
+6
+],
+[
+"Dumbbell + decline bench",
+6
+],
+[
+"Dumbbells + stability ball",
+6
+],
+[
+"Bodyweight + partner",
+5
+],
+[
+"Cable machine (low pulley) + rope attachment",
+5
+],
+[
+"Dumbbells + preacher bench",
+5
+],
+[
+"Bodyweight + box or step",
+5
+],
+[
+"Plate-loaded lever row machine",
+5
+],
+[
+"Bodyweight + mat (block optional)",
+5
+],
+[
+"Resistance band (high anchor)",
+5
+],
+[
+"Resistance band (chest-height anchor)",
+5
+],
+[
+"Barbell with round plates + mat",
+5
+],
+[
+"Bodyweight + wall for support",
+5
+],
+[
+"Resistance band + flat bench",
+5
+],
+[
+"Cable machine + ankle strap + bench",
+5
+],
+[
+"Glute-ham developer",
+5
+],
+[
+"Resistance band + overhead anchor",
+5
+],
+[
+"Resistance band (under feet)",
+5
+],
+[
+"Kettlebells (two)",
+5
+],
+[
+"Bodyweight, mat",
+5
+],
+[
+"Barbell + incline bench + rack",
+4
+],
+[
+"Cable machine (low pulley) + straight bar",
+4
+],
+[
+"Cable machine (high pulley) + rope attachment",
+4
+],
+[
+"EZ bar + incline bench",
+4
+],
+[
+"Lever preacher curl machine",
+4
+],
+[
+"Hip abduction machine",
+4
+],
+[
+"Mini resistance band",
+4
+],
+[
+"Treadmill",
+4
+],
+[
+"Ab wheel",
+4
+],
+[
+"Stationary bike",
+4
+],
+[
+"Barbell + plates",
+4
+],
+[
+"Medicine ball + wall or partner",
+4
+],
+[
+"Bodyweight + box",
+4
+],
+[
+"Medicine ball + mat",
+4
+],
+[
+"Boxing gloves + heavy bag",
+4
+],
+[
+"Suspension trainer (TRX) + mat",
+4
+],
+[
+"Stick or light bar",
+4
+],
+[
+"Glute-ham developer (GHD)",
+4
+],
+[
+"Pull-up bar + resistance band",
+4
+],
+[
+"Chest-supported lever row machine",
+4
+],
+[
+"Barbell + rack",
+4
+],
+[
+"Cable machine + EZ (SZ) bar",
+4
+],
+[
+"Plate-loaded seated row machine",
+4
+],
+[
+"Cable machine + flat bench",
+4
+],
+[
+"Two kettlebells",
+4
+],
+[
+"Resistance band + high anchor",
+4
+],
+[
+"Cable machine + EZ (SZ) bar attachment",
+4
+],
+[
+"Foam roller + mat",
+4
+],
+[
+"Lever chest press machine",
+4
+],
+[
+"Trap bar",
+4
+],
+[
+"Resistance band (anchored at ankle height)",
+4
+],
+[
+"Parallel bars",
+4
+],
+[
+"Dumbbells + floor",
+4
+],
+[
+"Pull-up bar + box",
+4
+],
+[
+"Box",
+4
+],
+[
+"Dumbbell + bench with back support",
+4
+],
+[
+"Dumbbells, flat bench",
+4
+],
+[
+"Towel + padded stool",
+4
+],
+[
+"Chair (bodyweight)",
+4
+],
+[
+"Bodyweight (bench or floor)",
+4
+],
+[
+"Landmine (barbell in landmine attachment)",
+4
+],
+[
+"Cable machine and single handle",
+4
+],
+[
+"Assisted pull-up machine",
+3
+],
+[
+"Barbell + decline bench + rack",
+3
+],
+[
+"Barbell + upright bench",
+3
+],
+[
+"Bench + bodyweight",
+3
+],
+[
+"Cable machine (two low pulleys) + flat bench",
+3
+],
+[
+"Cable machine (low pulley) + ankle strap",
+3
+],
+[
+"Cable machine + single handle or rope",
+3
+],
+[
+"Cable machine + straight or EZ bar",
+3
+],
+[
+"Dumbbell + step",
+3
+],
+[
+"Dumbbells + bench or box",
+3
+],
+[
+"Incline bench",
+3
+],
+[
+"Plate-loaded seated calf raise machine",
+3
+],
+[
+"Bodyweight + bench or step",
+3
+],
+[
+"Head harness + weight plate + flat bench",
+3
+],
+[
+"Resistance band (anchored low in front)",
+3
+],
+[
+"Kettlebells + decline bench",
+3
+],
+[
+"Leg press machine (sled)",
+3
+],
+[
+"Lever squat machine",
+3
+],
+[
+"Loop resistance band + mat",
+3
+],
+[
+"Pull-up bar + dip belt with weight plate",
+3
+],
+[
+"Pull-up bar (bodyweight)",
+3
+],
+[
+"Towel + table or counter",
+3
+],
+[
+"Parallettes",
+3
+],
+[
+"Dumbbell (+ mat)",
+3
+],
+[
+"Bodyweight (+ mat)",
+3
+],
+[
+"Chest-supported T-bar row machine",
+3
+],
+[
+"Cable machine (low pulley) + handle",
+3
+],
+[
+"Lever machine (plate-loaded or selectorized)",
+3
+],
+[
+"Cable machine (dual pulleys)",
+3
+],
+[
+"Resistance band + low anchor",
+3
+],
+[
+"Resistance band + anchor + decline bench",
+3
+],
+[
+"Bodyweight + step or box",
+3
+],
+[
+"Cable machine (high pulley) + single handle",
+3
+],
+[
+"Bodyweight + plyo box or step",
+3
+],
+[
+"Mat + partner",
+3
+],
+[
+"Bench + weight plate",
+3
+],
+[
+"Bodyweight + doorframe or wall",
+3
+],
+[
+"Elliptical cross trainer",
+3
+],
+[
+"Dumbbell + upright bench",
+3
+],
+[
+"Plate-loaded neck machine",
+3
+],
+[
+"Vibration platform",
+3
+],
+[
+"Push sled",
+3
+],
+[
+"Smith machine + barbell",
+3
+],
+[
+"Bodyweight + sturdy table",
+3
+],
+[
+"Bodyweight + towel (smooth floor)",
+3
+],
+[
+"Bodyweight + two chairs + sturdy bar",
+3
+],
+[
+"Trap/hex bar",
+3
+],
+[
+"Weight plate + decline bench",
+3
+],
+[
+"Resistance band + high anchor point",
+3
+],
+[
+"Cable machine (low pulley)",
+3
+],
+[
+"Bodyweight + plyo box",
+3
+],
+[
+"Barbell + weight chains",
+3
+],
+[
+"Rope or towel",
+3
+],
+[
+"Foam roller + wall",
+3
+],
+[
+"Cable machine + rope attachment + bench",
+3
+],
+[
+"Water bottle + flat bench",
+3
+],
+[
+"Cable machine + high pulley + handle",
+3
+],
+[
+"Kettlebell + incline bench",
+3
+],
+[
+"Dumbbell + floor mat",
+3
+],
+[
+"Bodyweight + pillow",
+3
+],
+[
+"Bodyweight + chair for support",
+3
+],
+[
+"Bodyweight (unloaded)",
+3
+],
+[
+"Water bottle (weighted)",
+3
+],
+[
+"Chair (for support)",
+3
+],
+[
+"Pull-up bar or rings",
+3
+],
+[
+"Resistance band + door anchor",
+3
+],
+[
+"Bodyweight and wall",
+3
+],
+[
+"Stick (light bar) + mat",
+3
+],
+[
+"Assisted dip/pull-up machine (knee pad)",
+2
+],
+[
+"Pull-up bar + partner",
+2
+],
+[
+"Barbell + flat bench + squat rack",
+2
+],
+[
+"Barbell + stability ball",
+2
+],
+[
+"Barbell + box or bench",
+2
+],
+[
+"Cable machine (two low pulleys) + incline bench",
+2
+],
+[
+"Cable machine (high pulley) + straight bar + incline bench",
+2
+],
+[
+"Cable machine (high pulley) + rope",
+2
+],
+[
+"Cable machine (two low pulleys)",
+2
+],
+[
+"Lat pulldown machine + wide bar",
+2
+],
+[
+"Cable machine + straight bar + flat bench",
+2
+],
+[
+"Cable crossover machine (two high pulleys)",
+2
+],
+[
+"Cable machine + V-bar",
+2
+],
+[
+"Lat pulldown machine + straight bar",
+2
+],
+[
+"Bodyweight + parallel dip bars",
+2
+],
+[
+"Dumbbells + adjustable bench (upright)",
+2
+],
+[
+"EZ bar + preacher bench",
+2
+],
+[
+"EZ bar + upright bench",
+2
+],
+[
+"Kettlebell + bench",
+2
+],
+[
+"Lever back extension machine",
+2
+],
+[
+"Plate-loaded lever leg curl machine",
+2
+],
+[
+"Plate-loaded lever shoulder press machine",
+2
+],
+[
+"Hip adduction machine",
+2
+],
+[
+"Seated leg curl machine",
+2
+],
+[
+"Lever reverse fly / rear delt machine",
+2
+],
+[
+"Standing calf raise machine",
+2
+],
+[
+"Olympic barbell",
+2
+],
+[
+"Climbing rope",
+2
+],
+[
+"Parallel bars / dip station",
+2
+],
+[
+"Smith machine + upright bench",
+2
+],
+[
+"Smith machine + bench",
+2
+],
+[
+"Smith machine + mat",
+2
+],
+[
+"Smith machine + step",
+2
+],
+[
+"Stability ball + weight plate",
+2
+],
+[
+"Resistance band (anchored at face height)",
+2
+],
+[
+"Bodyweight + mat (strap optional)",
+2
+],
+[
+"Resistance band (with handles)",
+2
+],
+[
+"Resistance band + bench or chair",
+2
+],
+[
+"Small soft ball or Pilates ball",
+2
+],
+[
+"Bodyweight + bench/box",
+2
+],
+[
+"Rotary torso machine",
+2
+],
+[
+"Resistance band + bench/chair",
+2
+],
+[
+"Ankle weight",
+2
+],
+[
+"BOSU ball + mini resistance band",
+2
+],
+[
+"Dumbbell (light)",
+2
+],
+[
+"Bodyweight + incline bench",
+2
+],
+[
+"Barbell + squat rack + step block",
+2
+],
+[
+"Leg press machine",
+2
+],
+[
+"Low bar or hurdle",
+2
+],
+[
+"Plyo box or high bench",
+2
+],
+[
+"Stick or light bar + mat",
+2
+],
+[
+"EZ curl bar + flat bench",
+2
+],
+[
+"Smith machine + flat bench + bar pad",
+2
+],
+[
+"Steel mace",
+2
+],
+[
+"Cable machine + ankle cuff",
+2
+],
+[
+"Weight plate + flat bench + towel",
+2
+],
+[
+"Weight plate + bench",
+2
+],
+[
+"Chair + towel",
+2
+],
+[
+"Chair (placed against a wall)",
+2
+],
+[
+"Seated cable row station + rope attachment",
+2
+],
+[
+"Selectorized incline chest press machine",
+2
+],
+[
+"Selectorized chest press machine",
+2
+],
+[
+"Weighted backpack (rucksack)",
+2
+],
+[
+"Balance board (wobble or rocker board)",
+2
+],
+[
+"Resistance band + chair or bench",
+2
+],
+[
+"Cable machine (high pulley) + straight bar",
+2
+],
+[
+"Cable machine (low pulley) + D-handle",
+2
+],
+[
+"Bodyweight (no load)",
+2
+],
+[
+"Dumbbells (light)",
+2
+],
+[
+"Bodyweight + rings or pull-up bar",
+2
+],
+[
+"Dumbbell + upright post or rack",
+2
+],
+[
+"Stick / dowel",
+2
+],
+[
+"Bodyweight + pull-up bar or rings",
+2
+],
+[
+"Lying leg curl machine",
+2
+],
+[
+"Bodyweight + ankle anchor",
+2
+],
+[
+"Barbell + low platform",
+2
+],
+[
+"Cable machine (dual low pulleys)",
+2
+],
+[
+"Smith machine + heel wedge or plates",
+2
+],
+[
+"Lever wrist curl machine",
+2
+],
+[
+"Cable machine + decline bench",
+2
+],
+[
+"Lever machine (plate-loaded)",
+2
+],
+[
+"Cable crossover machine (dual high pulleys)",
+2
+],
+[
+"Cable machine + rope or straight bar",
+2
+],
+[
+"Cable machine + rope or handle",
+2
+],
+[
+"Cable machine + bar or rope",
+2
+],
+[
+"Bodyweight + sturdy chair",
+2
+],
+[
+"Rowing machine",
+2
+],
+[
+"Bodyweight (wall optional)",
+2
+],
+[
+"Resistance band + pull-up bar",
+2
+],
+[
+"Lever machine with shoulder pad (bench-press frame)",
+2
+],
+[
+"Hyperextension bench + weight plate",
+2
+],
+[
+"None (reference view)",
+2
+],
+[
+"Cable machine + stability ball",
+2
+],
+[
+"Dumbbell + incline bench (30�45�)",
+2
+],
+[
+"Strap or band + mat",
+2
+],
+[
+"EZ curl bar + bench",
+2
+],
+[
+"Barbell + weight plates + lifting blocks",
+2
+],
+[
+"Cable machine + D-handle + flat bench",
+2
+],
+[
+"Cable machine + rope attachment + incline bench",
+2
+],
+[
+"Lever ab crunch machine",
+2
+],
+[
+"Cable machine + V-bar attachment",
+2
+],
+[
+"Captain's chair (vertical knee raise station)",
+2
+],
+[
+"Recumbent bike",
+2
+],
+[
+"Lever crunch machine (lying)",
+2
+],
+[
+"Stepmill machine",
+2
+],
+[
+"Cable machine + head harness + bench",
+2
+],
+[
+"Plate-loaded high row machine",
+2
+],
+[
+"Dumbbells + box or bench",
+2
+],
+[
+"Belt squat machine (lever)",
+2
+],
+[
+"Stairs",
+2
+],
+[
+"Bodyweight + wall or sturdy support",
+2
+],
+[
+"Pull-up bar + weight belt or vest",
+2
+],
+[
+"Leg extension machine (lever)",
+2
+],
+[
+"Bodyweight + two sturdy chairs",
+2
+],
+[
+"Bodyweight + low box",
+2
+],
+[
+"Massage ball + wall or floor",
+2
+],
+[
+"Kettlebell(s)",
+2
+],
+[
+"Barbell + bench",
+2
+],
+[
+"Resistance band (anchored to the side)",
+2
+],
+[
+"Cable machine (low pulleys)",
+2
+],
+[
+"Resistance band (loop around ankles)",
+2
+],
+[
+"Resistance band (head-height anchor)",
+2
+],
+[
+"Bodyweight + pad",
+2
+],
+[
+"Kettlebell + step box",
+2
+],
+[
+"Dumbbells + step box",
+2
+],
+[
+"Bodyweight + support (rack or post)",
+2
+],
+[
+"Barbell + power rack + safety pins",
+2
+],
+[
+"Weight plate + incline bench",
+2
+],
+[
+"Sled + harness",
+2
+],
+[
+"Step or box",
+2
+],
+[
+"Cable machine + wide neutral-grip handle",
+2
+],
+[
+"Resistance band + incline bench + anchor",
+2
+],
+[
+"Cable machine + handles",
+2
+],
+[
+"Plate-loaded lever machine (incline)",
+2
+],
+[
+"Bodyweight (or resistance band)",
+2
+],
+[
+"Dumbbells + bench with back support",
+2
+],
+[
+"Dumbbell + wall",
+2
+],
+[
+"Kettlebell + box or bench",
+2
+],
+[
+"Bodyweight (or light dumbbell)",
+2
+],
+[
+"Resistance band (looped) + anchor point",
+2
+],
+[
+"Lever row machine (plate-loaded or selectorized)",
+2
+],
+[
+"Gymnastic rings + overhead anchor",
+2
+],
+[
+"Chest-supported lever row machine (single arm)",
+2
+],
+[
+"Roll ball or small foam roller",
+2
+],
+[
+"Flat bench or bed",
+2
+],
+[
+"Kettlebells + upright bench",
+2
+],
+[
+"Cable machine + neutral-grip handle",
+2
+],
+[
+"Resistance band anchored at chest height",
+2
+],
+[
+"Resistance band anchored low",
+2
+],
+[
+"Lever (selectorized) leg press machine",
+2
+],
+[
+"Resistance band (anchored, looped around the ankle)",
+2
+],
+[
+"Water bottles (weighted)",
+2
+],
+[
+"Dumbbell + bench (optional)",
+2
+],
+[
+"Parallel bars (dip station)",
+2
+],
+[
+"Gymnastic rings + added weight",
+2
+],
+[
+"Cable machine, ankle strap, bench",
+2
+],
+[
+"Gymnastic rings, yoga block, towel",
+2
+],
+[
+"Gymnastic rings or towel",
+2
+],
+[
+"Kettlebell + stability ball",
+2
+],
+[
+"Towel + padded stool + sturdy anchor",
+2
+],
+[
+"Table edge",
+2
+],
+[
+"Kettlebells (held at sides)",
+2
+],
+[
+"Kettlebell (goblet hold)",
+2
+],
+[
+"Lever pulldown machine (plate-loaded or selectorized)",
+2
+],
+[
+"Bodyweight, wall for balance",
+2
+],
+[
+"Landmine + Viking press attachment",
+2
+],
+[
+"Lever machine (plate-loaded) + rear foot pad",
+2
+],
+[
+"Plate-loaded lever machine (decline)",
+2
+],
+[
+"Chair (light dumbbell optional)",
+2
+],
+[
+"Bodyweight + fixed bar or suspension straps",
+2
+],
+[
+"Balance disc",
+2
+],
+[
+"Towel + smooth floor",
+2
+],
+[
+"Cable machine + ankle strap + incline bench",
+2
+],
+[
+"45� back extension (hyperextension) bench",
+1
+],
+[
+"Assisted pull-up machine (neutral handles)",
+1
+],
+[
+"Bodyweight + partner or resistance band",
+1
+],
+[
+"Short barbell in each hand",
+1
+],
+[
+"Barbell (bumper plates)",
+1
+],
+[
+"Barbell + bench + hip pad",
+1
+],
+[
+"Barbell (or EZ bar) + flat bench",
+1
+],
+[
+"Barbell (one end anchored in a landmine or corner)",
+1
+],
+[
+"Barbell (or EZ bar) + preacher bench",
+1
+],
+[
+"Barbell + power rack (safety pins or blocks)",
+1
+],
+[
+"Barbell + preacher bench",
+1
+],
+[
+"Barbell + mat (kneeling)",
+1
+],
+[
+"Barbell + bench + raised platform for toes",
+1
+],
+[
+"Barbell + kneeling pad",
+1
+],
+[
+"Barbell + raised step",
+1
+],
+[
+"Bodyweight + mini-band (optional)",
+1
+],
+[
+"Cable machine + wide bar",
+1
+],
+[
+"Cable machine (two pulleys at shoulder height)",
+1
+],
+[
+"Cable machine (two high pulleys)",
+1
+],
+[
+"Cable machine (chest-height pulleys)",
+1
+],
+[
+"Cable machine (low pulley) + rope or bar attachment",
+1
+],
+[
+"Cable machine (two low pulleys) + decline bench",
+1
+],
+[
+"Cable machine + decline bench + wide bar",
+1
+],
+[
+"Cable machine + V-bar + seated row station",
+1
+],
+[
+"Cable machine (two low pulleys) + stability ball",
+1
+],
+[
+"Cable machine (low pulley) + seated row station",
+1
+],
+[
+"Cable machine (low pulley) + flat bench + straight bar",
+1
+],
+[
+"Cable machine (low pulley) + bench + straight bar",
+1
+],
+[
+"Cable machine (high pulley) + rope attachment + flat bench",
+1
+],
+[
+"Cable machine (high pulley) + bar attachment + flat bench",
+1
+],
+[
+"Cable machine (two chest-height pulleys)",
+1
+],
+[
+"Cable machine + preacher bench + straight or EZ bar",
+1
+],
+[
+"Lat pulldown machine + pro-style lat bar (angled/neutral grips)",
+1
+],
+[
+"Cable row station + rope attachment",
+1
+],
+[
+"Cable row station + straight bar",
+1
+],
+[
+"Cable machine + preacher bench + EZ or straight bar",
+1
+],
+[
+"Cable machine + rope attachment + flat bench",
+1
+],
+[
+"Cable machine (high pulley) + V-bar + seat",
+1
+],
+[
+"Cable row station + two single handles",
+1
+],
+[
+"Cable machine + single handle + bench",
+1
+],
+[
+"Cable row station + wide bar",
+1
+],
+[
+"Cable machine (two low pulleys) + bench",
+1
+],
+[
+"Cable crossover machine (shoulder-height pulleys)",
+1
+],
+[
+"Cable machine (two low pulleys) + single handles",
+1
+],
+[
+"Cable row station + V-bar or handles",
+1
+],
+[
+"Cable crossover machine + flat bench",
+1
+],
+[
+"Cable machine (low pulley) + ankle straps + mat",
+1
+],
+[
+"Cambered barbell + high flat bench (prone row bench)",
+1
+],
+[
+"Bodyweight + pull-up bar with parallel (neutral) handles",
+1
+],
+[
+"Bodyweight + step or block + bench for support",
+1
+],
+[
+"Dumbbells (optionally seated on a flat bench)",
+1
+],
+[
+"Dumbbell + flat or upright bench",
+1
+],
+[
+"Dumbbell + flat bench or mat",
+1
+],
+[
+"Dumbbells + incline bench or standing preacher station",
+1
+],
+[
+"Hyperextension bench",
+1
+],
+[
+"Hyperextension bench (Roman chair)",
+1
+],
+[
+"Decline sit-up bench",
+1
+],
+[
+"Suspension trainer (TRX) or rings",
+1
+],
+[
+"Bodyweight + fixed bar (Smith machine or rack)",
+1
+],
+[
+"Kettlebells (pair) + floor",
+1
+],
+[
+"Kettlebells (pair) + bench",
+1
+],
+[
+"Kettlebell (one bell, held with both hands)",
+1
+],
+[
+"Lever assisted chin-up machine",
+1
+],
+[
+"Plate-loaded lever chest press",
+1
+],
+[
+"Plate-loaded lever deadlift machine",
+1
+],
+[
+"Lever rotary torso machine",
+1
+],
+[
+"Plate-loaded lever military press machine",
+1
+],
+[
+"Plate-loaded reverse hyperextension machine",
+1
+],
+[
+"Lever ab crunch machine (chest pad)",
+1
+],
+[
+"Lever pec fly machine",
+1
+],
+[
+"Plate-loaded seated leg raise crunch machine",
+1
+],
+[
+"Plate-loaded lever shrug machine",
+1
+],
+[
+"Plate-loaded lever T-bar row machine",
+1
+],
+[
+"Lever triceps extension machine",
+1
+],
+[
+"Olympic barbell with neutral-grip attachment",
+1
+],
+[
+"Lever lat pulldown machine",
+1
+],
+[
+"Angled sled (hack squat style) machine",
+1
+],
+[
+"Lying (reverse) squat machine",
+1
+],
+[
+"Trap/hex bar + plates",
+1
+],
+[
+"Bodyweight + 2 benches",
+1
+],
+[
+"Bodyweight + bench or chair",
+1
+],
+[
+"Cable machine (lat pulldown) + twin-handle (V) attachment",
+1
+],
+[
+"Parallel bars / captain's chair (dip station)",
+1
+],
+[
+"2 flat benches + weight plate",
+1
+],
+[
+"Calf block/step + weight (plate or dip belt)",
+1
+],
+[
+"Stability ball (held between feet)",
+1
+],
+[
+"Pull-up bar + dip belt + weight plate",
+1
+],
+[
+"Light weight plates (one per hand)",
+1
+],
+[
+"Head harness + weight plate + bench",
+1
+],
+[
+"Stability ball + dumbbell or plate",
+1
+],
+[
+"Weight plate + upright for support",
+1
+],
+[
+"Light weight (dumbbell or plate) in each hand",
+1
+],
+[
+"Weight plates (1�2)",
+1
+],
+[
+"Wrist roller + weight plate",
+1
+],
+[
+"Cable row machine + V-handle",
+1
+],
+[
+"Pull-up bar + dumbbell (between feet)",
+1
+],
+[
+"Cable machine + ankle straps",
+1
+],
+[
+"Horizontal leg press machine (lever/selectorized)",
+1
+],
+[
+"Stepper machine (lever pedals)",
+1
+],
+[
+"Bodyweight + mat (cushion optional)",
+1
+],
+[
+"Resistance band (looped around the feet)",
+1
+],
+[
+"Resistance band (held overhead)",
+1
+],
+[
+"Resistance band (anchored at waist height)",
+1
+],
+[
+"Resistance band (one end under the foot)",
+1
+],
+[
+"Clothespin",
+1
+],
+[
+"Mini loop band (around the feet)",
+1
+],
+[
+"Step box + stick",
+1
+],
+[
+"BOSU ball + mini loop band",
+1
+],
+[
+"Medicine ball + bench",
+1
+],
+[
+"Small towel",
+1
+],
+[
+"Chair + weight plate",
+1
+],
+[
+"BOSU ball + dumbbell",
+1
+],
+[
+"Resistance loop band",
+1
+],
+[
+"Cable machine + D-handles + box/bench",
+1
+],
+[
+"Landmine + barbell + resistance band",
+1
+],
+[
+"Bodyweight + mat (optional towel roll)",
+1
+],
+[
+"Plate-loaded shoulder press machine",
+1
+],
+[
+"Cable machine + D-handles + step block",
+1
+],
+[
+"Kettlebell + bench + step block",
+1
+],
+[
+"Cable machine + straight bar + bench + step block",
+1
+],
+[
+"Smith machine + step block + bench for hand support",
+1
+],
+[
+"Medicine ball + 45� hyperextension bench",
+1
+],
+[
+"Resistance band + box or step",
+1
+],
+[
+"Landmine + barbell + decline bench",
+1
+],
+[
+"Dumbbells + bench/support for forehead",
+1
+],
+[
+"Cable machine + adjustable bench (chest-supported)",
+1
+],
+[
+"Light bar or wooden stick",
+1
+],
+[
+"Medicine ball (wall or open space)",
+1
+],
+[
+"Medicine ball (open space)",
+1
+],
+[
+"Thick (fat) barbell or bar with thick grips",
+1
+],
+[
+"Cable machine (seated row) + D-handle",
+1
+],
+[
+"Weight plates (light)",
+1
+],
+[
+"Slam ball or medicine ball",
+1
+],
+[
+"Cable machine + D-handles + box",
+1
+],
+[
+"Cable machine + D-handle + box",
+1
+],
+[
+"Trap/hex bar + low platform or plates",
+1
+],
+[
+"Cable machine + rope or straight bar + mat",
+1
+],
+[
+"Bodyweight + towel (smooth floor) or sliders",
+1
+],
+[
+"Towel + wall or door frame",
+1
+],
+[
+"Cable machine + D-handle or rope",
+1
+],
+[
+"Stability ball + chair",
+1
+],
+[
+"Resistance band (anchored low behind the head) + mat",
+1
+],
+[
+"Resistance band (loop) + chair/bench",
+1
+],
+[
+"Resistance band or cable machine",
+1
+],
+[
+"Heavy resistance band (low anchor) + mat",
+1
+],
+[
+"Light dumbbell + mat or bench",
+1
+],
+[
+"Step box + pillow or cushion",
+1
+],
+[
+"Bodyweight + mat or bench",
+1
+],
+[
+"Bodyweight + box/bench",
+1
+],
+[
+"Bodyweight + barbell on floor",
+1
+],
+[
+"Bodyweight + dumbbell on floor",
+1
+],
+[
+"Kettlebell or dumbbell",
+1
+],
+[
+"Light barbell + mat",
+1
+],
+[
+"Medicine ball + solid wall",
+1
+],
+[
+"Lever chest press machine (neutral-grip handles)",
+1
+],
+[
+"Bodyweight + incline board",
+1
+],
+[
+"Boxing gloves + heavy bag (or uppercut bag)",
+1
+],
+[
+"Pec deck (lever fly) machine",
+1
+],
+[
+"Plate-loaded lever chest press machine",
+1
+],
+[
+"Plate-loaded lever incline chest press machine",
+1
+],
+[
+"Lever standing hip extension (multi-hip/glute) machine",
+1
+],
+[
+"Dumbbell + mat (foot anchor optional)",
+1
+],
+[
+"Lever biceps curl machine",
+1
+],
+[
+"Belt squat machine + bench or rear-foot pad",
+1
+],
+[
+"Dumbbell + flat bench or rack",
+1
+],
+[
+"Resistance band with handle + low anchor",
+1
+],
+[
+"Dual cable machine + D-handles",
+1
+],
+[
+"Resistance band or strap + mat",
+1
+],
+[
+"Stability ball (wall to brace feet optional)",
+1
+],
+[
+"Sandbag + mat",
+1
+],
+[
+"Lever standing hip abduction (multi-hip) machine",
+1
+],
+[
+"Resistance band + low anchor + mat",
+1
+],
+[
+"Lever standing hip adduction (multi-hip) machine",
+1
+],
+[
+"Stick or light bar + wall + mat",
+1
+],
+[
+"Lever standing hip flexion (multi-hip) machine",
+1
+],
+[
+"Resistance band + anchor + mat",
+1
+],
+[
+"Kettlebell + bench or box",
+1
+],
+[
+"Lever glute kickback machine",
+1
+],
+[
+"Lever squat machine with seat",
+1
+],
+[
+"Dumbbell + flat bench + mat",
+1
+],
+[
+"Dumbbell + loop resistance band + flat bench",
+1
+],
+[
+"Dumbbell + mat (foot anchor or bench)",
+1
+],
+[
+"Resistance band (with handle)",
+1
+],
+[
+"Cable machine + wrist/ankle cuff",
+1
+],
+[
+"Plate-loaded lever lying chest press machine",
+1
+],
+[
+"Loop resistance band + bench or chair",
+1
+],
+[
+"Barbell + loop resistance band + flat bench + bar pad",
+1
+],
+[
+"Dumbbell + step or weight plate (deficit)",
+1
+],
+[
+"Chest-supported lever T-bar row machine (wide handles)",
+1
+],
+[
+"Dumbbell + mini resistance band + flat bench",
+1
+],
+[
+"Light weight plate + mat",
+1
+],
+[
+"Light dumbbell held between the feet + flat bench",
+1
+],
+[
+"Light dumbbell held between the feet + mat",
+1
+],
+[
+"Weight plate + flat bench (feet anchored)",
+1
+],
+[
+"Light dumbbell in the knee crease or ankle weight + mat",
+1
+],
+[
+"Low cable pulley + rope attachment",
+1
+],
+[
+"Two climbing ropes",
+1
+],
+[
+"Two weight plates",
+1
+],
+[
+"Barbell + power rack + upright bench",
+1
+],
+[
+"Two hex dumbbells",
+1
+],
+[
+"Cable machine (mid-height pulley) + straight bar or V-handle",
+1
+],
+[
+"Lat pulldown machine + close-grip handle",
+1
+],
+[
+"Dumbbells + chair",
+1
+],
+[
+"Lever multi-press machine (plate-loaded)",
+1
+],
+[
+"Bodyweight + fixed bar (Smith machine or rack) + bench",
+1
+],
+[
+"Fixed bar (rack, Smith bar or barre)",
+1
+],
+[
+"Resistance band (anchored at knee height)",
+1
+],
+[
+"Ankle weight or light weight plate + chair",
+1
+],
+[
+"Chair + mat",
+1
+],
+[
+"Weight plate (or palms pressed together)",
+1
+],
+[
+"Medicine ball (slam ball) + mat",
+1
+],
+[
+"Barbell + flat bench with safety arms and a spotter",
+1
+],
+[
+"Plyo box or step",
+1
+],
+[
+"Dumbbells + flat bench raised on a rack/supports",
+1
+],
+[
+"Dumbbell + heel wedge or weight plates",
+1
+],
+[
+"Dumbbell + 45-degree hyperextension bench",
+1
+],
+[
+"Bodyweight + wall or door frame",
+1
+],
+[
+"Parallel dip bars + dip belt with weight plate",
+1
+],
+[
+"Stick / dowel + mat",
+1
+],
+[
+"Bodyweight (wall optional for balance)",
+1
+],
+[
+"Medicine ball + mat (partner or wall optional)",
+1
+],
+[
+"Barbell + flat bench (bar pad recommended)",
+1
+],
+[
+"Bodyweight + fixed bar (Smith or rack bar)",
+1
+],
+[
+"Assisted pull-up/dip machine (Graviton)",
+1
+],
+[
+"Dumbbell + 45� hyperextension bench",
+1
+],
+[
+"Plate-loaded or selectorized high row machine",
+1
+],
+[
+"Plate-loaded chest-supported row machine (incline pad)",
+1
+],
+[
+"Lat pulldown station + D-handle",
+1
+],
+[
+"Gymnastic rings + resistance band",
+1
+],
+[
+"Cable machine (dual pulleys) + D-handles",
+1
+],
+[
+"Bodyweight (parallettes optional)",
+1
+],
+[
+"Landmine + barbell (plates optional)",
+1
+],
+[
+"Low cable pulley + ankle strap",
+1
+],
+[
+"Bodyweight + high bar",
+1
+],
+[
+"Aqua bike (underwater stationary bike) + pool",
+1
+],
+[
+"Balance pad (foam)",
+1
+],
+[
+"Bodyweight + low plyo box",
+1
+],
+[
+"Stick or dowel + mat",
+1
+],
+[
+"Resistance band (or strap)",
+1
+],
+[
+"Bodyweight + plyo box + mat",
+1
+],
+[
+"Resistance band (or strap) + mat",
+1
+],
+[
+"Bodyweight (agility ladder or line optional)",
+1
+],
+[
+"Bodyweight (step or box optional)",
+1
+],
+[
+"Mini resistance band + chair",
+1
+],
+[
+"Plate-loaded seated leg curl machine",
+1
+],
+[
+"Lying leg press or squat sled machine",
+1
+],
+[
+"Plate-loaded glute kickback machine",
+1
+],
+[
+"Hip thrust machine (plate-loaded or selectorized)",
+1
+],
+[
+"Barbell + flat bench + bar pad",
+1
+],
+[
+"Leverage machine with hanging bar",
+1
+],
+[
+"Landmine + barbell (unloaded)",
+1
+],
+[
+"Weight plate + medicine ball",
+1
+],
+[
+"Glute-ham developer (GHD) + medicine ball",
+1
+],
+[
+"Smith machine + adjustable bench",
+1
+],
+[
+"Bodyweight + high box",
+1
+],
+[
+"Lever row machine",
+1
+],
+[
+"45� hyperextension bench + weight plate",
+1
+],
+[
+"Trampoline",
+1
+],
+[
+"Bodyweight + box or bench",
+1
+],
+[
+"Towel + wall",
+1
+],
+[
+"Bodyweight (optional light dumbbell) + mat",
+1
+],
+[
+"Ab roller (crunch cradle frame)",
+1
+],
+[
+"Selectorized decline chest press machine",
+1
+],
+[
+"Selectorized shoulder press machine",
+1
+],
+[
+"Selectorized seated row machine",
+1
+],
+[
+"Cable machine + wrist cuff",
+1
+],
+[
+"Cable crossover + D-handles",
+1
+],
+[
+"Cable machine + adjustable bench",
+1
+],
+[
+"Aerobic step / step box",
+1
+],
+[
+"Inline skates",
+1
+],
+[
+"Dumbbells + plyo box",
+1
+],
+[
+"Dumbbells + plyo box + mat",
+1
+],
+[
+"Cable seated row + two D-handles",
+1
+],
+[
+"Lat pulldown machine + two D-handles",
+1
+],
+[
+"Barbell + high flat bench",
+1
+],
+[
+"Linear calf raise machine (plate-loaded)",
+1
+],
+[
+"Plate-loaded standing calf raise machine",
+1
+],
+[
+"Kettlebells + low step or plate",
+1
+],
+[
+"Kettlebells + step or plate",
+1
+],
+[
+"Weight plate (+ mat)",
+1
+],
+[
+"Cable row station + two D-handles",
+1
+],
+[
+"Stick or light bar + bench",
+1
+],
+[
+"Plate-loaded lying leg curl machine",
+1
+],
+[
+"Cable crossover machine + neutral handles",
+1
+],
+[
+"Plate-loaded hip thrust machine",
+1
+],
+[
+"Belt squat machine + V-bar handle",
+1
+],
+[
+"Cable row station + handle",
+1
+],
+[
+"Dumbbells + padded support",
+1
+],
+[
+"Kettlebells + flat bench + low step or plate",
+1
+],
+[
+"Kettlebell + heel wedge or plates",
+1
+],
+[
+"Dumbbell + heel wedge or plates",
+1
+],
+[
+"Kettlebell + step",
+1
+],
+[
+"Stability ball + wall + mat",
+1
+],
+[
+"Landmine + barbell (+ mat)",
+1
+],
+[
+"Lever rear delt row machine",
+1
+],
+[
+"Lever rear delt fly / pec deck machine",
+1
+],
+[
+"Barbell + flat bench (rack)",
+1
+],
+[
+"Pull-up bar + ankle weight or dumbbell",
+1
+],
+[
+"Plate-loaded linear row machine",
+1
+],
+[
+"Bodyweight (hands for resistance)",
+1
+],
+[
+"Lever machine (selectorized) + pulldown handles",
+1
+],
+[
+"Cable machine (high pulley) + rope or handle",
+1
+],
+[
+"Cable machine + lat bar attachment",
+1
+],
+[
+"Cable machine (dual low pulleys) + flat bench",
+1
+],
+[
+"Cable machine (high pulley) + V-bar or rope",
+1
+],
+[
+"Lever machine (seated row)",
+1
+],
+[
+"Lever machine (chest-supported T-bar row)",
+1
+],
+[
+"Back extension bench + weight plate",
+1
+],
+[
+"Dumbbell + box or bench",
+1
+],
+[
+"EZ-bar",
+1
+],
+[
+"EZ-bar + incline bench",
+1
+],
+[
+"Plate-loaded lever machine + V-bar handle",
+1
+],
+[
+"Resistance band + chest-height anchor",
+1
+],
+[
+"Resistance band (stood on)",
+1
+],
+[
+"Bodyweight + support",
+1
+],
+[
+"Weighted vest + floor",
+1
+],
+[
+"Cable machine + rope or D-handle",
+1
+],
+[
+"Decline bench (bodyweight)",
+1
+],
+[
+"Decline bench + dumbbell",
+1
+],
+[
+"Dumbbell + mini resistance band",
+1
+],
+[
+"Resistance band + floor mat",
+1
+],
+[
+"Bodyweight + stair step",
+1
+],
+[
+"45� back extension bench",
+1
+],
+[
+"Cable machine + rope + incline bench",
+1
+],
+[
+"Lever machine (biceps curl)",
+1
+],
+[
+"Lever machine with belt attachment",
+1
+],
+[
+"Lever machine (lying leg curl and reverse hyper)",
+1
+],
+[
+"Smith machine + flat bench + low platform",
+1
+],
+[
+"Resistance band (looped at ankles) + support",
+1
+],
+[
+"Smith machine + box",
+1
+],
+[
+"Cable machine + twin handles",
+1
+],
+[
+"45� back extension bench + dumbbell",
+1
+],
+[
+"45� back extension bench + kettlebell",
+1
+],
+[
+"Smith machine + step or block",
+1
+],
+[
+"Resistance band (looped at ankles or above knees)",
+1
+],
+[
+"Bodyweight + rolled towel",
+1
+],
+[
+"Bodyweight + mat + small roll",
+1
+],
+[
+"Pool (waist-to-chest-deep water)",
+1
+],
+[
+"Kettlebell + bench or chair (step optional)",
+1
+],
+[
+"Medicine ball + bench or chair",
+1
+],
+[
+"Resistance band + anchor point + mat",
+1
+],
+[
+"Dumbbell or kettlebell held bottoms-up + mat",
+1
+],
+[
+"Assisted pull-up machine (Gravitron)",
+1
+],
+[
+"Dumbbells + low platform (deficit)",
+1
+],
+[
+"Kettlebell + low platform (deficit)",
+1
+],
+[
+"Hyperextension bench (45�)",
+1
+],
+[
+"Pull-up bar + rope handles",
+1
+],
+[
+"Bodyweight + rope handles on low bar",
+1
+],
+[
+"Weighted stone or medicine ball",
+1
+],
+[
+"Plate-loaded lever machine + incline chest pad",
+1
+],
+[
+"Assisted push-up band or machine + weight plate",
+1
+],
+[
+"Resistance band + decline bench",
+1
+],
+[
+"Bodyweight + staircase",
+1
+],
+[
+"Dumbbells + step or box",
+1
+],
+[
+"Kettlebell + step or box",
+1
+],
+[
+"Medicine ball + step or box",
+1
+],
+[
+"Smith machine + kneeling pad + ankle strap",
+1
+],
+[
+"Bar (Smith or fixed) + weight plate",
+1
+],
+[
+"Bodyweight + 45-degree incline board",
+1
+],
+[
+"Flat bench + weight plate",
+1
+],
+[
+"BOSU ball (dome side up) + light weight",
+1
+],
+[
+"Flat bench + barbell or dumbbells",
+1
+],
+[
+"Machine (lever, incline, neutral-grip handles)",
+1
+],
+[
+"Cable machine (low pulley) + single handle + seat",
+1
+],
+[
+"Cable machine (low pulley) + rope handle",
+1
+],
+[
+"Cable machine (high pulley) + handle",
+1
+],
+[
+"Cable machine (mid pulley) + single handle",
+1
+],
+[
+"Dumbbells + 30� incline bench",
+1
+],
+[
+"Machine (lever, seated calf)",
+1
+],
+[
+"Bodyweight + bar (low bar or Smith)",
+1
+],
+[
+"Lever seated squat machine",
+1
+],
+[
+"Dumbbell + bench or rack",
+1
+],
+[
+"Cable machine (low pulley) + bent bar + seat",
+1
+],
+[
+"Machine (lever, donkey calf raise)",
+1
+],
+[
+"Barbell + incline bench (about 45�)",
+1
+],
+[
+"Cable machine (dual pulleys) + decline bench",
+1
+],
+[
+"Cable machine (low pulley) + D-handle + decline bench",
+1
+],
+[
+"Cable machine + stability ball + incline bench",
+1
+],
+[
+"Cable machine (dual pulleys) + two handles",
+1
+],
+[
+"Cable machine (pulleys at chest height) + two handles",
+1
+],
+[
+"Bodyweight + dumbbells or push-up handles",
+1
+],
+[
+"Dumbbells + stability ball + incline bench",
+1
+],
+[
+"Kettlebell + floor",
+1
+],
+[
+"Machine (lever, incline)",
+1
+],
+[
+"Machine (lever, decline)",
+1
+],
+[
+"Machine (chest press with converging handles)",
+1
+],
+[
+"Machine (lever, unilateral row)",
+1
+],
+[
+"Cable machine + two D-handles",
+1
+],
+[
+"Cable crossover station + two rope attachments + bench",
+1
+],
+[
+"Cable machine + rope attachment + bench or box",
+1
+],
+[
+"Seated cable row machine + rope attachment",
+1
+],
+[
+"Lat pulldown machine + long bar",
+1
+],
+[
+"Stability ball + dumbbells",
+1
+],
+[
+"Stability ball + dumbbell",
+1
+],
+[
+"Plate-loaded iso-lateral pulldown machine",
+1
+],
+[
+"Plate-loaded or selectorized chest-supported row machine",
+1
+],
+[
+"Seated row machine (lever/selectorized)",
+1
+],
+[
+"Slam ball (non-bouncing medicine ball)",
+1
+],
+[
+"Plate-loaded iso-lateral high row machine",
+1
+],
+[
+"Cable machine + D-handle + step block",
+1
+],
+[
+"Rope, strap or towel + mat",
+1
+],
+[
+"Dumbbells + bench + step block",
+1
+],
+[
+"Dumbbell + bench + step block",
+1
+],
+[
+"Lever seated leg press/squat machine",
+1
+],
+[
+"Bodyweight + step block + support (bench or rail)",
+1
+],
+[
+"Mat (strap or towel optional)",
+1
+],
+[
+"Smith machine (step block optional)",
+1
+],
+[
+"Mini band (loop band) + mat",
+1
+],
+[
+"Dip station (dip/pull-up cage)",
+1
+],
+[
+"Assisted pull-up/dip machine",
+1
+],
+[
+"Two kettlebells + bench",
+1
+],
+[
+"Lever shrug machine (shoulder pads)",
+1
+],
+[
+"Seated dip machine (lever/selectorized)",
+1
+],
+[
+"Ab crunch machine (lever/selectorized)",
+1
+],
+[
+"Seated shoulder press machine (lever/selectorized)",
+1
+],
+[
+"Seated chest press machine (lever/selectorized)",
+1
+],
+[
+"Incline chest press machine (lever/selectorized)",
+1
+],
+[
+"Push-up handles",
+1
+],
+[
+"Bodyweight (support optional)",
+1
+],
+[
+"Bodyweight + step or stair",
+1
+],
+[
+"Sledgehammer + tyre",
+1
+],
+[
+"Decline bench + resistance band",
+1
+],
+[
+"Resistance band (under both feet)",
+1
+],
+[
+"Resistance band + anchor (door or post)",
+1
+],
+[
+"Barbell + weight chains + power rack + flat bench",
+1
+],
+[
+"Resistance band (under feet, looped behind neck)",
+1
+],
+[
+"Barbell + weight plates + squat rack",
+1
+],
+[
+"Barbell + bumper plates + lifting blocks",
+1
+],
+[
+"Barbell + flat bench or plyo box",
+1
+],
+[
+"Strap, band or rope",
+1
+],
+[
+"Leg extension machine",
+1
+],
+[
+"Lever seated squat or leg press machine",
+1
+],
+[
+"Yoga strap or rope + mat",
+1
+],
+[
+"Bodyweight + low box or step",
+1
+],
+[
+"Bodyweight + bench, box or chair",
+1
+],
+[
+"Strap or band",
+1
+],
+[
+"Stability ball + wall + dumbbells",
+1
+],
+[
+"Cable machine + straight or EZ bar attachment",
+1
+],
+[
+"Cable machine + D-handle + preacher bench",
+1
+],
+[
+"Cable machine + straight bar attachment + flat bench (or floor)",
+1
+],
+[
+"Cable crossover machine + 2 D-handles",
+1
+],
+[
+"Cable machine + rope attachment + preacher bench",
+1
+],
+[
+"Cable machine + straight bar attachment + bench",
+1
+],
+[
+"Cable machine (low pulley) + straight bar attachment",
+1
+],
+[
+"Dumbbells + plyo box or step",
+1
+],
+[
+"Mat (partner optional)",
+1
+],
+[
+"Mat + bench or step (partner optional)",
+1
+],
+[
+"Barbell + bench with back support",
+1
+],
+[
+"Barbell + incline bench rack",
+1
+],
+[
+"Barbell or EZ bar + flat bench",
+1
+],
+[
+"Cable machine + 2 D-handles",
+1
+],
+[
+"Medicine ball + flat bench",
+1
+],
+[
+"Selectorized assisted sit-up machine",
+1
+],
+[
+"Bodyweight + support (rail, door frame or TRX)",
+1
+],
+[
+"Chair + strap or towel",
+1
+],
+[
+"Bodyweight + wall corner",
+1
+],
+[
+"Mat + partner or strap",
+1
+],
+[
+"Bodyweight + wall or doorframe",
+1
+],
+[
+"Bodyweight + bench, rail or table",
+1
+],
+[
+"Lever leg raise / ab machine",
+1
+],
+[
+"Steep decline bench",
+1
+],
+[
+"Dip/pull-up station with neutral handles",
+1
+],
+[
+"Dip/pull-up station",
+1
+],
+[
+"Plate-loaded lat pulldown machine",
+1
+],
+[
+"Plate-loaded seated dip machine",
+1
+],
+[
+"Plate-loaded preacher curl machine",
+1
+],
+[
+"Plate-loaded leg extension machine",
+1
+],
+[
+"Plate-loaded leg extension machine (independent arms)",
+1
+],
+[
+"Plate-loaded lever squat machine",
+1
+],
+[
+"Plate-loaded lateral raise machine",
+1
+],
+[
+"Bodyweight + bench or rail",
+1
+],
+[
+"Strap or towel + mat (partner optional)",
+1
+],
+[
+"Bodyweight + doorframe or stick",
+1
+],
+[
+"Bodyweight + vertical pole or rack upright",
+1
+],
+[
+"Captain's chair + dumbbell (between feet)",
+1
+],
+[
+"Pull-up bar + dumbbell or ankle weights",
+1
+],
+[
+"Decline bench + weight plate",
+1
+],
+[
+"Cable machine + two D-handles or rope",
+1
+],
+[
+"Dumbbells (or farmer's walk handles)",
+1
+],
+[
+"Upper body ergometer (arm bike)",
+1
+],
+[
+"Wave or air-walker style cardio machine",
+1
+],
+[
+"Ski ergometer (SkiErg)",
+1
+],
+[
+"Cable machine (dual pulleys) + flat bench",
+1
+],
+[
+"Resistance band + mat + overhead anchor",
+1
+],
+[
+"Bodyweight + wall or chair",
+1
+],
+[
+"EZ bar + decline bench",
+1
+],
+[
+"Lever chest press machine (plate-loaded or selectorized)",
+1
+],
+[
+"Lever triceps extension machine (plate-loaded or selectorized)",
+1
+],
+[
+"Lever elliptical machine (plate-loaded or selectorized)",
+1
+],
+[
+"Lever seated row machine (plate-loaded or selectorized)",
+1
+],
+[
+"Lever seated leg press machine (plate-loaded or selectorized)",
+1
+],
+[
+"Lever decline chest press machine",
+1
+],
+[
+"Plate-loaded pullover machine",
+1
+],
+[
+"Lever hip extension machine",
+1
+],
+[
+"Plate-loaded iso-lateral leg press",
+1
+],
+[
+"Plate-loaded grip machine",
+1
+],
+[
+"Plate-loaded calf press machine",
+1
+],
+[
+"Cable lat pulldown machine + wide bar",
+1
+],
+[
+"Bodyweight + sturdy bench",
+1
+],
+[
+"Bodyweight + bar (Smith machine or rack)",
+1
+],
+[
+"Lever rotary calf machine",
+1
+],
+[
+"Cable lat pulldown machine + bar",
+1
+],
+[
+"Pull-up bar + ab straps (arm slings)",
+1
+],
+[
+"Lever seated calf press machine",
+1
+],
+[
+"EZ bar or dumbbells + preacher bench",
+1
+],
+[
+"Bodyweight + wide parallel dip bars",
+1
+],
+[
+"Dumbbells + step/platform",
+1
+],
+[
+"Cable machine + D-handle + bench",
+1
+],
+[
+"Pull-up cable machine with ankle strap and bench",
+1
+],
+[
+"Dumbbells + arm blaster",
+1
+],
+[
+"Head harness + weight plate",
+1
+],
+[
+"Large tractor tire",
+1
+],
+[
+"Bodyweight + straight dip bar",
+1
+],
+[
+"Assisted dip/chin machine (knee pad)",
+1
+],
+[
+"Weighted sled + straps/handles",
+1
+],
+[
+"Battle rope + anchor",
+1
+],
+[
+"Cable lat pulldown machine + V-bar",
+1
+],
+[
+"Ab wheel + resistance band",
+1
+],
+[
+"Elliptical trainer with moving handles",
+1
+],
+[
+"Plate-loaded incline chest press machine",
+1
+],
+[
+"Cable seated row station + V-bar",
+1
+],
+[
+"Lever pulldown machine",
+1
+],
+[
+"Strongman implement (plate or sandbag)",
+1
+],
+[
+"EZ barbell",
+1
+],
+[
+"Cable machine + hip belt or ankle strap",
+1
+],
+[
+"Lever machine with knee pads",
+1
+],
+[
+"Assisted lever leg press machine",
+1
+],
+[
+"Dumbbell + fixed support (rack or rail)",
+1
+],
+[
+"Suspension trainer + weight plate (or vest)",
+1
+],
+[
+"Cable machine + chair",
+1
+],
+[
+"Cable machine + step box",
+1
+],
+[
+"Cable machine + ankle straps + pull-up bar",
+1
+],
+[
+"EZ bar + standing preacher bench",
+1
+],
+[
+"Horizontal leg press machine",
+1
+],
+[
+"Dumbbell + step or plate",
+1
+],
+[
+"Lever shoulder press machine",
+1
+],
+[
+"Barbell + hip pad",
+1
+],
+[
+"Dip cage (neutral handles) + dip belt + weight plate",
+1
+],
+[
+"Mini resistance band + bench or chair",
+1
+],
+[
+"Parallel dip bars",
+1
+],
+[
+"Cable machine + rope or handle attachment",
+1
+],
+[
+"Resistance band looped around the feet",
+1
+],
+[
+"Bodyweight + fingertip assist",
+1
+],
+[
+"Bodyweight + suspension strap or fixed low handle",
+1
+],
+[
+"Bodyweight (or heavy bag)",
+1
+],
+[
+"Flat bench + bodyweight",
+1
+],
+[
+"Barbell + power rack + resistance band",
+1
+],
+[
+"Plate-loaded landmine + V-bar handle",
+1
+],
+[
+"Straight bar (dip or pull-up bar at hip height)",
+1
+],
+[
+"Bodyweight + pull-up bar or gymnastic rings",
+1
+],
+[
+"Vertical pole or stall bars",
+1
+],
+[
+"Roman chair (GHD)",
+1
+],
+[
+"Lateral raise machine (lever)",
+1
+],
+[
+"Lever chest fly or crossover machine",
+1
+],
+[
+"Spring hand gripper",
+1
+],
+[
+"Cable machine (low pulley) + bar or handles",
+1
+],
+[
+"Cable machine (high pulley) + parallel grip handle",
+1
+],
+[
+"Cable machine (dual pulleys) + handles",
+1
+],
+[
+"Seated leg press machine (lever)",
+1
+],
+[
+"Bodyweight + two sturdy chairs + bar or broomstick",
+1
+],
+[
+"Bodyweight + step or platform + chair",
+1
+],
+[
+"Bodyweight + two low platforms or steps",
+1
+],
+[
+"Bodyweight + two flat benches",
+1
+],
+[
+"Bodyweight + ankle anchor (pad, bench or partner)",
+1
+],
+[
+"Bodyweight + chair or bench",
+1
+],
+[
+"Bodyweight or light dumbbells + mat",
+1
+],
+[
+"Bodyweight + low horizontal bar",
+1
+],
+[
+"Bodyweight (wall or support optional)",
+1
+],
+[
+"Bodyweight + door frame",
+1
+],
+[
+"Bodyweight + ankle anchor (pad, partner or heavy object)",
+1
+],
+[
+"Dumbbells + bench (upright back support)",
+1
+],
+[
+"Bodyweight (two markers)",
+1
+],
+[
+"Weight plate or dumbbells",
+1
+],
+[
+"Resistance band (around waist, anchored in front)",
+1
+],
+[
+"Barbell + power rack",
+1
+],
+[
+"Barbell + bench (+ squat rack)",
+1
+],
+[
+"Barbell (+ rack)",
+1
+],
+[
+"Kettlebell + upright bench",
+1
+],
+[
+"Towel on a smooth floor",
+1
+],
+[
+"Sturdy box or step",
+1
+],
+[
+"Resistance band anchored under the standing foot",
+1
+],
+[
+"Resistance band anchored behind at chest height",
+1
+],
+[
+"Bodyweight + sturdy box or bench",
+1
+],
+[
+"Bodyweight + parallettes or low platform",
+1
+],
+[
+"Resistance band (anchored under foot)",
+1
+],
+[
+"Resistance band (looped around feet)",
+1
+],
+[
+"Resistance band (anchored high or low)",
+1
+],
+[
+"Smith machine + pad",
+1
+],
+[
+"45 degree hyperextension bench + resistance band",
+1
+],
+[
+"Assault bike",
+1
+],
+[
+"Resistance band (looped under feet)",
+1
+],
+[
+"Bodyweight + two benches",
+1
+],
+[
+"Bodyweight + wall + two benches",
+1
+],
+[
+"Smith machine + barbell (one hand)",
+1
+],
+[
+"Cable machine (low pulley) + bench",
+1
+],
+[
+"Dumbbell (held vertically by one end)",
+1
+],
+[
+"Resistance band (looped around ankles)",
+1
+],
+[
+"Resistance band (anchored at the front of a bench or floor)",
+1
+],
+[
+"Barbell + resistance bands + bench",
+1
+],
+[
+"Barbell + flat bench + board",
+1
+],
+[
+"Resistance band (anchored behind the head)",
+1
+],
+[
+"Resistance band (anchored low behind)",
+1
+],
+[
+"Resistance band (under feet) + wall or incline",
+1
+],
+[
+"Resistance band (anchored low to the side)",
+1
+],
+[
+"Sled hack squat machine",
+1
+],
+[
+"Trap bar + low platform",
+1
+],
+[
+"Barbell + blocks or rack pins",
+1
+],
+[
+"Battle ropes + bench",
+1
+],
+[
+"Barbell + squat rack with pins",
+1
+],
+[
+"Smith machine (bar on safety pins)",
+1
+],
+[
+"Barbell + squat rack + weight plates under heels",
+1
+],
+[
+"EZ bar + mat",
+1
+],
+[
+"Dumbbells + flat bench + weight chains",
+1
+],
+[
+"Barbell + flat bench + weight chains",
+1
+],
+[
+"Resistance band + kneeling pad + anchor",
+1
+],
+[
+"Dip station + resistance band",
+1
+],
+[
+"Safety squat bar + squat rack",
+1
+],
+[
+"Weight plate or dumbbell + bench",
+1
+],
+[
+"Bodyweight + low plyo board",
+1
+],
+[
+"Weight plate + floor",
+1
+],
+[
+"Elliptical trainer",
+1
+],
+[
+"Cable machine + bar or rope + incline bench",
+1
+],
+[
+"Cable machine + rope + flat bench",
+1
+],
+[
+"Smith machine + bench + calf block",
+1
+],
+[
+"Bodyweight + wall (optional)",
+1
+],
+[
+"Bodyweight + towel on smooth floor",
+1
+],
+[
+"Barbell + squat rack (bar set low)",
+1
+],
+[
+"Bodyweight + bench + support",
+1
+],
+[
+"Dumbbells + bench + support",
+1
+],
+[
+"Kettlebell + bench + support",
+1
+],
+[
+"Suspension straps (TRX)",
+1
+],
+[
+"Bodyweight + wall or couch",
+1
+],
+[
+"Heavy bag",
+1
+],
+[
+"Bodyweight + wall or chair for support",
+1
+],
+[
+"Assisted chin-up machine or resistance band + bar",
+1
+],
+[
+"Bodyweight + padded floor",
+1
+],
+[
+"Flat bench + dumbbell",
+1
+],
+[
+"Pair of dumbbells",
+1
+],
+[
+"Pull-up bar + low support",
+1
+],
+[
+"Gymnastic rings + low box",
+1
+],
+[
+"Barbell + resistance band",
+1
+],
+[
+"Trap bar + resistance band",
+1
+],
+[
+"Kettlebells + mat",
+1
+],
+[
+"Glute-ham developer + resistance band",
+1
+],
+[
+"Barbell + low platform (deficit)",
+1
+],
+[
+"Barbell + mat",
+1
+],
+[
+"Bodyweight + towel + mat",
+1
+],
+[
+"45-degree back extension bench",
+1
+],
+[
+"Pendulum squat machine (plate-loaded lever)",
+1
+],
+[
+"Flat bench + resistance band or cable",
+1
+],
+[
+"Barbell + squat rack + box",
+1
+],
+[
+"Kettlebell + box",
+1
+],
+[
+"Bodyweight + step",
+1
+],
+[
+"Resistance band + wall",
+1
+],
+[
+"Resistance band + foam roller + wall",
+1
+],
+[
+"Step",
+1
+],
+[
+"Dumbbell + bench or floor",
+1
+],
+[
+"Cone",
+1
+],
+[
+"Plate-loaded lever leg extension machine",
+1
+],
+[
+"Cable machine + close-grip V handle",
+1
+],
+[
+"Treadmill (incline)",
+1
+],
+[
+"Bicycle (outdoor)",
+1
+],
+[
+"Bodyweight (track or flat ground)",
+1
+],
+[
+"Running shoes",
+1
+],
+[
+"Cable machine (low pulley) + flat bench + bar",
+1
+],
+[
+"Landmine + barbell + mat",
+1
+],
+[
+"Doorway",
+1
+],
+[
+"Bodyweight (light object)",
+1
+],
+[
+"Machine (lever preacher curl)",
+1
+],
+[
+"Balance board",
+1
+],
+[
+"Cable machine (low pulley) + step box + ankle strap",
+1
+],
+[
+"Machine (lever rotary torso)",
+1
+],
+[
+"Bodyweight (floor or bench)",
+1
+],
+[
+"Machine (lever hip abduction)",
+1
+],
+[
+"Kettlebell + weight plate or wedge under heels",
+1
+],
+[
+"Bodyweight + bar at waist height",
+1
+],
+[
+"Plate-loaded lever step machine",
+1
+],
+[
+"Hula hoop",
+1
+],
+[
+"Lever rear delt machine",
+1
+],
+[
+"Barbell + flat bench + power rack",
+1
+],
+[
+"Bodyweight + wall or support",
+1
+],
+[
+"Barbell + power rack with safety pins",
+1
+],
+[
+"Barbell + raised platform or weight plates",
+1
+],
+[
+"Landmine attachment + barbell",
+1
+],
+[
+"Smith machine + step box",
+1
+],
+[
+"Dumbbell + two benches",
+1
+],
+[
+"Dumbbell + support (rack, wall or door frame)",
+1
+],
+[
+"Barbell + landmine or pin + incline bench",
+1
+],
+[
+"Kettlebells + flat floor or bench",
+1
+],
+[
+"Safety squat bar + power rack",
+1
+],
+[
+"Cable machine (low pulley) + SZ bar",
+1
+],
+[
+"Cable machine (low pulley) + rope attachment + preacher bench",
+1
+],
+[
+"Sit-up stand (feet anchored)",
+1
+],
+[
+"Resistance band (anchored overhead)",
+1
+],
+[
+"Cable machine (low pulley) + V-bar",
+1
+],
+[
+"Barbell + weight blocks",
+1
+],
+[
+"Cable machine (mid pulley) + parallel bar attachment",
+1
+],
+[
+"Smith machine + ankle strap",
+1
+],
+[
+"Smith machine + flat bench + ankle strap",
+1
+],
+[
+"Bodyweight + sturdy table or low bar",
+1
+],
+[
+"Bodyweight + chair or mat",
+1
+],
+[
+"Bodyweight + cushion",
+1
+],
+[
+"Light dumbbell",
+1
+],
+[
+"Bodyweight + sturdy table or wall",
+1
+],
+[
+"Cable machine + bench + SZ bar",
+1
+],
+[
+"Cable machine + rope or bar",
+1
+],
+[
+"Barbell + flat bench (feet off bench)",
+1
+],
+[
+"Dumbbells + flat bench (feet off bench)",
+1
+],
+[
+"Kettlebells + floor",
+1
+],
+[
+"Slackline (webbing line)",
+1
+],
+[
+"Plate-loaded lever machine (single-arm handle)",
+1
+],
+[
+"Outdoor lever-type air walker",
+1
+],
+[
+"Outdoor lever-type side surfer",
+1
+],
+[
+"Outdoor lever-type seated leg press",
+1
+],
+[
+"Outdoor lever-type seated chest press",
+1
+],
+[
+"Outdoor lever-type seated lat pulldown",
+1
+],
+[
+"Low cable pulley + straight bar",
+1
+],
+[
+"Cable machine + magnetic grip handle",
+1
+],
+[
+"Standing leg curl machine",
+1
+],
+[
+"EZ curl bar + preacher bench",
+1
+],
+[
+"BOSU ball + dumbbell or kettlebell",
+1
+],
+[
+"Landmine attachment + barbell + bench",
+1
+],
+[
+"Bodyweight + wall or bench for support",
+1
+],
+[
+"Resistance band + foot anchor",
+1
+],
+[
+"Pull-up bar + flat bench",
+1
+],
+[
+"Leg press sled machine",
+1
+],
+[
+"Cable machine + two handles",
+1
+],
+[
+"Incline bench + mat",
+1
+],
+[
+"Lever abdominal bench (selectorized)",
+1
+],
+[
+"Lever abdominal bench (selectorized) + resistance band",
+1
+],
+[
+"Cable machine with low pulley",
+1
+],
+[
+"Lever linear hack squat machine",
+1
+],
+[
+"Lever lateral raise machine + chest pad",
+1
+],
+[
+"Cable machine + low pulley + handle",
+1
+],
+[
+"Cable machine + high pulleys + handles",
+1
+],
+[
+"Landmine + flat bench",
+1
+],
+[
+"Ab mat + floor",
+1
+],
+[
+"Barbell + rack (optional)",
+1
+],
+[
+"Wall, dumbbells and resistance band",
+1
+],
+[
+"Lever abdominal machine",
+1
+],
+[
+"Bodyweight + incline surface",
+1
+],
+[
+"Landmine",
+1
+],
+[
+"Wall + mat",
+1
+],
+[
+"Bodyweight + support handle",
+1
+],
+[
+"Lever machine (leverage glute press)",
+1
+],
+[
+"Lever squat machine + elevated platform",
+1
+],
+[
+"Lever hip abduction machine",
+1
+],
+[
+"Weight plates + flat bench",
+1
+],
+[
+"Weight plates + suspension trainer (TRX/rings)",
+1
+],
+[
+"Kettlebell + suspension trainer (TRX/rings)",
+1
+],
+[
+"Dumbbells + suspension trainer (TRX/rings)",
+1
+],
+[
+"Resistance band + suspension trainer (TRX/rings)",
+1
+],
+[
+"Barbell + flat floor",
+1
+],
+[
+"Plate-loaded lever hack squat machine",
+1
+],
+[
+"Resistance band + stability ball + flat bench",
+1
+],
+[
+"Cable machine (single handle)",
+1
+],
+[
+"Cable machine + rope or single handle",
+1
+],
+[
+"Roll ball",
+1
+],
+[
+"Smith machine + chair or box",
+1
+],
+[
+"Massage stick (lacrosse-style)",
+1
+],
+[
+"Kettlebells + incline bench (chest-supported)",
+1
+],
+[
+"Barbell + incline bench inside a squat cage",
+1
+],
+[
+"Mat + wall + folded blanket",
+1
+],
+[
+"Bodyweight + bench or fixed support",
+1
+],
+[
+"Cable machine + rope + decline bench",
+1
+],
+[
+"Lever machine (chest press)",
+1
+],
+[
+"45-degree hyperextension bench",
+1
+],
+[
+"Axle bar (barbell)",
+1
+],
+[
+"Assisted pull-up machine or resistance band + pull-up bar",
+1
+],
+[
+"Bodyweight + low hurdle",
+1
+],
+[
+"Low hurdles (set of barriers)",
+1
+],
+[
+"Lever (selectorized) rear-delt machine",
+1
+],
+[
+"Bodyweight + pull-up bar (parallel handles)",
+1
+],
+[
+"Lever (selectorized) triceps extension machine",
+1
+],
+[
+"Lever (selectorized) lat pulldown machine",
+1
+],
+[
+"Resistance band (loop) + chair",
+1
+],
+[
+"Resistance band (loop) + bench",
+1
+],
+[
+"Resistance band (loop around feet)",
+1
+],
+[
+"Dumbbells + low box",
+1
+],
+[
+"Kettlebell + low box",
+1
+],
+[
+"Resistance band + low box",
+1
+],
+[
+"Jump rope + chair",
+1
+],
+[
+"Resistance band (looped above knees or ankles)",
+1
+],
+[
+"Trap bar (hex bar)",
+1
+],
+[
+"Bench or box (incline) + bodyweight",
+1
+],
+[
+"Dumbbells + low platform (step or plate)",
+1
+],
+[
+"Dumbbell + hyperextension bench",
+1
+],
+[
+"Pull-up bar or captain's chair",
+1
+],
+[
+"Machine (lever ab crunch)",
+1
+],
+[
+"Machine (plate-loaded lever hip thrust)",
+1
+],
+[
+"Weight plate + low platform",
+1
+],
+[
+"Cable machine + D-handles",
+1
+],
+[
+"Kettlebell + floor mat",
+1
+],
+[
+"Gymnastic rings + open floor",
+1
+],
+[
+"Bodyweight + foam roller",
+1
+],
+[
+"Dumbbells + bench + low platform",
+1
+],
+[
+"Bodyweight + doorway",
+1
+],
+[
+"Low bar (parallel bars)",
+1
+],
+[
+"Bodyweight + wall + low platform",
+1
+],
+[
+"Bodyweight + support (rail or doorframe)",
+1
+],
+[
+"Bodyweight + weight plate or wedge",
+1
+],
+[
+"Cable machine + incline bench + single handle",
+1
+],
+[
+"Cable machine + incline bench + V-handle",
+1
+],
+[
+"Barbell + flat bench + resistance bands",
+1
+],
+[
+"Barbell + flat bench + power rack pins",
+1
+],
+[
+"Suspension trainer (rings), yoga block",
+1
+],
+[
+"Suspension trainer (rings)",
+1
+],
+[
+"Towels",
+1
+],
+[
+"Bodyweight + low platform",
+1
+],
+[
+"Barbell + raised platform",
+1
+],
+[
+"Bodyweight + raised platform",
+1
+],
+[
+"Dumbbells + raised platform",
+1
+],
+[
+"Bolster",
+1
+],
+[
+"Gymnastic rings + weighted vest",
+1
+],
+[
+"Lever machine, towels",
+1
+],
+[
+"Dumbbell + bench (back support)",
+1
+],
+[
+"Foam roll or pad",
+1
+],
+[
+"Bench or chair",
+1
+],
+[
+"Barbell, flat bench",
+1
+],
+[
+"Lever machine (ab coaster)",
+1
+],
+[
+"Bodyweight, door frame",
+1
+],
+[
+"Bodyweight, door anchor handle",
+1
+],
+[
+"Lever machine (assisted chin-up)",
+1
+],
+[
+"Bodyweight (optional resistance band)",
+1
+],
+[
+"Weight bar or weight plate",
+1
+],
+[
+"Bodyweight, wall",
+1
+],
+[
+"Bodyweight, towel",
+1
+],
+[
+"Cable machine (dual high pulleys)",
+1
+],
+[
+"Resistance band, anchor",
+1
+],
+[
+"Pull-up bar with neutral-grip handles + weight plate or dip belt",
+1
+],
+[
+"Pull-up bar with neutral-grip handles + resistance band",
+1
+],
+[
+"Strap or towel",
+1
+],
+[
+"Pillow + mat",
+1
+],
+[
+"Wall or couch + mat",
+1
+],
+[
+"Wall + bodyweight",
+1
+],
+[
+"Table + bodyweight",
+1
+],
+[
+"Bodyweight + table",
+1
+],
+[
+"Cable machine + single handle + preacher pad",
+1
+],
+[
+"Weight plate + stability ball",
+1
+],
+[
+"Landmine bar + barbell pad",
+1
+],
+[
+"Cable machine + single handle + incline bench",
+1
+],
+[
+"Water bottle + mat",
+1
+],
+[
+"Sturdy table + bodyweight",
+1
+],
+[
+"Assisted hyperextension machine",
+1
+],
+[
+"Plate-loaded lever machine (vertical leg press)",
+1
+],
+[
+"Plate-loaded lever machine (45-degree leg press)",
+1
+],
+[
+"Mat + strap (optional)",
+1
+],
+[
+"Balance plate",
+1
+],
+[
+"Balance plate + light stick",
+1
+],
+[
+"BOSU ball + light dumbbell",
+1
+],
+[
+"Air pillow (balance pad) + light dumbbell",
+1
+],
+[
+"Air pillow (balance cushion)",
+1
+],
+[
+"Towel (on floor)",
+1
+],
+[
+"Resistance band (anchored under the knees)",
+1
+],
+[
+"Lever leg curl machine (plate-loaded)",
+1
+],
+[
+"Resistance band (around the thighs)",
+1
+],
+[
+"Bodyweight + two benches or steps",
+1
+],
+[
+"Bodyweight, chair for support",
+1
+],
+[
+"Sled",
+1
+],
+[
+"Cable machine + V-bar + incline bench",
+1
+],
+[
+"Cable machine + wrist straps + incline bench",
+1
+],
+[
+"Landmine + linebacker attachment",
+1
+],
+[
+"Lever shoulder press machine (plate-loaded or selectorized)",
+1
+],
+[
+"Lever hip-hinge machine (plate-loaded)",
+1
+],
+[
+"Hyperextension bench + dumbbell",
+1
+],
+[
+"Gymnastic rings + bench",
+1
+],
+[
+"Bodyweight, wall for support",
+1
+],
+[
+"Hyperextension bench + barbell",
+1
+],
+[
+"Hack squat machine (lever)",
+1
+],
+[
+"Smith machine + low step or platform",
+1
+],
+[
+"Dumbbell + bench (for support)",
+1
+],
+[
+"Smith machine + chair",
+1
+],
+[
+"Plate-loaded lever machine (flat)",
+1
+],
+[
+"Dumbbell + bench or rack (for support)",
+1
+],
+[
+"Dumbbell + BOSU ball",
+1
+],
+[
+"Lever machine (standing lateral raise)",
+1
+],
+[
+"Lever machine (standing)",
+1
+],
+[
+"Lever machine (seated chest fly)",
+1
+],
+[
+"Bodyweight (chair optional)",
+1
+],
+[
+"Dumbbell + flat mat",
+1
+],
+[
+"Cable machine (crossover)",
+1
+],
+[
+"Wrist roller (weighted handle and rope)",
+1
+],
+[
+"Bodyweight + wall + small plate or wedge",
+1
+],
+[
+"Selectorized lever machine",
+1
+],
+[
+"Barbell + back extension bench",
+1
+],
+[
+"Wall (corner)",
+1
+],
+[
+"Stability ball + bench or floor",
+1
+],
+[
+"Stability ball + medicine ball",
+1
+],
+[
+"Resistance band + yoga mat",
+1
+],
+[
+"Stability ball + light dumbbell (optional)",
+1
+],
+[
+"Smith machine + raised step or plate",
+1
+],
+[
+"Bench or box",
+1
+],
+[
+"Bodyweight + 4 cones",
+1
+],
+[
+"Chair (light dumbbells or band optional)",
+1
+],
+[
+"Step box",
+1
+],
+[
+"Resistance band (anchored) + mat",
+1
+],
+[
+"Bodyweight + raised bar or bench",
+1
+],
+[
+"Suspension trainer (gymnastic rings)",
+1
+],
+[
+"Bench or box + bodyweight",
+1
+],
+[
+"Gymnastic rings + box",
+1
+],
+[
+"Pull-up bar or fixed anchor",
+1
+],
+[
+"Bodyweight + wide flat bench",
+1
+],
+[
+"Lever machine (standing hip extension)",
+1
+],
+[
+"Dumbbell + floor or flat bench",
+1
+],
+[
+"Lever machine (angled leg press)",
+1
+],
+[
+"Dumbbell or kettlebell + weight plate or wedge",
+1
+],
+[
+"Barbell + step or platform",
+1
+],
+[
+"Bodyweight + mat or chair",
+1
+],
+[
+"Cable machine + SZ bar + bench",
+1
+],
+[
+"Belt-loaded lever machine",
+1
+],
+[
+"Suspension trainer (TRX) + weighted vest",
+1
+],
+[
+"Seated calf raise machine (lever)",
+1
+],
+[
+"Barbell + squat rack + weight plates",
+1
+],
+[
+"Bodyweight + low box or plates + wedge",
+1
+],
+[
+"Bodyweight + low step box + wedge",
+1
+],
+[
+"Bodyweight + low step box",
+1
+],
+[
+"Barbell + rack with pins",
+1
+],
+[
+"Dumbbells + box",
+1
+],
+[
+"EZ bar and incline bench",
+1
+],
+[
+"Lying leg curl machine (lever)",
+1
+],
+[
+"Lever row machine (chest-supported)",
+1
+],
+[
+"Dumbbells + small plate or wedge under heels",
+1
+],
+[
+"Bodyweight + small plate or wedge under heels",
+1
+],
+[
+"Kettlebells (one per hand)",
+1
+],
+[
+"Dumbbells (one per hand)",
+1
+],
+[
+"Barbell + plates (half-kneeling, no bench)",
+1
+],
+[
+"Barbell and weight plates",
+1
+],
+[
+"Bodyweight (hands held together at chest)",
+1
+],
+[
+"Suspension trainer (TRX) and mat",
+1
+],
+[
+"Assisted pull-up machine + parallel close-grip handles",
+1
+],
+[
+"Bodyweight + yoga blocks (optional)",
+1
+],
+[
+"Bodyweight and low bar or rail",
+1
+],
+[
+"Bodyweight and low step",
+1
+],
+[
+"Cable machine and rope or handle",
+1
+],
+[
+"Inversion bench",
+1
+],
+[
+"Bodyweight + sturdy flat bench",
+1
+],
+[
+"Weight plate and flat bench",
+1
+],
+[
+"Dumbbells and adjustable bench",
+1
+],
+[
+"Dumbbells + bench set to 45�",
+1
+],
+[
+"Dumbbells and stability ball",
+1
+],
+[
+"Foam roller or stick roller",
+1
+],
+[
+"Lever machine (hip thrust, plate-loaded)",
+1
+],
+[
+"Light dumbbells (optional)",
+1
+],
+[
+"Bodyweight and resistance band looped above the knees",
+1
+],
+[
+"Lever leg press machine (reclined bench)",
+1
+],
+[
+"Lever machine (seated, plate-loaded)",
+1
+],
+[
+"Plate-loaded lever preacher curl machine",
+1
+],
+[
+"Cable machine and ankle strap",
+1
+],
+[
+"Lever machine and belt attachment",
+1
+],
+[
+"Lever machine, belt attachment and V bar",
+1
+],
+[
+"Lever machine, belt attachment and straight bar",
+1
+],
+[
+"Cable machine with dual pulleys and handles",
+1
+],
+[
+"Cable machine + incline bench + wrist straps",
+1
+],
+[
+"Cable crossover + flat bench",
+1
+],
+[
+"Cable machine and mat",
+1
+],
+[
+"Cable machine and flat bench",
+1
+],
+[
+"Plate-loaded lever machine and straight bar",
+1
+],
+[
+"Plate-loaded lever machine and V-bar handle",
+1
+],
+[
+"Cable machine and straight bar",
+1
+],
+[
+"Cable machine + ankle strap + flat bench",
+1
+],
+[
+"Small foam roller and wall",
+1
+],
+[
+"Air pillow (balance pad)",
+1
+],
+[
+"Bodyweight and wall for balance (optional)",
+1
+],
+[
+"Bodyweight (wall or chair for balance)",
+1
+],
+[
+"Two weight plates (or palms pressed together)",
+1
+],
+[
+"Barbell + power rack + flat bench + pad",
+1
+],
+[
+"Cable machine + arm blaster",
+1
+],
+[
+"Dumbbells and incline bench in a rack",
+1
+],
+[
+"Dumbbells and bench",
+1
+],
+[
+"Mat + resistance band",
+1
+],
+[
+"Lever hack squat machine",
+1
+],
+[
+"Barbell, flat bench, power rack and resistance bands",
+1
+],
+[
+"Sled with pulling rope",
+1
+],
+[
+"Suspension trainer (TRX) + pillow",
+1
+],
+[
+"Dumbbell + slider (towel or disc)",
+1
+],
+[
+"Bodyweight and towels on a smooth floor",
+1
+],
+[
+"Barbell and weight plates for heel elevation",
+1
+],
+[
+"Cable machine with low pulley and single handle",
+1
+],
+[
+"Cable machine with V-bar handle",
+1
+],
+[
+"Cable machine and handle",
+1
+],
+[
+"Mat and towel roll",
+1
+],
+[
+"Mat + ankle weight (weight plate)",
+1
+],
+[
+"Dumbbell + table for support",
+1
+],
+[
+"Mat + pillow",
+1
+],
+[
+"Trampoline (elastic bed)",
+1
+],
+[
+"Resistance band and anchor",
+1
+],
+[
+"Resistance band, anchor and mat",
+1
+],
+[
+"Lever leg extension machine",
+1
+],
+[
+"Resistance band (held in hand, other end under foot)",
+1
+]
+]
