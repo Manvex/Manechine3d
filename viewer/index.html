@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Manechin 3D</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>window.MANECHIN = { assets: "../", clips: "../clipuri de facut/" };</script>
+<script type="importmap">
+{ "imports": { "three": "./vendor/three.module.min.js", "three/addons/": "./vendor/addons/" } }
+</script>
+</head>
+<body>
+<!--APP-->
+<header class="bar">
+  <div class="brand">
+    <span class="mark" aria-hidden="true"></span>
+    <h1>Manechin 3D</h1>
+  </div>
+  <p class="count" id="count">— exerciții</p>
+</header>
+
+<main class="app">
+  <section class="stage" aria-label="Scena 3D">
+    <canvas id="scene"></canvas>
+    <div class="stage-top">
+      <div class="now">
+        <span class="eyebrow" id="now-eyebrow">Exercițiu</span>
+        <h2 id="now-title">Se încarcă…</h2>
+      </div>
+      <div class="views" role="group" aria-label="Unghi cameră">
+        <button type="button" id="view-34" data-view="34" class="on">3/4</button>
+        <button type="button" id="view-side" data-view="side">Lateral</button>
+        <button type="button" id="view-front" data-view="front">Față</button>
+      </div>
+    </div>
+    <p class="notice" id="notice" hidden></p>
+    <div class="transport" id="transport">
+      <button type="button" id="play" class="play" aria-label="Pauză">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path id="play-icon" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+      </button>
+      <div class="track">
+        <div class="phase-row"><span id="phase">—</span><span id="reps" class="mono">rep 0</span></div>
+        <input type="range" id="scrub" min="0" max="1000" value="0" aria-label="Poziție în repetare">
+      </div>
+      <div class="speed" role="group" aria-label="Viteză">
+        <button type="button" id="speed-05" data-speed="0.5">0.5×</button>
+        <button type="button" id="speed-1" data-speed="1" class="on">1×</button>
+        <button type="button" id="speed-15" data-speed="1.5">1.5×</button>
+      </div>
+    </div>
+  </section>
+
+  <aside class="details" aria-label="Detalii exercițiu">
+    <div class="tags" id="tags"></div>
+    <div class="gauge-box" id="gauge-box">
+      <svg class="gauge" viewBox="0 0 200 116" aria-hidden="true">
+        <path class="g-track" d="M20 100 A80 80 0 0 1 180 100"/>
+        <path class="g-range" id="g-range" d=""/>
+        <line class="g-zero" x1="100" y1="100" x2="100" y2="14"/>
+        <line class="g-needle" id="g-needle" x1="100" y1="100" x2="100" y2="26"/>
+        <circle class="g-hub" cx="100" cy="100" r="5"/>
+        <text x="16" y="114" class="g-lab">ulnar</text>
+        <text x="184" y="114" class="g-lab" text-anchor="end">radial</text>
+      </svg>
+      <div class="readout">
+        <span class="mono big" id="angle">+0°</span>
+        <span class="small" id="angle-label">Unghi încheietură</span>
+      </div>
+    </div>
+
+    <section>
+      <h3>Execuție</h3>
+      <ol class="steps" id="steps"></ol>
+    </section>
+    <section>
+      <h3>Mușchi lucrați</h3>
+      <ul class="muscles" id="muscles"></ul>
+      <label class="switch"><input type="checkbox" id="highlight" checked> Evidențiază pe manechin</label>
+    </section>
+    <section>
+      <h3>Manechin</h3>
+      <div class="seg" role="group" aria-label="Manechin">
+        <button type="button" id="model-m" data-model="male" class="on">Bărbat</button>
+        <button type="button" id="model-f" data-model="female">Femeie</button>
+      </div>
+    </section>
+    <section id="ref-box" hidden>
+      <h3>Clip de referință</h3>
+      <video id="ref" muted loop playsinline preload="none"></video>
+    </section>
+    <p class="small file mono" id="file"></p>
+  </aside>
+
+  <aside class="library" aria-label="Bibliotecă exerciții">
+    <button type="button" id="random" class="primary">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h3.5l9 10H20M4 17h3.5l2.6-2.9M13.9 9.9 16.5 7H20M17.5 4.5 20 7l-2.5 2.5M17.5 14.5 20 17l-2.5 2.5"/></svg>
+      Alege la întâmplare
+    </button>
+    <div class="filters">
+      <input type="search" id="search" placeholder="Caută: squat, curl, plank…" autocomplete="off" aria-label="Caută exercițiu">
+      <select id="body" aria-label="Zonă corp"><option value="">Toate zonele</option></select>
+      <label class="switch"><input type="checkbox" id="only3d"> Doar cu animație 3D</label>
+    </div>
+    <p class="small" id="list-meta"></p>
+    <ul class="list" id="list"></ul>
+    <button type="button" id="more" class="ghost" hidden>Arată mai multe</button>
+  </aside>
+</main>
+<script type="module" src="app.js"></script>
+<!--/APP-->
+</body>
+</html>
