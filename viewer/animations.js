@@ -136,12 +136,14 @@ export const ex6268 = {
 };
 
 // Mâinile la ceafă, coatele depărtate (IK pe umăr–cot–încheietură). Merge în orice poziție a corpului.
-export function handsBehindHead(rig) {
+// `close` = cât se strânge fiecare cot înainte (0 = larg, 1 = spre genunchi), ex. { L: 0.8 }.
+export function handsBehindHead(rig, close = {}) {
   const headQ = rig.quat('head'), chestQ = rig.quat('chest');
   const headPos = rig.pos('head');
   for (const [side, sx] of [['R', -1], ['L', 1]]) {
     const wrist = headPos.clone().add(new THREE.Vector3(sx * 0.118, 0.05, -0.075).applyQuaternion(headQ));
-    const pole = new THREE.Vector3(sx, 0, 0.45).applyQuaternion(chestQ);
+    const c = close[side] || 0;
+    const pole = new THREE.Vector3(sx * (1 - 0.85 * c), 0, 0.45 + 1.6 * c).applyQuaternion(chestQ);
     rig.ik2(`${side}_upperarm`, `${side}_forearm`, `${side}_hand`, wrist, pole);
     const mid = headPos.clone().add(new THREE.Vector3(0, 0.04, -0.105).applyQuaternion(headQ));
     rig.aim(`${side}_hand`, `${side}_grip`, mid.sub(rig.pos(`${side}_hand`)));
@@ -421,7 +423,7 @@ export const ex0003 = {
 // un picior se ridică (genunchiul spre piept, gamba orizontală) în timp ce trunchiul se rulează și
 // se răsucește, ca cotul opus să vină spre genunchi. Cealaltă talpă rămâne pe saltea. Apoi coboară
 // și se repetă cu celălalt picior.
-const TWIST = { flexLow: 6, flexHigh: 56, twist: 32, plantDz: 0.42, cross: 0.1 };
+const TWIST = { flexLow: 6, flexHigh: 74, twist: 48, plantDz: 0.42, cross: 0.2, hipFlex: 124 };
 const CRUNCH = [[0, 0], [0.06, 0], [0.34, 1], [0.6, 1], [0.92, 0], [1, 0]];   // o repetare
 
 // gradul de crunch (0..1) și partea: +1 = genunchiul drept urcă, −1 = genunchiul stâng
@@ -436,7 +438,11 @@ export const ex0004 = {
   mat: true,
   muscleMask: ex0002.muscleMask,
   camera: '34',
-  views: ex0003.views,
+  views: {
+    '34': { pos: [-2.9, 1.25, 1.7], target: [0, 0.42, 0.1] },   // aproape de unghiul clipului
+    side: { pos: [-4.6, 1.0, 0.2], target: [0, 0.45, 0.15] },
+    front: { pos: [0.1, 3.3, 1.0], target: [0, 0.35, 0.1] },   // de sus: cot la genunchi
+  },
   tags: ['Abdomen', 'Oblici', 'Greutatea corpului', 'Cu saltea'],
   steps: [
     'Culcă-te pe spate pe saltea, cu genunchii îndoiți și tălpile pe podea. Mâinile stau ușor la ceafă, coatele depărtate.',
@@ -484,10 +490,12 @@ export const ex0004 = {
       let target = planted, pole = new THREE.Vector3(sx * 0.12, 1, 0);
       if (w > 0) {
         const l1 = hip.distanceTo(rig.pos(`${s}_shin`)), l2 = rig.pos(`${s}_shin`).distanceTo(rig.pos(`${s}_foot`));
-        // sus: coapsa verticală, gamba orizontală, genunchiul ușor spre mijloc
-        const air = new THREE.Vector3(hip.x - sx * TWIST.cross, hip.y + 0.92 * l1, hip.z + 0.95 * l2);
+        // sus: genunchiul trece de verticală spre piept și spre mijloc, gamba aproape orizontală
+        const a = D(TWIST.hipFlex);
+        const knee = new THREE.Vector3(hip.x - sx * TWIST.cross, hip.y + l1 * Math.sin(a), hip.z + l1 * Math.cos(a));
+        const air = knee.clone().add(new THREE.Vector3(0, 0.04, 0.97 * l2));
         target = planted.clone().lerp(air, w);
-        pole = pole.lerp(new THREE.Vector3(-sx * 0.2, 1, -0.4), w);
+        pole = pole.lerp(new THREE.Vector3(-sx * 0.3, 1, -0.9), w);
       }
       rig.ik2(`${s}_thigh`, `${s}_shin`, `${s}_foot`, target, pole);
       // talpa plată pe saltea; în aer laba urmează gamba
@@ -495,7 +503,8 @@ export const ex0004 = {
       rig.setW(`${s}_foot`, qFoot);
     }
 
-    handsBehindHead(rig);
+    // cotul opus genunchiului ridicat se strânge înainte, spre genunchi
+    handsBehindHead(rig, { [side === 1 ? 'L' : 'R']: smooth(k) });
   },
 };
 
