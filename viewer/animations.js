@@ -328,4 +328,78 @@ export const ex0002 = {
   },
 };
 
-export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '6268': ex6268 };
+// 0003 — Air Bike (male)
+// Crunch „pedalat”: culcat pe spate, mâinile la ceafă, picioarele ridicate de la sol. Un genunchi
+// vine spre piept, celălalt picior se întinde, iar trunchiul se rulează și se răsucește ca să
+// aducă cotul opus spre genunchi. Picioarele se schimbă continuu, în antifază.
+const lerp = (a, b, k) => a + (b - a) * k;
+const BIKE = { hipOut: 28, hipIn: 100, kneeOut: 6, kneeIn: 122, flexMin: 24, flexMax: 64, twist: 36 };
+
+// 0 = piciorul întins, 1 = genunchiul la piept. În antifază pentru cele două picioare.
+function bikeLeg(t, side) {
+  const q = Math.sin(Math.PI * 2 * t);
+  return smooth(0.5 + 0.5 * q * (side === 'R' ? 1 : -1));
+}
+
+export const ex0003 = {
+  id: '0003',
+  duration: 6.4,
+  mat: true,
+  muscleMask: ex0001.muscleMask,
+  camera: '34',
+  views: {
+    '34': { pos: [-3.2, 1.6, 3.1], target: [0, 0.4, 0.15] },
+    side: { pos: [-4.8, 1.0, 0.2], target: [0, 0.45, 0.2] },
+    front: { pos: [0.2, 1.4, 4.8], target: [0, 0.45, 0.0] },
+  },
+  tags: ['Abdomen', 'Greutatea corpului', 'La sol', 'Cu saltea'],
+  steps: [
+    'Culcă-te pe spate pe saltea, cu mâinile la ceafă și coatele depărtate. Ridică ambele picioare de la sol.',
+    'Adu un genunchi spre piept și întinde complet celălalt picior, ținut sus, la circa 30° față de podea.',
+    'Rotește trunchiul și apropie cotul opus de genunchiul ridicat. Umărul rămâne desprins de pe saltea.',
+    'Schimbă picioarele într-o mișcare continuă, ca la pedalat. Nu trage de cap cu mâinile.',
+  ],
+  muscles: [
+    ['Drept abdominal', 'p'],
+    ['Oblic extern și intern', 'p'],
+    ['Flexori ai șoldului (iliopsoas)', 's'],
+    ['Cvadriceps (drept femural)', 's'],
+  ],
+  phases: [
+    { from: 0.00, to: 0.12, label: 'Schimbare · picioarele se încrucișează' },
+    { from: 0.12, to: 0.38, label: 'Genunchi drept · cot stâng spre el' },
+    { from: 0.38, to: 0.62, label: 'Schimbare · picioarele se încrucișează' },
+    { from: 0.62, to: 0.88, label: 'Genunchi stâng · cot drept spre el' },
+    { from: 0.88, to: 1.00, label: 'Schimbare · picioarele se încrucișează' },
+  ],
+  gauge: { lo: -45, hi: 45, min: -BIKE.twist, max: BIKE.twist, ends: ['genunchi stâng', 'genunchi drept'],
+    label: (v) => 'Răsucire spre genunchiul ' + (v >= 0 ? 'drept' : 'stâng') },
+  effort(t) { const q = Math.sin(Math.PI * 2 * t); return 0.45 + 0.55 * q * q; },
+  angle(t) { return BIKE.twist * Math.sin(Math.PI * 2 * t); },
+  pose(rig, t, time) {
+    const q = Math.sin(Math.PI * 2 * t);
+    const F = D(lerp(BIKE.flexMin, BIKE.flexMax, q * q));   // cât se rulează trunchiul
+    const psi = D(-BIKE.twist * q);                          // răsucirea, spre genunchiul adus
+    const breath = Math.sin(time * Math.PI * 2 / 4.2);
+
+    rig.rotW('hips', X, D(-90));
+    rig.b.hips.position.set(0, MAT_TOP + 0.158, 0.16);
+
+    // trunchi: rulare + răsucire în jurul axei lungi, repartizate pe coloană
+    for (const [bone, kf, kt] of [['spine', 0.34, 0.18], ['spine2', 0.30, 0.32], ['chest', 0.24, 0.38], ['neck', 0.07, 0.12], ['head', 0.05, 0]]) {
+      rig.rotW(bone, X, F * kf + (bone === 'chest' ? D(0.6) * breath : 0));
+      rig.rotW(bone, rig.axis(bone, Y), psi * kt);
+    }
+
+    // picioare: șold și genunchi, în antifază
+    for (const side of ['R', 'L']) {
+      const u = bikeLeg(t, side);
+      rig.rotW(`${side}_thigh`, X, D(-lerp(BIKE.hipOut, BIKE.hipIn, u)));
+      rig.rotW(`${side}_shin`, X, D(lerp(BIKE.kneeOut, BIKE.kneeIn, u)));
+    }
+
+    handsBehindHead(rig);
+  },
+};
+
+export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '0003': ex0003, '6268': ex6268 };
