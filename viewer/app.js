@@ -25,19 +25,54 @@ class Rig {
     this._q = new THREE.Quaternion();
     this._p = new THREE.Quaternion();
     this._r = new THREE.Quaternion();
+    // orientările din poza de repaus, în spațiul lumii (pentru tălpi pe podea etc.)
+    root.updateMatrixWorld(true);
+    this.restWorld = {};
+    for (const [o] of this.rest) this.restWorld[o.name] = o.getWorldQuaternion(new THREE.Quaternion());
   }
   reset() {
     for (const [o, q, p] of this.rest) { o.quaternion.copy(q); o.position.copy(p); }
   }
-  // Rotește osul în jurul unei axe din spațiul lumii, păstrând copiii atașați.
-  rotW(name, axis, angle) {
+  // Aplică o rotație din spațiul lumii (cuaternion) osului, păstrând copiii atașați.
+  rotQ(name, r) {
     const b = this.b[name];
-    if (!b || !angle) return;
+    if (!b) return;
     b.parent.getWorldQuaternion(this._p);
     this._q.copy(this._p).multiply(b.quaternion);
-    this._r.setFromAxisAngle(axis, angle);
-    this._q.premultiply(this._r);
+    this._q.premultiply(r);
     b.quaternion.copy(this._p.invert().multiply(this._q));
+  }
+  // Rotește osul în jurul unei axe din spațiul lumii, păstrând copiii atașați.
+  rotW(name, axis, angle) {
+    if (!this.b[name] || !angle) return;
+    this.rotQ(name, this._r.setFromAxisAngle(axis, angle));
+  }
+  pos(name) { return this.b[name].getWorldPosition(new THREE.Vector3()); }
+  quat(name) { return this.b[name].getWorldQuaternion(new THREE.Quaternion()); }
+  // Pune osul înapoi în orientarea lui de repaus din spațiul lumii (ex. talpa plată pe podea).
+  setRestW(name) {
+    const b = this.b[name];
+    b.parent.getWorldQuaternion(this._p);
+    b.quaternion.copy(this._p.invert().multiply(this.restWorld[name]));
+  }
+  // Rotește osul cel mai scurt drum, ca direcția spre copil să devină `dir` (în lumea reală).
+  aim(name, child, dir) {
+    const cur = this.pos(child).sub(this.pos(name)).normalize();
+    this.rotQ(name, new THREE.Quaternion().setFromUnitVectors(cur, dir.clone().normalize()));
+  }
+  // IK pe două segmente (șold–genunchi–gleznă sau umăr–cot–încheietură). `pole` spune încotro stă articulația din mijloc.
+  ik2(upper, mid, end, target, pole) {
+    const a = this.pos(upper), b = this.pos(mid), c = this.pos(end);
+    const l1 = a.distanceTo(b), l2 = b.distanceTo(c);
+    const dir = target.clone().sub(a);
+    const d = THREE.MathUtils.clamp(dir.length(), Math.abs(l1 - l2) + 1e-3, l1 + l2 - 1e-3);
+    dir.normalize();
+    const x = (l1 * l1 - l2 * l2 + d * d) / (2 * d);
+    const h = Math.sqrt(Math.max(0, l1 * l1 - x * x));
+    const side = pole.clone().addScaledVector(dir, -pole.dot(dir)).normalize();
+    const mp = a.clone().addScaledVector(dir, x).addScaledVector(side, h);
+    this.aim(upper, mid, mp.clone().sub(a));
+    this.aim(mid, end, target.clone().sub(this.pos(mid)));
   }
   // O axă din poza de repaus, dusă în orientarea curentă a osului.
   axis(name, v) {
@@ -80,7 +115,7 @@ const key = new THREE.DirectionalLight(0xffffff, 2.3);
 key.position.set(-2.5, 4.5, 3.2);
 key.castShadow = true;
 key.shadow.mapSize.set(2048, 2048);
-Object.assign(key.shadow.camera, { left: -1.6, right: 1.6, top: 2.2, bottom: -0.6, near: 0.5, far: 12 });
+Object.assign(key.shadow.camera, { left: -1.6, right: 1.6, top: 2.2, bottom: -1.6, near: 0.5, far: 12 });
 key.shadow.bias = -0.0004;
 key.shadow.normalBias = 0.02;
 scene.add(key);
@@ -96,6 +131,15 @@ const ringMat = new THREE.LineBasicMaterial({ transparent: true, opacity: 0.35 }
 const ring = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(
   Array.from({ length: 96 }, (_, i) => new THREE.Vector3(Math.cos(i / 96 * Math.PI * 2) * 0.75, 0.001, Math.sin(i / 96 * Math.PI * 2) * 0.75))), ringMat);
 scene.add(ring);
+// saltea pentru exercițiile făcute la sol
+const MAT_H = 0.03;
+const mat = new THREE.Mesh(new THREE.BoxGeometry(0.78, MAT_H, 2.1),
+  new THREE.MeshStandardMaterial({ color: 0x3c4a55, roughness: 0.92 }));
+mat.position.set(0, MAT_H / 2, 0.1);
+mat.castShadow = true;
+mat.receiveShadow = true;
+mat.visible = false;
+scene.add(mat);
 
 // material manechin, cu evidențierea mușchilor (atribut aMuscle)
 const muscleUniforms = { uAccent: { value: new THREE.Color() }, uIntensity: { value: 0 } };
@@ -170,17 +214,25 @@ async function setModel(name) {
   await setupAnim();
 }
 
+// Evidențierea se calculează din greutățile pielii (`muscleBones`), din poziția vârfului
+// în poza de repaus (`muscleMask(x, y, z)` → 0..1), sau din amândouă înmulțite.
 function paintMuscles() {
-  const weights = state.anim.muscleBones || {};
+  const { muscleBones, muscleMask } = state.anim;
+  const weights = muscleBones || {};
   state.char.traverse((o) => {
     if (!o.isSkinnedMesh) return;
     const g = o.geometry;
-    const idx = g.attributes.skinIndex, wt = g.attributes.skinWeight, out = g.attributes.aMuscle;
+    const idx = g.attributes.skinIndex, wt = g.attributes.skinWeight, pos = g.attributes.position, out = g.attributes.aMuscle;
     const factor = o.skeleton.bones.map((b) => weights[b.name] || 0);
     for (let i = 0; i < out.count; i++) {
-      let s = 0;
-      for (let k = 0; k < 4; k++) s += factor[idx.getComponent(i, k)] * wt.getComponent(i, k);
-      out.array[i] = Math.min(1, s * 1.15);
+      let s = 1;
+      if (muscleBones) {
+        s = 0;
+        for (let k = 0; k < 4; k++) s += factor[idx.getComponent(i, k)] * wt.getComponent(i, k);
+        s = Math.min(1, s * 1.15);
+      }
+      if (muscleMask) s *= muscleMask(pos.getX(i), pos.getY(i), pos.getZ(i));
+      out.array[i] = muscleBones || muscleMask ? s : 0;
     }
     out.needsUpdate = true;
   });
@@ -191,6 +243,8 @@ async function setupAnim() {
   const { rig, anim } = state;
   for (const g of state.gear) g.removeFromParent();
   state.gear = [];
+  mat.visible = !!anim.mat;
+  ring.visible = !anim.mat;
   paintMuscles();
   for (const eq of anim.equipment || []) {
     const gltf = await load(CFG.assets + eq.url);
@@ -224,7 +278,7 @@ const VIEWS = {
 };
 let camTween = null;
 function setView(name, instant) {
-  const v = VIEWS[name] || VIEWS['34'];
+  const v = (state.anim.views && state.anim.views[name]) || VIEWS[name] || VIEWS['34'];
   document.querySelectorAll('[data-view]').forEach((b) => b.classList.toggle('on', b.dataset.view === name));
   const aspect = camera.aspect || 1;
   const narrow = aspect < 0.95;
@@ -256,8 +310,11 @@ function el(tag, cls, text) {
   return e;
 }
 
-function gaugeXY(v, r) {
-  const a = THREE.MathUtils.degToRad(Math.max(-45, Math.min(45, v)) / 45 * 90);
+// Cadran: valoarea v din [lo, hi] se întinde pe semicercul de jos, de la stânga la dreapta.
+function gaugeXY(v, r, g = state.anim.gauge || {}) {
+  const lo = g.lo ?? -45, hi = g.hi ?? 45;
+  const f = Math.max(0, Math.min(1, (v - lo) / (hi - lo)));
+  const a = THREE.MathUtils.degToRad(-90 + f * 180);
   return [100 + r * Math.sin(a), 100 - r * Math.cos(a)];
 }
 
@@ -278,6 +335,9 @@ function renderDetails(ex) {
   if (has && anim.gauge) {
     const [x0, y0] = gaugeXY(anim.gauge.min, 80), [x1, y1] = gaugeXY(anim.gauge.max, 80);
     $('g-range').setAttribute('d', `M${x0.toFixed(1)} ${y0.toFixed(1)} A80 80 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`);
+    const [l, r] = anim.gauge.ends || ['ulnar', 'radial'];
+    $('g-end-l').textContent = l;
+    $('g-end-r').textContent = r;
   }
 
   const steps = $('steps');
@@ -298,7 +358,7 @@ function renderDetails(ex) {
   notice.hidden = has;
   if (!has) {
     notice.replaceChildren(el('strong', null, 'Animația nu e făcută încă'),
-      document.createTextNode(`Deocamdată doar #${DEFAULT_ID} are animație 3D. Manechinul stă în postura de bază.`));
+      document.createTextNode(`Au animație 3D doar ${Object.keys(ANIMATIONS).map((k) => '#' + k).join(' și ')}. Manechinul stă în postura de bază.`));
   }
   $('transport').style.visibility = has ? 'visible' : 'hidden';
 
@@ -320,6 +380,7 @@ function setPlaying(p) {
 async function select(ex, { fromUser = false } = {}) {
   if (!ex) return;
   if (fromUser) state.userPicked = true;
+  const before = state.anim;
   state.ex = ex;
   state.anim = ANIMATIONS[ex[0]] || idle;
   state.t = 0;
@@ -329,7 +390,7 @@ async function select(ex, { fromUser = false } = {}) {
   const want = ex[4] === 'f' ? 'female' : ex[4] === 'm' ? 'male' : state.model;
   if (want !== state.model || !state.rig) await setModel(want);
   else await setupAnim();
-  if (state.anim.camera) setView(state.anim.camera);
+  if (state.anim !== before) setView(state.anim.camera || '34');
 }
 
 // ---------- UI: bibliotecă ----------
@@ -371,7 +432,7 @@ function applyFilter() {
 async function initLibrary() {
   const res = await fetch(CFG.catalog);
   state.list = await res.json();
-  $('count').textContent = `${state.list.length.toLocaleString('ro-RO')} exerciții · ${Object.keys(ANIMATIONS).length} animat`;
+  $('count').textContent = `${state.list.length.toLocaleString('ro-RO')} exerciții · ${Object.keys(ANIMATIONS).length} animate`;
   const bodies = [...new Set(state.list.map((e) => e[3]).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'ro'));
   for (const b of bodies) $('body').append(new Option(b, b));
   $('search').addEventListener('input', applyFilter);
@@ -431,8 +492,9 @@ function frame() {
     if (label !== lastPhase) { $('phase').textContent = label; lastPhase = label; }
     $('reps').textContent = 'rep ' + (Math.floor(state.t / d) + 1);
     if (anim.angle) {
-      const v = anim.angle(u);
-      $('angle').textContent = (v >= 0 ? '+' : '−') + Math.abs(Math.round(v)) + '°';
+      const v = anim.angle(u, state.rig);
+      const signed = anim.gauge.signed !== false;
+      $('angle').textContent = (signed ? (v >= 0 ? '+' : '−') : '') + Math.abs(Math.round(v)) + '°';
       $('angle-label').textContent = anim.gauge.label(v);
       const [x, y] = gaugeXY(v, 74);
       $('g-needle').setAttribute('x2', x.toFixed(1));

@@ -135,4 +135,105 @@ export const ex6268 = {
   },
 };
 
-export const ANIMATIONS = { '6268': ex6268 };
+// 0001 — 3/4 Sit up
+// Culcat pe spate, genunchii îndoiți, tălpile pe saltea, mâinile la ceafă. Trunchiul se
+// rulează în sus cam trei sferturi din drum, ține o clipă, apoi coboară încet.
+const MAT_TOP = 0.03;
+const CURL = [ // [timp în ciclu, îndoire totală a coloanei în grade]
+  [0.00, 0], [0.10, 0],       // culcat
+  [0.40, 128],                // urcare
+  [0.56, 128],                // sus
+  [0.92, 0], [1.00, 0],       // coborâre controlată
+];
+const SMOOTH = (x) => Math.min(1, Math.max(0, x));
+
+function lyingPose(rig, curlDeg, time) {
+  const F = D(curlDeg);
+  const breath = Math.sin(time * Math.PI * 2 / 4.2);
+
+  // culcat pe spate: fața în sus, capul spre −Z, bazinul pe saltea
+  rig.rotW('hips', X, D(-90));
+  rig.b.hips.position.set(0, MAT_TOP + 0.158, 0.16);
+
+  // trunchiul se rulează vertebră cu vertebră; cea mai mare parte a mișcării e în zona lombară
+  rig.rotW('spine', X, F * 0.40);
+  rig.rotW('spine2', X, F * 0.31);
+  rig.rotW('chest', X, F * 0.17 + D(0.8) * breath);
+  rig.rotW('neck', X, F * 0.06);
+  rig.rotW('head', X, F * 0.05 + D(4));
+
+  // picioare: tălpile plate pe saltea, genunchii îndoiți (IK pe șold–genunchi–gleznă)
+  for (const [side, sx] of [['R', -1], ['L', 1]]) {
+    const hip = rig.pos(`${side}_thigh`);
+    const ankle = new THREE.Vector3(hip.x + sx * 0.012, MAT_TOP + 0.108, hip.z + 0.44);
+    rig.ik2(`${side}_thigh`, `${side}_shin`, `${side}_foot`, ankle, new THREE.Vector3(sx * 0.12, 1, 0));
+    rig.setRestW(`${side}_foot`); // talpa rămâne paralelă cu podeaua
+  }
+
+  // mâini la ceafă, coatele larg (IK pe umăr–cot–încheietură)
+  const headQ = rig.quat('head'), chestQ = rig.quat('chest');
+  const headPos = rig.pos('head');
+  const fwd = new THREE.Vector3(0, 0, 1).applyQuaternion(chestQ);
+  for (const [side, sx] of [['R', -1], ['L', 1]]) {
+    const wrist = headPos.clone().add(new THREE.Vector3(sx * 0.118, 0.05, -0.075).applyQuaternion(headQ));
+    const pole = new THREE.Vector3(sx, 0, 0).addScaledVector(fwd, 0.45);
+    rig.ik2(`${side}_upperarm`, `${side}_forearm`, `${side}_hand`, wrist, pole);
+    const mid = headPos.clone().add(new THREE.Vector3(0, 0.04, -0.105).applyQuaternion(headQ));
+    rig.aim(`${side}_hand`, `${side}_grip`, mid.sub(rig.pos(`${side}_hand`)));
+    grip(rig, side, D(-18), -0.4);
+  }
+}
+
+export const ex0001 = {
+  id: '0001',
+  duration: 5.2,
+  mat: true,
+  // abdomenul din față: fâșie centrală (dreptul abdominal) și părțile laterale (oblicii)
+  muscleMask(x, y, z) {
+    const ax = Math.abs(x);
+    const front = SMOOTH((z + 0.01) / 0.05);
+    const band = SMOOTH((y - 1.01) / 0.05) * SMOOTH((1.43 - y) / 0.05);
+    const core = SMOOTH((0.125 - ax) / 0.03);          // dreptul abdominal
+    const flank = 0.45 * SMOOTH((0.21 - ax) / 0.05);   // oblicii
+    return front * band * Math.max(core, flank);
+  },
+  camera: '34',
+  views: {
+    '34': { pos: [-2.9, 1.5, 2.9], target: [0, 0.4, 0.0] },
+    side: { pos: [-4.4, 0.95, 0.15], target: [0, 0.5, 0.1] },
+    front: { pos: [0.1, 1.25, 4.4], target: [0, 0.45, -0.05] },
+  },
+  tags: ['Abdomen', 'Greutatea corpului', 'La sol', 'Cu saltea'],
+  steps: [
+    'Culcă-te pe spate pe saltea, cu genunchii îndoiți și tălpile pe podea, la distanță de fese.',
+    'Pune mâinile la ceafă, cu coatele depărtate. Nu trage de cap cu mâinile.',
+    'Expiră și rulează trunchiul în sus, vertebră cu vertebră, până la aproximativ trei sferturi din drum.',
+    'Ține o clipă sus, cu abdomenul strâns, apoi coboară încet, fără să te lași pe spate dintr-odată.',
+  ],
+  muscles: [
+    ['Drept abdominal', 'p'],
+    ['Oblic extern și intern', 's'],
+    ['Flexori ai șoldului (iliopsoas)', 's'],
+    ['Transvers abdominal (stabilizare)', 's'],
+  ],
+  phases: [
+    { from: 0.00, to: 0.10, label: 'Culcat' },
+    { from: 0.10, to: 0.40, label: 'Urcare · trunchiul se rulează' },
+    { from: 0.40, to: 0.56, label: 'Sus · abdomenul strâns' },
+    { from: 0.56, to: 1.00, label: 'Coborâre controlată' },
+  ],
+  gauge: { lo: 0, hi: 180, min: 0, max: 75, ends: ['podea', ''], signed: false,
+    label: () => 'Trunchi față de podea' },
+  effort(t) { return Math.min(1, 0.3 + keys(CURL, t) / 128 * 0.75); },
+  // unghiul real al liniei șold → gât față de podea, citit din schelet
+  angle(t, rig) {
+    if (!rig) return 0;
+    const h = rig.pos('hips'), n = rig.pos('neck');
+    return THREE.MathUtils.radToDeg(Math.atan2(n.y - h.y, -(n.z - h.z)));
+  },
+  pose(rig, t, time) {
+    lyingPose(rig, keys(CURL, t), time);
+  },
+};
+
+export const ANIMATIONS = { '0001': ex0001, '6268': ex6268 };
