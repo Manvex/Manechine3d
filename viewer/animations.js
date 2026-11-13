@@ -558,20 +558,25 @@ export const ex0006 = {
 };
 
 // 0008 — Alternate Lying Floor Leg Raise
-// (În clip ambele picioare urcă împreună.) Culcat pe spate, brațele pe lângă corp, palmele pe podea.
-// Picioarele întinse și lipite urcă de lângă sol până aproape de verticală; sus, bazinul se rotește
-// ușor și ridică fesele. Apoi picioarele coboară încet, fără să atingă solul.
-const RAISE = [ // [timp în ciclu, cât de sus sunt picioarele, 0..1]
-  [0.00, 0], [0.07, 0],
-  [0.35, 1],
-  [0.55, 1],
-  [0.92, 0], [1.00, 0],
+// Culcat pe spate, brațele pe lângă corp, picioarele întinse. Un picior urcă drept până la verticală,
+// celălalt rămâne întins la câțiva centimetri deasupra solului (călcâiul nu atinge podeaua). Apoi
+// se schimbă. Zona lombară stă lipită de saltea tot timpul; bazinul nu se mișcă.
+const RAISE = [ // profilul unui picior pe jumătate de ciclu: [timp, cât de sus 0..1]
+  [0.00, 0], [0.06, 0],
+  [0.44, 1],
+  [0.56, 1],
+  [0.94, 0], [1.00, 0],
 ];
-const LEG = { low: 20, top: 80, tilt: 10 };   // șold (grade) jos / sus; rotația bazinului sus
+const LEG = { low: 5, top: 88 };   // flexia șoldului: picior „în aer” jos / vertical
+
+// cât de sus e fiecare picior: dreptul în prima jumătate a ciclului, stângul în a doua
+function legRaise(t) {
+  return t < 0.5 ? { R: keys(RAISE, t * 2), L: 0 } : { R: 0, L: keys(RAISE, t * 2 - 1) };
+}
 
 export const ex0008 = {
   id: '0008',
-  duration: 6.0,
+  duration: 5.6,
   mat: true,
   // abdomenul inferior și fața coapselor (flexorii șoldului)
   muscleMask(x, y, z, m) {
@@ -587,54 +592,51 @@ export const ex0008 = {
     side: { pos: [-4.8, 0.95, 0.15], target: [0, 0.6, 0.15] },
     front: { pos: [0.2, 1.4, 4.8], target: [0, 0.55, 0.0] },
   },
-  tags: ['Abdomen', 'Greutatea corpului', 'La sol', 'Cu saltea'],
+  tags: ['Abdomen', 'Greutatea corpului', 'La sol', 'Alternativ'],
   steps: [
-    'Culcă-te pe spate pe saltea, cu brațele pe lângă corp și palmele pe podea. Picioarele sunt întinse și lipite.',
-    'Ridică picioarele drepte, fără să îndoi genunchii, până ajung aproape verticale. Zona lombară rămâne lipită de saltea.',
-    'Ține o clipă sus, rotind ușor bazinul, ca să ridici fesele de pe saltea.',
-    'Coboară picioarele încet, fără să le lași pe podea, și repetă.',
+    'Culcă-te pe spate pe saltea, cu brațele pe lângă corp, palmele pe podea și picioarele întinse.',
+    'Ridică ambele călcâie la câțiva centimetri de podea. Zona lombară rămâne lipită de saltea.',
+    'Ridică un picior întins până la verticală, în timp ce celălalt rămâne jos, în aer, fără să atingă podeaua.',
+    'Coboară piciorul încet până lângă celălalt, apoi ridică piciorul opus. Expiră la urcare, inspiră la coborâre.',
   ],
   muscles: [
     ['Drept abdominal (partea de jos)', 'p'],
     ['Flexori ai șoldului (iliopsoas)', 'p'],
     ['Cvadriceps (drept femural)', 's'],
-    ['Oblic extern și intern (stabilizare)', 's'],
+    ['Transvers abdominal (stabilizare)', 's'],
   ],
   phases: [
-    { from: 0.00, to: 0.07, label: 'Jos · picioarele deasupra solului' },
-    { from: 0.07, to: 0.35, label: 'Ridicare · picioare întinse' },
-    { from: 0.35, to: 0.55, label: 'Sus · bazinul se rotește' },
-    { from: 0.55, to: 0.92, label: 'Coborâre lentă' },
-    { from: 0.92, to: 1.00, label: 'Jos · picioarele deasupra solului' },
+    { from: 0.00, to: 0.22, label: 'Piciorul drept urcă · stângul în aer' },
+    { from: 0.22, to: 0.28, label: 'Piciorul drept vertical' },
+    { from: 0.28, to: 0.50, label: 'Piciorul drept coboară încet' },
+    { from: 0.50, to: 0.72, label: 'Piciorul stâng urcă · dreptul în aer' },
+    { from: 0.72, to: 0.78, label: 'Piciorul stâng vertical' },
+    { from: 0.78, to: 1.00, label: 'Piciorul stâng coboară încet' },
   ],
-  gauge: { lo: 0, hi: 180, min: 18, max: 95, ends: ['podea', ''], signed: false,
-    label: () => 'Picioare față de podea' },
-  effort(t) { return 0.4 + 0.6 * keys(RAISE, t); },
-  // unghiul real al picioarelor față de podea, citit din schelet (șold → gleznă)
+  gauge: { lo: 0, hi: 180, min: 0, max: 92, ends: ['podea', ''], signed: false,
+    label: () => 'Piciorul ridicat față de podea' },
+  effort(t) { const r = legRaise(t); return 0.45 + 0.55 * Math.max(r.R, r.L); },
+  // unghiul real al piciorului care lucrează, citit din schelet (șold → gleznă)
   angle(t, rig) {
     if (!rig) return 0;
-    const h = rig.pos('R_thigh'), f = rig.pos('R_foot');
-    return THREE.MathUtils.radToDeg(Math.atan2(f.y - h.y, f.z - h.z));
+    const side = t < 0.5 ? 'R' : 'L';
+    const h = rig.pos(`${side}_thigh`), f = rig.pos(`${side}_foot`);
+    return Math.max(0, THREE.MathUtils.radToDeg(Math.atan2(f.y - h.y, f.z - h.z)));
   },
   pose(rig, t, time) {
-    const p = keys(RAISE, t);
-    const tilt = D(LEG.tilt) * p * p * p;           // bazinul se rotește doar la capătul mișcării
+    const r = legRaise(t);
     const breath = Math.sin(time * Math.PI * 2 / 4.2);
 
     rig.rotW('hips', X, D(-90));
     rig.b.hips.position.set(0, matHipHeight(rig), 0.16);
-    // bazinul se rotește, dar spatele rămâne pe saltea: coloana compensează
-    rig.rotW('hips', X, -tilt);
-    rig.rotW('spine', X, tilt * 0.6);
-    rig.rotW('spine2', X, tilt * 0.4);
     rig.rotW('chest', X, D(0.6) * breath);
     rig.rotW('head', X, D(3));
 
-    // picioare întinse și lipite: doar flexie la șold
+    // fiecare picior întins: doar flexie la șold, genunchiul aproape drept
     for (const side of ['R', 'L']) {
-      rig.rotW(`${side}_thigh`, Y, D(4.5) * (side === 'R' ? 1 : -1));   // picioarele se strâng, lipite
-      rig.rotW(`${side}_thigh`, X, D(-lerp(LEG.low, LEG.top, p)));
-      rig.rotW(`${side}_shin`, X, D(3));
+      rig.rotW(`${side}_thigh`, Y, D(2.5) * (side === 'R' ? 1 : -1));
+      rig.rotW(`${side}_thigh`, X, D(-lerp(LEG.low, LEG.top, r[side])));
+      rig.rotW(`${side}_shin`, X, D(2));
     }
 
     // brațe pe lângă corp, palmele pe saltea
