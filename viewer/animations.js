@@ -153,6 +153,8 @@ export function handsBehindHead(rig) {
 // Culcat pe spate, genunchii îndoiți, tălpile pe saltea, mâinile la ceafă. Trunchiul se
 // rulează în sus cam trei sferturi din drum, ține o clipă, apoi coboară încet.
 const MAT_TOP = 0.03;
+// bazinul stă pe saltea: spatele (măsurat pe model) atinge suprafața
+const matHipHeight = (rig) => MAT_TOP + rig.info.back + 0.011;
 const CURL = [ // [timp în ciclu, îndoire totală a coloanei în grade]
   [0.00, 0], [0.10, 0],       // culcat
   [0.40, 128],                // urcare
@@ -167,7 +169,7 @@ function lyingPose(rig, curlDeg, time) {
 
   // culcat pe spate: fața în sus, capul spre −Z, bazinul pe saltea
   rig.rotW('hips', X, D(-90));
-  rig.b.hips.position.set(0, MAT_TOP + 0.158, 0.16);
+  rig.b.hips.position.set(0, matHipHeight(rig), 0.16);
 
   // trunchiul se rulează vertebră cu vertebră; cea mai mare parte a mișcării e în zona lombară
   rig.rotW('spine', X, F * 0.40);
@@ -192,10 +194,10 @@ export const ex0001 = {
   duration: 5.2,
   mat: true,
   // abdomenul din față: fâșie centrală (dreptul abdominal) și părțile laterale (oblicii)
-  muscleMask(x, y, z) {
-    const ax = Math.abs(x);
+  muscleMask(x, y, z, m) {
+    const ax = Math.abs(x) / m.w, u = (y - m.hipsY) / m.L;   // u: 0 la șold, 1 la gât
     const front = SMOOTH((z + 0.01) / 0.05);
-    const band = SMOOTH((y - 1.01) / 0.05) * SMOOTH((1.43 - y) / 0.05);
+    const band = SMOOTH((u + 0.045) / 0.1) * SMOOTH((0.777 - u) / 0.1);
     const core = SMOOTH((0.125 - ax) / 0.03);          // dreptul abdominal
     const flank = 0.45 * SMOOTH((0.21 - ax) / 0.05);   // oblicii
     return front * band * Math.max(core, flank);
@@ -249,8 +251,9 @@ const BENCH_N = new THREE.Vector3(0, Math.SQRT1_2, Math.SQRT1_2);     // normala
 const LYING_SIDE_Q = new THREE.Quaternion().setFromRotationMatrix(
   new THREE.Matrix4().makeBasis(BENCH_N.clone().negate(), BENCH_UP, new THREE.Vector3(1, 0, 0)));
 const BENCH_PAD = new THREE.Vector3(0, 0.86, 0.019);                  // `anchor_hip_pad` din modelul băncii
-const HIP_OFFSET = 0.17;                                              // jumătate din lățimea bazinului
-const FOOT_SLIDE = -0.056;                                            // placa pentru tălpi, de-a lungul șinei
+const HIP_OFFSET = 0.17;                                              // jumătate din lățimea bazinului (manechin bărbat)
+const FOOT_SLIDE = -0.056;                                            // placa pentru tălpi, de-a lungul șinei (manechin bărbat)
+const MALE_HIPS_Y = 1.033;
 
 const BEND = [ // [timp în ciclu, îndoire laterală în grade; − spre bancă, + în sus]
   [0.00, -34], [0.14, -34],
@@ -267,15 +270,17 @@ export const ex0002 = {
     url: 'echipamente/glb/hyperextension_45.glb',
     attach: null,
     finish: 'bench',
-    adjust(obj) {
-      obj.getObjectByName('joint_foot_adjust')?.position.addScaledVector(BENCH_UP, FOOT_SLIDE);
+    // placa pentru tălpi se mută după lungimea piciorului: un picior mai scurt cere placa mai sus pe șină
+    adjust(obj, rig) {
+      obj.getObjectByName('joint_foot_adjust')?.position
+        .addScaledVector(BENCH_UP, FOOT_SLIDE + (MALE_HIPS_Y - rig.info.hipsY));
     },
   }],
   // flancurile: oblicii în față și pe lateral, ușor și dreptul abdominal
-  muscleMask(x, y, z) {
-    const ax = Math.abs(x);
+  muscleMask(x, y, z, m) {
+    const ax = Math.abs(x) / m.w, u = (y - m.hipsY) / m.L;
     const front = SMOOTH((z + 0.05) / 0.06);
-    const band = SMOOTH((y - 1.02) / 0.05) * SMOOTH((1.40 - y) / 0.05);
+    const band = SMOOTH((u + 0.025) / 0.1) * SMOOTH((0.72 - u) / 0.1);
     const flank = SMOOTH((ax - 0.06) / 0.04) * SMOOTH((0.25 - ax) / 0.04);
     const core = 0.3 * SMOOTH((0.1 - ax) / 0.03);
     return front * band * Math.max(flank, core);
@@ -316,7 +321,7 @@ export const ex0002 = {
     // pe bancă: șoldul pe pad, corpul pe șină
     rig.setW('hips', LYING_SIDE_Q);
     rig.b.hips.position.copy(BENCH_PAD)
-      .addScaledVector(BENCH_N, HIP_OFFSET)
+      .addScaledVector(BENCH_N, HIP_OFFSET * rig.info.w)
       .addScaledVector(BENCH_UP, 0.057);
     // îndoire laterală în jurul axei înainte a persoanei (+X în lume)
     rig.rotW('spine', X, a * 0.36);
@@ -383,7 +388,7 @@ export const ex0003 = {
     const breath = Math.sin(time * Math.PI * 2 / 4.2);
 
     rig.rotW('hips', X, D(-90));
-    rig.b.hips.position.set(0, MAT_TOP + 0.158, 0.16);
+    rig.b.hips.position.set(0, matHipHeight(rig), 0.16);
 
     // trunchi: rulare + răsucire în jurul axei lungi, repartizate pe coloană
     for (const [bone, kf, kt] of [['spine', 0.34, 0.18], ['spine2', 0.30, 0.32], ['chest', 0.24, 0.38], ['neck', 0.07, 0.12], ['head', 0.05, 0]]) {
@@ -402,4 +407,74 @@ export const ex0003 = {
   },
 };
 
-export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '0003': ex0003, '6268': ex6268 };
+// 0004 — Air Twisting Crunch (female)
+// Culcată pe spate, mâinile la ceafă, picioarele ridicate de la sol cu genunchii îndoiți.
+// Genunchii vin spre piept în timp ce trunchiul se rulează și se răsucește, o dată spre o parte,
+// apoi spre cealaltă. Picioarele rămân împreună.
+const TWIST = { hipLow: 50, hipHigh: 96, kneeLow: 88, kneeHigh: 92, flexLow: 14, flexHigh: 60, twist: 34 };
+const CRUNCH = [[0, 0], [0.30, 1], [0.70, 1], [1, 0]];   // profilul unei repetări: urcare, sus, coborâre
+
+// gradul de crunch (0..1) și semnul răsucirii pentru momentul t din ciclu (două repetări, în oglindă)
+function twistState(t) {
+  const half = t < 0.5 ? 0 : 1;
+  const k = keys(CRUNCH, (t - half * 0.5) * 2);
+  return { k, side: half === 0 ? 1 : -1 };
+}
+
+export const ex0004 = {
+  id: '0004',
+  duration: 8.2,
+  mat: true,
+  muscleMask: ex0001.muscleMask,
+  camera: '34',
+  views: ex0003.views,
+  tags: ['Abdomen', 'Oblici', 'Greutatea corpului', 'Cu saltea'],
+  steps: [
+    'Culcă-te pe spate pe saltea, cu mâinile la ceafă și coatele depărtate. Ridică picioarele de la sol, cu genunchii îndoiți.',
+    'Expiră și rulează trunchiul în sus, apropiind în același timp genunchii de piept.',
+    'Răsucește trunchiul spre o parte, ca să apropii cotul de genunchiul opus. Ține o clipă.',
+    'Coboară controlat, fără să lași picioarele pe sol. Repetă spre cealaltă parte.',
+  ],
+  muscles: [
+    ['Oblic extern și intern', 'p'],
+    ['Drept abdominal', 'p'],
+    ['Flexori ai șoldului (iliopsoas)', 's'],
+    ['Cvadriceps (drept femural)', 's'],
+  ],
+  phases: [
+    { from: 0.00, to: 0.15, label: 'Urcare · răsucire spre dreapta' },
+    { from: 0.15, to: 0.35, label: 'Sus · genunchii la piept' },
+    { from: 0.35, to: 0.50, label: 'Coborâre controlată' },
+    { from: 0.50, to: 0.65, label: 'Urcare · răsucire spre stânga' },
+    { from: 0.65, to: 0.85, label: 'Sus · genunchii la piept' },
+    { from: 0.85, to: 1.00, label: 'Coborâre controlată' },
+  ],
+  gauge: { lo: -45, hi: 45, min: -TWIST.twist, max: TWIST.twist, ends: ['stânga', 'dreapta'],
+    label: (v) => 'Răsucire spre ' + (v >= 0 ? 'dreapta' : 'stânga') },
+  effort(t) { return 0.35 + 0.65 * twistState(t).k; },
+  angle(t) { const { k, side } = twistState(t); return TWIST.twist * side * k; },
+  pose(rig, t, time) {
+    const { k, side } = twistState(t);
+    const F = D(lerp(TWIST.flexLow, TWIST.flexHigh, k));
+    const psi = D(-TWIST.twist * side * k);
+    const breath = Math.sin(time * Math.PI * 2 / 4.2);
+
+    rig.rotW('hips', X, D(-90));
+    rig.b.hips.position.set(0, matHipHeight(rig), 0.16);
+
+    for (const [bone, kf, kt] of [['spine', 0.34, 0.18], ['spine2', 0.30, 0.32], ['chest', 0.24, 0.38], ['neck', 0.07, 0.12], ['head', 0.05, 0]]) {
+      rig.rotW(bone, X, F * kf + (bone === 'chest' ? D(0.6) * breath : 0));
+      rig.rotW(bone, rig.axis(bone, Y), psi * kt);
+    }
+
+    // ambele picioare împreună: genunchii se apropie de piept, gambele rămân aproape orizontale
+    for (const side of ['R', 'L']) {
+      rig.rotW(`${side}_thigh`, X, D(-lerp(TWIST.hipLow, TWIST.hipHigh, k)));
+      rig.rotW(`${side}_shin`, X, D(lerp(TWIST.kneeLow, TWIST.kneeHigh, k)));
+    }
+
+    handsBehindHead(rig);
+  },
+};
+
+export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '0003': ex0003, '0004': ex0004, '6268': ex6268 };

@@ -16,12 +16,16 @@ class Rig {
     this.root = root;
     this.b = {};
     this.rest = [];
+    // Scena din cache e refolosită la fiecare schimbare de manechin: poza de repaus se salvează
+    // o singură dată și se reia de fiecare dată, ca să nu devină „repaus” ultima poză animată.
+    const saved = root.userData.restPose || (root.userData.restPose = {});
     root.traverse((o) => {
-      if (o.isBone) {
-        this.b[o.name] = o;
-        this.rest.push([o, o.quaternion.clone(), o.position.clone()]);
-      }
+      if (!o.isBone) return;
+      this.b[o.name] = o;
+      const s = saved[o.name] || (saved[o.name] = [o.quaternion.clone(), o.position.clone()]);
+      this.rest.push([o, s[0], s[1]]);
     });
+    this.reset();
     this._q = new THREE.Quaternion();
     this._p = new THREE.Quaternion();
     this._r = new THREE.Quaternion();
@@ -29,6 +33,26 @@ class Rig {
     root.updateMatrixWorld(true);
     this.restWorld = {};
     for (const [o] of this.rest) this.restWorld[o.name] = o.getWorldQuaternion(new THREE.Quaternion());
+    this.info = this.measure();
+  }
+  // Repere ale corpului în poza de repaus, ca animațiile să se adapteze la proporții diferite.
+  measure() {
+    const P = (n) => this.pos(n);
+    const hips = P('hips'), neck = P('neck');
+    let backZ = Infinity;
+    this.root.traverse((o) => {
+      if (!o.isSkinnedMesh || o.geometry.attributes.position.count < 2000) return;
+      const pos = o.geometry.attributes.position;
+      for (let i = 0; i < pos.count; i++) {
+        if (Math.abs(pos.getY(i) - hips.y) < 0.1 && Math.abs(pos.getX(i)) < 0.2) backZ = Math.min(backZ, pos.getZ(i));
+      }
+    });
+    return {
+      hipsY: hips.y,                          // înălțimea șoldului în picioare = lungimea piciorului până la talpă
+      L: neck.y - hips.y,                     // șold → gât
+      w: Math.abs(P('R_thigh').x) / 0.106,    // lățimea bazinului față de manechinul bărbat
+      back: hips.z - backZ,                   // cât iese spatele în spatele nodului șoldului
+    };
   }
   reset() {
     for (const [o, q, p] of this.rest) { o.quaternion.copy(q); o.position.copy(p); }
@@ -237,7 +261,7 @@ function paintMuscles() {
         for (let k = 0; k < 4; k++) s += factor[idx.getComponent(i, k)] * wt.getComponent(i, k);
         s = Math.min(1, s * 1.15);
       }
-      if (muscleMask) s *= muscleMask(pos.getX(i), pos.getY(i), pos.getZ(i));
+      if (muscleMask) s *= muscleMask(pos.getX(i), pos.getY(i), pos.getZ(i), state.rig.info);
       out.array[i] = muscleBones || muscleMask ? s : 0;
     }
     out.needsUpdate = true;
@@ -275,7 +299,7 @@ async function setupAnim() {
     });
     // echipament fix în scenă (banc, aparat): fără atașare la un os
     if (!eq.attach) {
-      if (eq.adjust) eq.adjust(obj);
+      if (eq.adjust) eq.adjust(obj, rig);
       scene.add(obj);
       state.gear.push(obj);
       continue;
