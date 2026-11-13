@@ -163,6 +163,20 @@ const CURL = [ // [timp în ciclu, îndoire totală a coloanei în grade]
 ];
 const SMOOTH = (x) => Math.min(1, Math.max(0, x));
 
+// Tălpile plate pe saltea, genunchii îndoiți: IK pe șold–genunchi–gleznă. `dz` = cât în fața șoldului stau gleznele.
+// Întoarce pozițiile gleznelor, ca mâinile să poată ajunge la călcâie.
+function feetOnMat(rig, dz) {
+  const ankles = {};
+  for (const [side, sx] of [['R', -1], ['L', 1]]) {
+    const hip = rig.pos(`${side}_thigh`);
+    const ankle = new THREE.Vector3(hip.x + sx * 0.012, MAT_TOP + rig.info.ankleY + 0.003, hip.z + dz);
+    rig.ik2(`${side}_thigh`, `${side}_shin`, `${side}_foot`, ankle, new THREE.Vector3(sx * 0.12, 1, 0));
+    rig.setRestW(`${side}_foot`); // talpa rămâne paralelă cu podeaua
+    ankles[side] = ankle;
+  }
+  return ankles;
+}
+
 function lyingPose(rig, curlDeg, time) {
   const F = D(curlDeg);
   const breath = Math.sin(time * Math.PI * 2 / 4.2);
@@ -178,13 +192,8 @@ function lyingPose(rig, curlDeg, time) {
   rig.rotW('neck', X, F * 0.06);
   rig.rotW('head', X, F * 0.05 + D(4));
 
-  // picioare: tălpile plate pe saltea, genunchii îndoiți (IK pe șold–genunchi–gleznă)
-  for (const [side, sx] of [['R', -1], ['L', 1]]) {
-    const hip = rig.pos(`${side}_thigh`);
-    const ankle = new THREE.Vector3(hip.x + sx * 0.012, MAT_TOP + 0.108, hip.z + 0.44);
-    rig.ik2(`${side}_thigh`, `${side}_shin`, `${side}_foot`, ankle, new THREE.Vector3(sx * 0.12, 1, 0));
-    rig.setRestW(`${side}_foot`); // talpa rămâne paralelă cu podeaua
-  }
+  // picioare: tălpile plate pe saltea, genunchii îndoiți
+  feetOnMat(rig, 0.44);
 
   handsBehindHead(rig);
 }
@@ -477,4 +486,75 @@ export const ex0004 = {
   },
 };
 
-export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '0003': ex0003, '0004': ex0004, '6268': ex6268 };
+// 0006 — Alternate Heel Touchers
+// Culcat pe spate, genunchii îndoiți, tălpile pe saltea, brațele pe lângă corp. Umerii stau ușor
+// ridicați, iar trunchiul se îndoaie lateral, pe rând spre fiecare parte, ca mâna să alunece
+// spre călcâiul de pe aceeași parte.
+const HEEL = { flex: 26, lateral: 36 };
+const HEEL_LAT = (t) => Math.sin(Math.PI * 2 * t);   // + spre dreapta, − spre stânga
+
+export const ex0006 = {
+  id: '0006',
+  duration: 6.4,
+  mat: true,
+  muscleMask: ex0002.muscleMask,
+  camera: '34',
+  views: {
+    '34': { pos: [-2.8, 1.9, 3.0], target: [0, 0.35, 0.1] },
+    side: { pos: [-4.6, 1.0, 0.2], target: [0, 0.4, 0.15] },
+    front: { pos: [0.2, 2.3, 3.9], target: [0, 0.3, -0.05] },
+  },
+  tags: ['Abdomen', 'Oblici', 'Greutatea corpului', 'Cu saltea'],
+  steps: [
+    'Culcă-te pe spate pe saltea, cu genunchii îndoiți și tălpile pe podea, brațele întinse pe lângă corp.',
+    'Ridică ușor umerii de pe saltea și ține abdomenul încordat.',
+    'Îndoaie trunchiul lateral și alunecă mâna spre călcâiul de pe aceeași parte.',
+    'Revino prin centru și repetă spre cealaltă parte. Umerii nu ating salteaua între repetări.',
+  ],
+  muscles: [
+    ['Oblic extern și intern', 'p'],
+    ['Pătrat lombar', 's'],
+    ['Drept abdominal', 's'],
+  ],
+  phases: [
+    { from: 0.00, to: 0.10, label: 'Trecere prin centru' },
+    { from: 0.10, to: 0.40, label: 'Spre dreapta · mâna spre călcâi' },
+    { from: 0.40, to: 0.60, label: 'Trecere prin centru' },
+    { from: 0.60, to: 0.90, label: 'Spre stânga · mâna spre călcâi' },
+    { from: 0.90, to: 1.00, label: 'Trecere prin centru' },
+  ],
+  gauge: { lo: -45, hi: 45, min: -HEEL.lateral, max: HEEL.lateral, ends: ['stânga', 'dreapta'],
+    label: (v) => 'Îndoire spre ' + (v >= 0 ? 'dreapta' : 'stânga') },
+  effort(t) { return 0.4 + 0.6 * Math.abs(HEEL_LAT(t)); },
+  angle(t) { return HEEL.lateral * HEEL_LAT(t); },
+  pose(rig, t, time) {
+    const lat = HEEL_LAT(t);
+    const F = D(HEEL.flex);
+    const theta = D(HEEL.lateral * lat);
+    const breath = Math.sin(time * Math.PI * 2 / 4.2);
+
+    rig.rotW('hips', X, D(-90));
+    rig.b.hips.position.set(0, matHipHeight(rig), 0.16);
+
+    // umerii ridicați + îndoire laterală în jurul axei „înainte” a trunchiului (+ = spre dreapta)
+    for (const [bone, kf, kl] of [['spine', 0.34, 0.30], ['spine2', 0.30, 0.34], ['chest', 0.24, 0.26], ['neck', 0.07, 0.07], ['head', 0.05, 0.03]]) {
+      rig.rotW(bone, X, F * kf + (bone === 'chest' ? D(0.6) * breath : 0));
+      rig.rotW(bone, rig.axis(bone, Z), theta * kl);
+    }
+
+    const ankles = feetOnMat(rig, 0.34);
+
+    // brațe pe lângă corp; mâna de pe partea îndoită alunecă spre călcâi
+    const hips = rig.pos('hips');
+    for (const [side, sx] of [['R', -1], ['L', 1]]) {
+      const w = smooth(Math.max(0, sx === -1 ? lat : -lat));
+      const rest = new THREE.Vector3(hips.x + sx * 0.2 * rig.info.w, MAT_TOP + 0.05, hips.z + 0.1);
+      const heel = new THREE.Vector3(ankles[side].x + sx * 0.1, MAT_TOP + 0.06, ankles[side].z - 0.1);
+      const target = rest.lerp(heel, w);
+      rig.ik2(`${side}_upperarm`, `${side}_forearm`, `${side}_hand`, target, new THREE.Vector3(sx, 0.6, 0));
+      grip(rig, side, D(-38), -0.8);
+    }
+  },
+};
+
+export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '0003': ex0003, '0004': ex0004, '0006': ex0006, '6268': ex6268 };

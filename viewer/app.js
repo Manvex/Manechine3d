@@ -52,6 +52,7 @@ class Rig {
       L: neck.y - hips.y,                     // șold → gât
       w: Math.abs(P('R_thigh').x) / 0.106,    // lățimea bazinului față de manechinul bărbat
       back: hips.z - backZ,                   // cât iese spatele în spatele nodului șoldului
+      ankleY: P('R_foot').y,                  // înălțimea gleznei deasupra tălpii, în picioare
     };
   }
   reset() {
