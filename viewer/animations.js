@@ -417,46 +417,45 @@ export const ex0003 = {
 };
 
 // 0004 — Air Twisting Crunch (female)
-// Culcată pe spate, mâinile la ceafă, picioarele ridicate de la sol cu genunchii îndoiți.
-// Genunchii vin spre piept în timp ce trunchiul se rulează și se răsucește, o dată spre o parte,
-// apoi spre cealaltă. Picioarele rămân împreună.
-const TWIST = { hipLow: 50, hipHigh: 96, kneeLow: 88, kneeHigh: 92, flexLow: 14, flexHigh: 60, twist: 34 };
-const CRUNCH = [[0, 0], [0.30, 1], [0.70, 1], [1, 0]];   // profilul unei repetări: urcare, sus, coborâre
+// Culcată pe spate, genunchii îndoiți, ambele tălpi pe saltea, mâinile la ceafă. La fiecare repetare
+// un picior se ridică (genunchiul spre piept, gamba orizontală) în timp ce trunchiul se rulează și
+// se răsucește, ca cotul opus să vină spre genunchi. Cealaltă talpă rămâne pe saltea. Apoi coboară
+// și se repetă cu celălalt picior.
+const TWIST = { flexLow: 6, flexHigh: 56, twist: 32, plantDz: 0.42, cross: 0.1 };
+const CRUNCH = [[0, 0], [0.06, 0], [0.34, 1], [0.6, 1], [0.92, 0], [1, 0]];   // o repetare
 
-// gradul de crunch (0..1) și semnul răsucirii pentru momentul t din ciclu (două repetări, în oglindă)
+// gradul de crunch (0..1) și partea: +1 = genunchiul drept urcă, −1 = genunchiul stâng
 function twistState(t) {
   const half = t < 0.5 ? 0 : 1;
-  const k = keys(CRUNCH, (t - half * 0.5) * 2);
-  return { k, side: half === 0 ? 1 : -1 };
+  return { k: keys(CRUNCH, (t - half * 0.5) * 2), side: half === 0 ? 1 : -1 };
 }
 
 export const ex0004 = {
   id: '0004',
-  duration: 8.2,
+  duration: 7.0,
   mat: true,
-  muscleMask: ex0001.muscleMask,
+  muscleMask: ex0002.muscleMask,
   camera: '34',
   views: ex0003.views,
   tags: ['Abdomen', 'Oblici', 'Greutatea corpului', 'Cu saltea'],
   steps: [
-    'Culcă-te pe spate pe saltea, cu mâinile la ceafă și coatele depărtate. Ridică picioarele de la sol, cu genunchii îndoiți.',
-    'Expiră și rulează trunchiul în sus, apropiind în același timp genunchii de piept.',
-    'Răsucește trunchiul spre o parte, ca să apropii cotul de genunchiul opus. Ține o clipă.',
-    'Coboară controlat, fără să lași picioarele pe sol. Repetă spre cealaltă parte.',
+    'Culcă-te pe spate pe saltea, cu genunchii îndoiți și tălpile pe podea. Mâinile stau ușor la ceafă, coatele depărtate.',
+    'Expiră și ridică un picior, cu genunchiul spre piept și gamba paralelă cu podeaua. În același timp rulează umerii de pe saltea.',
+    'Răsucește trunchiul ca să apropii cotul opus de genunchiul ridicat. Ține o clipă, fără să tragi de gât.',
+    'Coboară controlat, cu talpa înapoi pe saltea. Repetă cu celălalt picior și răsucire spre cealaltă parte.',
   ],
   muscles: [
     ['Oblic extern și intern', 'p'],
-    ['Drept abdominal', 'p'],
+    ['Drept abdominal', 's'],
     ['Flexori ai șoldului (iliopsoas)', 's'],
-    ['Cvadriceps (drept femural)', 's'],
   ],
   phases: [
-    { from: 0.00, to: 0.15, label: 'Urcare · răsucire spre dreapta' },
-    { from: 0.15, to: 0.35, label: 'Sus · genunchii la piept' },
-    { from: 0.35, to: 0.50, label: 'Coborâre controlată' },
-    { from: 0.50, to: 0.65, label: 'Urcare · răsucire spre stânga' },
-    { from: 0.65, to: 0.85, label: 'Sus · genunchii la piept' },
-    { from: 0.85, to: 1.00, label: 'Coborâre controlată' },
+    { from: 0.00, to: 0.17, label: 'Urcare · genunchiul drept spre cotul stâng' },
+    { from: 0.17, to: 0.30, label: 'Sus · cot la genunchi' },
+    { from: 0.30, to: 0.50, label: 'Coborâre · talpa înapoi pe saltea' },
+    { from: 0.50, to: 0.67, label: 'Urcare · genunchiul stâng spre cotul drept' },
+    { from: 0.67, to: 0.80, label: 'Sus · cot la genunchi' },
+    { from: 0.80, to: 1.00, label: 'Coborâre · talpa înapoi pe saltea' },
   ],
   gauge: { lo: -45, hi: 45, min: -TWIST.twist, max: TWIST.twist, ends: ['stânga', 'dreapta'],
     label: (v) => 'Răsucire spre ' + (v >= 0 ? 'dreapta' : 'stânga') },
@@ -476,10 +475,24 @@ export const ex0004 = {
       rig.rotW(bone, rig.axis(bone, Y), psi * kt);
     }
 
-    // ambele picioare împreună: genunchii se apropie de piept, gambele rămân aproape orizontale
-    for (const side of ['R', 'L']) {
-      rig.rotW(`${side}_thigh`, X, D(-lerp(TWIST.hipLow, TWIST.hipHigh, k)));
-      rig.rotW(`${side}_shin`, X, D(lerp(TWIST.kneeLow, TWIST.kneeHigh, k)));
+    // picioare: amândouă pe saltea; piciorul care lucrează urcă spre piept și trece ușor spre mijloc
+    const lift = side === 1 ? 'R' : 'L';
+    for (const [s, sx] of [['R', -1], ['L', 1]]) {
+      const hip = rig.pos(`${s}_thigh`);
+      const planted = new THREE.Vector3(hip.x + sx * 0.012, MAT_TOP + rig.info.ankleY + 0.003, hip.z + TWIST.plantDz);
+      const w = s === lift ? smooth(k) : 0;
+      let target = planted, pole = new THREE.Vector3(sx * 0.12, 1, 0);
+      if (w > 0) {
+        const l1 = hip.distanceTo(rig.pos(`${s}_shin`)), l2 = rig.pos(`${s}_shin`).distanceTo(rig.pos(`${s}_foot`));
+        // sus: coapsa verticală, gamba orizontală, genunchiul ușor spre mijloc
+        const air = new THREE.Vector3(hip.x - sx * TWIST.cross, hip.y + 0.92 * l1, hip.z + 0.95 * l2);
+        target = planted.clone().lerp(air, w);
+        pole = pole.lerp(new THREE.Vector3(-sx * 0.2, 1, -0.4), w);
+      }
+      rig.ik2(`${s}_thigh`, `${s}_shin`, `${s}_foot`, target, pole);
+      // talpa plată pe saltea; în aer laba urmează gamba
+      const qFoot = rig.restWorld[`${s}_foot`].clone().slerp(rig.quat(`${s}_foot`), w);
+      rig.setW(`${s}_foot`, qFoot);
     }
 
     handsBehindHead(rig);
