@@ -557,4 +557,94 @@ export const ex0006 = {
   },
 };
 
-export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '0003': ex0003, '0004': ex0004, '0006': ex0006, '6268': ex6268 };
+// 0008 — Alternate Lying Floor Leg Raise
+// (În clip ambele picioare urcă împreună.) Culcat pe spate, brațele pe lângă corp, palmele pe podea.
+// Picioarele întinse și lipite urcă de lângă sol până aproape de verticală; sus, bazinul se rotește
+// ușor și ridică fesele. Apoi picioarele coboară încet, fără să atingă solul.
+const RAISE = [ // [timp în ciclu, cât de sus sunt picioarele, 0..1]
+  [0.00, 0], [0.07, 0],
+  [0.35, 1],
+  [0.55, 1],
+  [0.92, 0], [1.00, 0],
+];
+const LEG = { low: 20, top: 80, tilt: 10 };   // șold (grade) jos / sus; rotația bazinului sus
+
+export const ex0008 = {
+  id: '0008',
+  duration: 6.0,
+  mat: true,
+  // abdomenul inferior și fața coapselor (flexorii șoldului)
+  muscleMask(x, y, z, m) {
+    const ax = Math.abs(x) / m.w, u = (y - m.hipsY) / m.L;
+    const s = m.hipsY / 1.033;
+    const absLow = SMOOTH((z + 0.01) / 0.05) * SMOOTH((u + 0.045) / 0.1) * SMOOTH((0.42 - u) / 0.12) * SMOOTH((0.2 - ax) / 0.05);
+    const thigh = 0.8 * SMOOTH((z - 0.02) / 0.04) * SMOOTH((m.hipsY - 0.03 - y) / 0.04) * SMOOTH((y - (m.hipsY - 0.5 * s)) / 0.06) * SMOOTH((0.22 - ax) / 0.05);
+    return Math.max(absLow, thigh);
+  },
+  camera: '34',
+  views: {
+    '34': { pos: [-3.5, 1.6, 2.7], target: [0, 0.55, 0.15] },
+    side: { pos: [-4.8, 0.95, 0.15], target: [0, 0.6, 0.15] },
+    front: { pos: [0.2, 1.4, 4.8], target: [0, 0.55, 0.0] },
+  },
+  tags: ['Abdomen', 'Greutatea corpului', 'La sol', 'Cu saltea'],
+  steps: [
+    'Culcă-te pe spate pe saltea, cu brațele pe lângă corp și palmele pe podea. Picioarele sunt întinse și lipite.',
+    'Ridică picioarele drepte, fără să îndoi genunchii, până ajung aproape verticale. Zona lombară rămâne lipită de saltea.',
+    'Ține o clipă sus, rotind ușor bazinul, ca să ridici fesele de pe saltea.',
+    'Coboară picioarele încet, fără să le lași pe podea, și repetă.',
+  ],
+  muscles: [
+    ['Drept abdominal (partea de jos)', 'p'],
+    ['Flexori ai șoldului (iliopsoas)', 'p'],
+    ['Cvadriceps (drept femural)', 's'],
+    ['Oblic extern și intern (stabilizare)', 's'],
+  ],
+  phases: [
+    { from: 0.00, to: 0.07, label: 'Jos · picioarele deasupra solului' },
+    { from: 0.07, to: 0.35, label: 'Ridicare · picioare întinse' },
+    { from: 0.35, to: 0.55, label: 'Sus · bazinul se rotește' },
+    { from: 0.55, to: 0.92, label: 'Coborâre lentă' },
+    { from: 0.92, to: 1.00, label: 'Jos · picioarele deasupra solului' },
+  ],
+  gauge: { lo: 0, hi: 180, min: 18, max: 95, ends: ['podea', ''], signed: false,
+    label: () => 'Picioare față de podea' },
+  effort(t) { return 0.4 + 0.6 * keys(RAISE, t); },
+  // unghiul real al picioarelor față de podea, citit din schelet (șold → gleznă)
+  angle(t, rig) {
+    if (!rig) return 0;
+    const h = rig.pos('R_thigh'), f = rig.pos('R_foot');
+    return THREE.MathUtils.radToDeg(Math.atan2(f.y - h.y, f.z - h.z));
+  },
+  pose(rig, t, time) {
+    const p = keys(RAISE, t);
+    const tilt = D(LEG.tilt) * p * p * p;           // bazinul se rotește doar la capătul mișcării
+    const breath = Math.sin(time * Math.PI * 2 / 4.2);
+
+    rig.rotW('hips', X, D(-90));
+    rig.b.hips.position.set(0, matHipHeight(rig), 0.16);
+    // bazinul se rotește, dar spatele rămâne pe saltea: coloana compensează
+    rig.rotW('hips', X, -tilt);
+    rig.rotW('spine', X, tilt * 0.6);
+    rig.rotW('spine2', X, tilt * 0.4);
+    rig.rotW('chest', X, D(0.6) * breath);
+    rig.rotW('head', X, D(3));
+
+    // picioare întinse și lipite: doar flexie la șold
+    for (const side of ['R', 'L']) {
+      rig.rotW(`${side}_thigh`, Y, D(4.5) * (side === 'R' ? 1 : -1));   // picioarele se strâng, lipite
+      rig.rotW(`${side}_thigh`, X, D(-lerp(LEG.low, LEG.top, p)));
+      rig.rotW(`${side}_shin`, X, D(3));
+    }
+
+    // brațe pe lângă corp, palmele pe saltea
+    const hips = rig.pos('hips');
+    for (const [side, sx] of [['R', -1], ['L', 1]]) {
+      const target = new THREE.Vector3(hips.x + sx * 0.22 * rig.info.w, MAT_TOP + 0.045, hips.z + 0.2);
+      rig.ik2(`${side}_upperarm`, `${side}_forearm`, `${side}_hand`, target, new THREE.Vector3(sx * 0.3, 1, 0));
+      grip(rig, side, D(-38), -0.8);
+    }
+  },
+};
+
+export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '0003': ex0003, '0004': ex0004, '0006': ex0006, '0008': ex0008, '6268': ex6268 };
