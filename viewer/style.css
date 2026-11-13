@@ -198,3 +198,5 @@ video { width: 100%; border-radius: 8px; background: #fff; border: 1px solid var
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+.list .b3d.auto { color: var(--muted); }

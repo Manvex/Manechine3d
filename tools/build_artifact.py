@@ -23,7 +23,7 @@ page = f"""<title>Manechin 3D</title>
 </script>
 {body}"""
 open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
-for f in ["app.js", "animations.js", "exercises.json"]:
+for f in ["app.js", "animations.js", "mocap.js", "exercises.json"]:
     shutil.copy(os.path.join(V, f), out)
 # Artifact-ele nu servesc .glb: modelele merg ca text base64, decodate in browser.
 for f in ["male-actual.glb", "female-actual.glb", "echipamente/glb/ez_bar_olympic.glb",
@@ -31,3 +31,13 @@ for f in ["male-actual.glb", "female-actual.glb", "echipamente/glb/ez_bar_olympi
     data = base64.b64encode(open(os.path.join(ROOT, f), "rb").read())
     open(os.path.join(out, f + ".txt"), "wb").write(data)
 print("ok", out)
+
+# mișcările extrase automat: index + bucăți gzip, tot ca text base64
+M = os.path.join(V, "mocap")
+if os.path.isdir(M):
+    os.makedirs(os.path.join(out, "mocap"), exist_ok=True)
+    shutil.copy(os.path.join(M, "index.json"), os.path.join(out, "mocap"))
+    for f in sorted(os.listdir(M)):
+        if f.endswith(".dat"):
+            data = base64.b64encode(open(os.path.join(M, f), "rb").read())
+            open(os.path.join(out, "mocap", f + ".txt"), "wb").write(data)

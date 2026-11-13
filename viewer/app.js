@@ -2,9 +2,12 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { ANIMATIONS, idle } from './animations.js';
+import { loadIndex, loadMocap } from './mocap.js';
 
-const CFG = Object.assign({ assets: '../', clips: null, catalog: 'exercises.json' }, window.MANECHIN || {});
+const CFG = Object.assign({ assets: '../', clips: null, catalog: 'exercises.json', mocap: 'mocap/' }, window.MANECHIN || {});
 const MODELS = { male: 'male-actual.glb', female: 'female-actual.glb' };
+let mocapClips = {};   // id → date de mișcare extrase automat din clip
+const has3d = (id) => !!(ANIMATIONS[id] || mocapClips[id]);
 const DEFAULT_ID = '6268'; // ales la întâmplare din „clipuri de facut”
 const PAGE = 120;
 const $ = (id) => document.getElementById(id);
@@ -376,7 +379,7 @@ function renderDetails(ex) {
 
   const tags = $('tags');
   tags.replaceChildren();
-  tags.append(el('span', 'tag' + (has ? ' hot' : ''), has ? 'Animație 3D' : 'Fără animație încă'));
+  tags.append(el('span', 'tag' + (has ? ' hot' : ''), !has ? 'Fără animație încă' : anim.auto ? 'Animație automată' : 'Animație 3D'));
   const tagList = has ? anim.tags : [ex[3], ex[4] === 'm' ? 'Bărbat' : ex[4] === 'f' ? 'Femeie' : ''].filter(Boolean);
   for (const t of tagList) tags.append(el('span', 'tag', t));
 
@@ -396,18 +399,18 @@ function renderDetails(ex) {
 
   const mus = $('muscles');
   mus.replaceChildren();
-  if (has) for (const [m, lvl] of anim.muscles) {
+  if (has && anim.muscles.length) for (const [m, lvl] of anim.muscles) {
     const li = el('li');
     li.append(el('span', null, m), el('span', 'lvl ' + lvl, lvl === 'p' ? 'Principal' : 'Secundar'));
     mus.append(li);
   } else mus.append(el('li', 'small', ex[3] ? 'Zona: ' + ex[3] : 'Nespecificat în numele clipului'));
-  $('highlight').closest('label').hidden = !has;
+  $('highlight').closest('label').hidden = !has || !anim.muscles.length;
 
   const notice = $('notice');
   notice.hidden = has;
   if (!has) {
     notice.replaceChildren(el('strong', null, 'Animația nu e făcută încă'),
-      document.createTextNode(`Au animație 3D doar ${new Intl.ListFormat('ro', { style: 'long', type: 'conjunction' }).format(Object.keys(ANIMATIONS).map((k) => '#' + k))}. Manechinul stă în postura de bază.`));
+      document.createTextNode('Din acest clip nu s-a putut extrage mișcarea. Manechinul stă în postura de bază.'));
   }
   $('transport').style.visibility = has ? 'visible' : 'hidden';
 
@@ -433,6 +436,12 @@ async function select(ex, { fromUser = false } = {}) {
   state.ex = ex;
   state.anim = ANIMATIONS[ex[0]] || idle;
   state.t = 0;
+  // fără animație făcută de mână: încearcă mișcarea extrasă automat din clip
+  if (state.anim === idle && mocapClips[ex[0]]) {
+    const auto = await loadMocap(CFG, ex).catch(() => null);
+    if (state.ex !== ex) return;
+    if (auto) state.anim = auto;
+  }
   try { history.replaceState(null, '', '#ex-' + ex[0]); } catch { /* ignorat */ }
   renderDetails(ex);
   document.querySelectorAll('.list button').forEach((b) => b.classList.toggle('sel', b.dataset.id === ex[0]));
@@ -456,6 +465,7 @@ function renderList(reset) {
     b.append(el('span', 'nm', ex[1]), el('span', 'id', '#' + ex[0]));
     b.append(el('span', 'bp', ex[3] || '—'));
     if (ANIMATIONS[ex[0]]) b.append(el('span', 'b3d', '3D'));
+    else if (mocapClips[ex[0]]) b.append(el('span', 'b3d auto', 'AUTO'));
     b.addEventListener('click', () => select(ex, { fromUser: true }));
     li.append(b);
     list.append(li);
@@ -473,7 +483,7 @@ function applyFilter() {
   const body = $('body').value;
   const only = $('only3d').checked;
   state.filtered = state.list.filter((ex) =>
-    (!body || ex[3] === body) && (!only || ANIMATIONS[ex[0]]) &&
+    (!body || ex[3] === body) && (!only || has3d(ex[0])) &&
     q.every((w) => ex[1].toLowerCase().includes(w) || ex[0] === w.replace('#', '')));
   renderList(true);
 }
@@ -481,7 +491,10 @@ function applyFilter() {
 async function initLibrary() {
   const res = await fetch(CFG.catalog);
   state.list = await res.json();
-  $('count').textContent = `${state.list.length.toLocaleString('ro-RO')} exerciții · ${Object.keys(ANIMATIONS).length} animate`;
+  const index = await loadIndex(CFG);
+  mocapClips = (index && index.clips) || {};
+  const nAuto = state.list.filter((e) => !ANIMATIONS[e[0]] && mocapClips[e[0]]).length;
+  $('count').textContent = `${state.list.length.toLocaleString('ro-RO')} exerciții · ${Object.keys(ANIMATIONS).length} făcute de mână · ${nAuto.toLocaleString('ro-RO')} automate`;
   const bodies = [...new Set(state.list.map((e) => e[3]).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'ro'));
   for (const b of bodies) $('body').append(new Option(b, b));
   $('search').addEventListener('input', applyFilter);
