@@ -26,7 +26,8 @@ open(os.path.join(out, "index.html"), "w", encoding="utf-8").write(page)
 for f in ["app.js", "animations.js", "exercises.json"]:
     shutil.copy(os.path.join(V, f), out)
 # Artifact-ele nu servesc .glb: modelele merg ca text base64, decodate in browser.
-for f in ["male-actual.glb", "female-actual.glb", "echipamente/glb/ez_bar_olympic.glb"]:
+for f in ["male-actual.glb", "female-actual.glb", "echipamente/glb/ez_bar_olympic.glb",
+          "echipamente/glb/hyperextension_45.glb"]:
     data = base64.b64encode(open(os.path.join(ROOT, f), "rb").read())
     open(os.path.join(out, f + ".txt"), "wb").write(data)
 print("ok", out)

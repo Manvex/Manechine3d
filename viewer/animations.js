@@ -135,6 +135,20 @@ export const ex6268 = {
   },
 };
 
+// Mâinile la ceafă, coatele depărtate (IK pe umăr–cot–încheietură). Merge în orice poziție a corpului.
+export function handsBehindHead(rig) {
+  const headQ = rig.quat('head'), chestQ = rig.quat('chest');
+  const headPos = rig.pos('head');
+  for (const [side, sx] of [['R', -1], ['L', 1]]) {
+    const wrist = headPos.clone().add(new THREE.Vector3(sx * 0.118, 0.05, -0.075).applyQuaternion(headQ));
+    const pole = new THREE.Vector3(sx, 0, 0.45).applyQuaternion(chestQ);
+    rig.ik2(`${side}_upperarm`, `${side}_forearm`, `${side}_hand`, wrist, pole);
+    const mid = headPos.clone().add(new THREE.Vector3(0, 0.04, -0.105).applyQuaternion(headQ));
+    rig.aim(`${side}_hand`, `${side}_grip`, mid.sub(rig.pos(`${side}_hand`)));
+    grip(rig, side, D(-18), -0.4);
+  }
+}
+
 // 0001 — 3/4 Sit up
 // Culcat pe spate, genunchii îndoiți, tălpile pe saltea, mâinile la ceafă. Trunchiul se
 // rulează în sus cam trei sferturi din drum, ține o clipă, apoi coboară încet.
@@ -170,18 +184,7 @@ function lyingPose(rig, curlDeg, time) {
     rig.setRestW(`${side}_foot`); // talpa rămâne paralelă cu podeaua
   }
 
-  // mâini la ceafă, coatele larg (IK pe umăr–cot–încheietură)
-  const headQ = rig.quat('head'), chestQ = rig.quat('chest');
-  const headPos = rig.pos('head');
-  const fwd = new THREE.Vector3(0, 0, 1).applyQuaternion(chestQ);
-  for (const [side, sx] of [['R', -1], ['L', 1]]) {
-    const wrist = headPos.clone().add(new THREE.Vector3(sx * 0.118, 0.05, -0.075).applyQuaternion(headQ));
-    const pole = new THREE.Vector3(sx, 0, 0).addScaledVector(fwd, 0.45);
-    rig.ik2(`${side}_upperarm`, `${side}_forearm`, `${side}_hand`, wrist, pole);
-    const mid = headPos.clone().add(new THREE.Vector3(0, 0.04, -0.105).applyQuaternion(headQ));
-    rig.aim(`${side}_hand`, `${side}_grip`, mid.sub(rig.pos(`${side}_hand`)));
-    grip(rig, side, D(-18), -0.4);
-  }
+  handsBehindHead(rig);
 }
 
 export const ex0001 = {
@@ -236,4 +239,93 @@ export const ex0001 = {
   },
 };
 
-export const ANIMATIONS = { '0001': ex0001, '6268': ex6268 };
+// 0002 — 45 degrees Side Bend
+// Pe banca de hiperextensii înclinată la 45°, culcat pe o parte: șoldul pe pad, picioarele drepte
+// pe placa pentru tălpi, mâinile la ceafă. Trunchiul se îndoaie lateral în planul frontal,
+// de la ~30° spre bancă până la ~30° în sus față de linia corpului.
+const BENCH_UP = new THREE.Vector3(0, Math.SQRT1_2, -Math.SQRT1_2);   // de la picioare spre cap, pe șina băncii
+const BENCH_N = new THREE.Vector3(0, Math.SQRT1_2, Math.SQRT1_2);     // normala padului, spre persoană
+// baza corpului: stânga manechinului spre pad, capul în sus pe șină, fața spre +X
+const LYING_SIDE_Q = new THREE.Quaternion().setFromRotationMatrix(
+  new THREE.Matrix4().makeBasis(BENCH_N.clone().negate(), BENCH_UP, new THREE.Vector3(1, 0, 0)));
+const BENCH_PAD = new THREE.Vector3(0, 0.86, 0.019);                  // `anchor_hip_pad` din modelul băncii
+const HIP_OFFSET = 0.17;                                              // jumătate din lățimea bazinului
+const FOOT_SLIDE = -0.056;                                            // placa pentru tălpi, de-a lungul șinei
+
+const BEND = [ // [timp în ciclu, îndoire laterală în grade; − spre bancă, + în sus]
+  [0.00, -34], [0.14, -34],
+  [0.46, 30],
+  [0.58, 30],
+  [0.92, -34], [1.00, -34],
+];
+
+export const ex0002 = {
+  id: '0002',
+  duration: 5.9,
+  ring: false,
+  equipment: [{
+    url: 'echipamente/glb/hyperextension_45.glb',
+    attach: null,
+    finish: 'bench',
+    adjust(obj) {
+      obj.getObjectByName('joint_foot_adjust')?.position.addScaledVector(BENCH_UP, FOOT_SLIDE);
+    },
+  }],
+  // flancurile: oblicii în față și pe lateral, ușor și dreptul abdominal
+  muscleMask(x, y, z) {
+    const ax = Math.abs(x);
+    const front = SMOOTH((z + 0.05) / 0.06);
+    const band = SMOOTH((y - 1.02) / 0.05) * SMOOTH((1.40 - y) / 0.05);
+    const flank = SMOOTH((ax - 0.06) / 0.04) * SMOOTH((0.25 - ax) / 0.04);
+    const core = 0.3 * SMOOTH((0.1 - ax) / 0.03);
+    return front * band * Math.max(flank, core);
+  },
+  camera: '34',
+  views: {
+    '34': { pos: [3.3, 1.55, 2.9], target: [0, 0.62, 0.1] },
+    side: { pos: [0.3, 1.15, 4.7], target: [0, 0.62, 0.1] },
+    front: { pos: [4.7, 0.95, 0.15], target: [0, 0.65, 0.1] },
+  },
+  tags: ['Abdomen', 'Oblici', 'Banc 45°', 'Mâini la ceafă'],
+  steps: [
+    'Așază-te lateral pe banca înclinată la 45°, cu șoldul pe pad și picioarele drepte, fixate pe placa pentru tălpi.',
+    'Pune mâinile la ceafă, cu coatele depărtate. Corpul face o linie dreaptă de la glezne până la cap.',
+    'Coboară trunchiul lateral, spre bancă, doar din talie. Nu roti umerii.',
+    'Ridică trunchiul îndoindu-te lateral, până treci puțin de linia corpului. Strânge flancul.',
+    'Coboară controlat și repetă. Schimbă partea după ce termini setul.',
+  ],
+  muscles: [
+    ['Oblic extern și intern', 'p'],
+    ['Pătrat lombar', 'p'],
+    ['Drept abdominal', 's'],
+    ['Erectori spinali (stabilizare)', 's'],
+  ],
+  phases: [
+    { from: 0.00, to: 0.14, label: 'Jos · spre bancă' },
+    { from: 0.14, to: 0.46, label: 'Ridicare · îndoire laterală' },
+    { from: 0.46, to: 0.58, label: 'Sus · flancul strâns' },
+    { from: 0.58, to: 1.00, label: 'Coborâre controlată' },
+  ],
+  gauge: { lo: -45, hi: 45, min: -34, max: 30, ends: ['spre bancă', 'în sus'],
+    label: (v) => v >= 0 ? 'Îndoire în sus' : 'Îndoire spre bancă' },
+  effort(t) { return 0.35 + 0.65 * (keys(BEND, t) + 34) / 64; },
+  angle(t) { return keys(BEND, t); },
+  pose(rig, t, time) {
+    const a = D(keys(BEND, t));
+    const breath = Math.sin(time * Math.PI * 2 / 4.2);
+    // pe bancă: șoldul pe pad, corpul pe șină
+    rig.setW('hips', LYING_SIDE_Q);
+    rig.b.hips.position.copy(BENCH_PAD)
+      .addScaledVector(BENCH_N, HIP_OFFSET)
+      .addScaledVector(BENCH_UP, 0.057);
+    // îndoire laterală în jurul axei înainte a persoanei (+X în lume)
+    rig.rotW('spine', X, a * 0.36);
+    rig.rotW('spine2', X, a * 0.30);
+    rig.rotW('chest', X, a * 0.24 + D(0.5) * breath);
+    rig.rotW('neck', X, a * 0.07);
+    rig.rotW('head', X, a * 0.03);
+    handsBehindHead(rig);
+  },
+};
+
+export const ANIMATIONS = { '0001': ex0001, '0002': ex0002, '6268': ex6268 };

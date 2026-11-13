@@ -49,6 +49,12 @@ class Rig {
   }
   pos(name) { return this.b[name].getWorldPosition(new THREE.Vector3()); }
   quat(name) { return this.b[name].getWorldQuaternion(new THREE.Quaternion()); }
+  // Setează direct orientarea osului în spațiul lumii.
+  setW(name, q) {
+    const b = this.b[name];
+    b.parent.getWorldQuaternion(this._p);
+    b.quaternion.copy(this._p.invert().multiply(q));
+  }
   // Pune osul înapoi în orientarea lui de repaus din spațiul lumii (ex. talpa plată pe podea).
   setRestW(name) {
     const b = this.b[name];
@@ -238,13 +244,23 @@ function paintMuscles() {
   });
 }
 
+const BENCH_FINISH = { steel: [0xb4bac1, 0.9, 0.3], powder: [0x2d3238, 0.45, 0.5], rubber: [0x1b1d21, 0, 0.85],
+  vinyl: [0x1f2227, 0, 0.7], plastic: [0x3a3f46, 0, 0.6] };
+function gearMaterial(name, finish) {
+  if (finish === 'bench') {
+    const [color, metalness, roughness] = BENCH_FINISH[(name.match(/__([a-z]+)$/) || [])[1]] || BENCH_FINISH.powder;
+    return new THREE.MeshStandardMaterial({ color, metalness, roughness });
+  }
+  return new THREE.MeshStandardMaterial({ color: /knurl/.test(name) ? 0x3b4047 : 0x23272c, metalness: 0.75, roughness: /knurl/.test(name) ? 0.7 : 0.32 });
+}
+
 async function setupAnim() {
   const token = ++state.token;
   const { rig, anim } = state;
   for (const g of state.gear) g.removeFromParent();
   state.gear = [];
   mat.visible = !!anim.mat;
-  ring.visible = !anim.mat;
+  ring.visible = !anim.mat && anim.ring !== false;
   paintMuscles();
   for (const eq of anim.equipment || []) {
     const gltf = await load(CFG.assets + eq.url);
@@ -253,9 +269,17 @@ async function setupAnim() {
     obj.traverse((o) => {
       if (o.isMesh) {
         o.castShadow = true;
-        o.material = new THREE.MeshStandardMaterial({ color: /knurl/.test(o.name) ? 0x3b4047 : 0x23272c, metalness: 0.75, roughness: /knurl/.test(o.name) ? 0.7 : 0.32 });
+        o.receiveShadow = true;
+        o.material = gearMaterial(o.name, eq.finish);
       }
     });
+    // echipament fix în scenă (banc, aparat): fără atașare la un os
+    if (!eq.attach) {
+      if (eq.adjust) eq.adjust(obj);
+      scene.add(obj);
+      state.gear.push(obj);
+      continue;
+    }
     // atașare: poza neutră, apoi bara pusă în spațiul lumii și convertită în coordonatele mâinii
     rig.reset();
     anim.neutral ? anim.neutral(rig) : anim.pose(rig, 0, 0);
@@ -358,7 +382,7 @@ function renderDetails(ex) {
   notice.hidden = has;
   if (!has) {
     notice.replaceChildren(el('strong', null, 'Animația nu e făcută încă'),
-      document.createTextNode(`Au animație 3D doar ${Object.keys(ANIMATIONS).map((k) => '#' + k).join(' și ')}. Manechinul stă în postura de bază.`));
+      document.createTextNode(`Au animație 3D doar ${new Intl.ListFormat('ro', { style: 'long', type: 'conjunction' }).format(Object.keys(ANIMATIONS).map((k) => '#' + k))}. Manechinul stă în postura de bază.`));
   }
   $('transport').style.visibility = has ? 'visible' : 'hidden';
 
